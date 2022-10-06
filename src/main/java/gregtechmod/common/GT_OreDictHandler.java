@@ -60,45 +60,26 @@ public class GT_OreDictHandler {
 			String aMod = tContainer == null ? "minecraft" : tContainer.getModId();         
 			
          ////TO DO: Make this into a config
-         List<String> Blacklist = new ArrayList<String>(); 
-         
-         Blacklist.add("TConstruct".toLowerCase());
-         Blacklist.add("Xycraft".toLowerCase());
-         Blacklist.add("Natura".toLowerCase());
-         Blacklist.add("Natural".toLowerCase());
-         Blacklist.add("BiblioCraft".toLowerCase());
-         Blacklist.add("BiblioWoods".toLowerCase());
-         Blacklist.add("Botania".toLowerCase());
-         Blacklist.add("Botany".toLowerCase());
-         Blacklist.add("ExtraTiC".toLowerCase());
-         Blacklist.add("ExtraTrees".toLowerCase());
-         Blacklist.add("ExtraUtilities".toLowerCase());
-         Blacklist.add("ForbiddenMagic".toLowerCase());
-         Blacklist.add("ForgeMicroblock".toLowerCase());
-         Blacklist.add("ForgottenRelics".toLowerCase());
-         Blacklist.add("HardcoreEnderExpansion".toLowerCase());
-         Blacklist.add("Mekanism".toLowerCase());
-         Blacklist.add("NuclearCraft".toLowerCase());
-         Blacklist.add("OpenBlocks".toLowerCase());
-         Blacklist.add("OpenComputers".toLowerCase());
-         Blacklist.add("RandomThings".toLowerCase());
-         Blacklist.add("StorageDrawers".toLowerCase());
-         Blacklist.add("ThaumicExploration".toLowerCase());
-         Blacklist.add("WarpDrive".toLowerCase());
-         Blacklist.add("chisel".toLowerCase());
-         Blacklist.add("rftools".toLowerCase());
-         Blacklist.add("thaumcraftneiplugin".toLowerCase());
-         Blacklist.add("thaumicdyes".toLowerCase());        
-         Blacklist.add("ProjRed|Illumination".toLowerCase());
-         Blacklist.add("minechem".toLowerCase());
-         Blacklist.add("EtFuturum".toLowerCase());
-         Blacklist.add("TravellersGear".toLowerCase());
-         Blacklist.add("MekanismTools".toLowerCase());
-            //
+           if (aMod.toLowerCase().contains("tconstruct") ||
+                   aMod.toLowerCase().contains("xycraft") ||
+                   aMod.toLowerCase().contains("botan") ||
+                   aMod.toLowerCase().contains("chisel") ||
+                   aMod.toLowerCase().contains("extratic") ||
+                   aMod.toLowerCase().contains("extratrees") ||
+                   aMod.toLowerCase().contains("extrautilities") ||
+                   aMod.toLowerCase().contains("forgemicroblock") ||
+                   aMod.toLowerCase().contains("hardcoreenderexpansion") ||
+                   aMod.toLowerCase().contains("minechem") ||
+                   aMod.toLowerCase().contains("nuclearcraft") ||
+                   aMod.toLowerCase().contains("opencomputers") ||
+                   aMod.toLowerCase().contains("projred") ||
+                   aMod.toLowerCase().contains("biblio") ||
+                   aMod.toLowerCase().contains("warpdrive") ||
+                   aMod.toLowerCase().contains("storagedrawers") ||
+                   aMod.toLowerCase().contains("natura")
+           ) return;
 
-	    	if (Blacklist.contains(aMod.toLowerCase())) return;
-            if (GregTech_API.OREDICT_DEBUG_MODE)
-			    if (mActivated || GregTech_API.sPostloadStarted || GT_Mod.sSortToTheEnd && GregTech_API.sLoadFinished) {
+           if (GregTech_API.OREDICT_DEBUG_MODE && (mActivated || GregTech_API.sPostloadStarted || GT_Mod.sSortToTheEnd && GregTech_API.sLoadFinished)) {
 				GT_Log.log.warn("WARNING: " + aMod + " attempted to register " + aEvent.Name + " very late at the OreDictionary! Some Functionality may not work as expected! Sometimes registration in Postload is required, but you should always register OreDictionary Items in the Load Phase whenever possible.");
 			    }
 	    	
