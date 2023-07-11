@@ -156,6 +156,7 @@ public class GT_Mod implements IGT_Mod {
     		sCraftingUnification = true,
     		sInventoryUnification = true,
     		sIncreaseDungeonLoot = true,
+			sBookDungeonLoot =true,
     		sAxeWhenAdventure = true,
     		sSurvivalIntoAdventure = false,
     		sNerfedWoodPlank = true,
@@ -379,6 +380,7 @@ public class GT_Mod implements IGT_Mod {
     	sItemDespawnTime		= tConfig1.get("general", "ItemDespawnTime"				, 6000 ).getInt(6000);
     	sNerfDustCrafting		= tConfig1.get("general", "NerfDustCrafting"			, true ).getBoolean(true);
     	sIncreaseDungeonLoot	= tConfig1.get("general", "IncreaseDungeonLoot"			, true ).getBoolean(true);
+		sBookDungeonLoot		= tConfig1.get("general", "BookLoot"					, true ).getBoolean(true);
     	sAxeWhenAdventure		= tConfig1.get("general", "AdventureModeStartingAxe"	, true ).getBoolean(true);
     	sSurvivalIntoAdventure	= tConfig1.get("general", "forceAdventureMode"			, false).getBoolean(false);
     	sHungerEffect			= tConfig1.get("general", "AFK_Hunger"					, false).getBoolean(false);
