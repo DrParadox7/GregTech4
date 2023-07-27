@@ -128,9 +128,9 @@ public class GT_OreDictHandler {
                          GT_OreDictUnificator.registerOre(GT_OreDictNames.craftingWireCopper, aEvent.Ore);
                       }
 
-                      if(aEvent.Name.equals("sheetPlastic")) {
-                         GT_OreDictUnificator.registerOre(OrePrefixes.plate, Materials.Plastic, aEvent.Ore);
-                      }
+//                      if(aEvent.Name.equals("sheetPlastic")) {
+//                         GT_OreDictUnificator.registerOre(OrePrefixes.plate, Materials.Plastic, aEvent.Ore);
+//                      }
 
                       if(aEvent.Name.contains(" ")) {
                          GT_Log.ore.println(e + " is getting re-registered because the OreDict Name containing invalid spaces.");
@@ -348,9 +348,9 @@ public class GT_OreDictHandler {
                                            GT_OreDictUnificator.registerOre(GT_OreDictNames.craftingPlateSteel, aEvent.Ore);
                                         }
 
-                                        if(aMaterial == Materials.Plastic) {
-                                           GT_OreDictUnificator.registerOre("sheetPlastic", aEvent.Ore);
-                                        }
+//                                        if(aMaterial == Materials.Plastic) {
+//                                           GT_OreDictUnificator.registerOre("sheetPlastic", aEvent.Ore);
+//                                        }
 
                                         if(aMaterial == Materials.Rubber) {
                                            GT_OreDictUnificator.registerOre("sheetRubber", aEvent.Ore);
@@ -448,11 +448,11 @@ public class GT_OreDictHandler {
                             case stoneCobble:
                                GT_OreDictUnificator.registerOre("cobblestone", aEvent.Ore);
                                break;
-                            case sheet:
-                               if(tName.equals("sheetPlastic")) {
-                                  GT_OreDictUnificator.registerOre(OrePrefixes.plate, Materials.Plastic, aEvent.Ore);
-                               }
-                               break;
+//                            case sheet:
+//                               if(tName.equals("sheetPlastic")) {
+//                                  GT_OreDictUnificator.registerOre(OrePrefixes.plate, Materials.Plastic, aEvent.Ore);
+//                               }
+//                               break;
                             case crafting:
                                if(tName.equals("ToolSolderingMetal")) {
                                   GregTech_API.registerSolderingMetal(aEvent.Ore);
