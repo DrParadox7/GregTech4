@@ -204,7 +204,7 @@ public class GT_CraftingRecipeLoader implements Runnable {
 	    GT_ModHandler.addCraftingRecipe(GT_Items.Shape_Extruder_Gear		.get(1), false, false, true, false, new Object[] {"C  ", "   ", "P  ", 'C', GT_ToolDictNames.craftingToolWireCutter, 'P', GT_Items.Shape_Empty.get(1)});
 	    
 	    GT_Log.log.info("Basic Circuit adjustment Recipes.");
-	    GT_ModHandler.addShapelessCraftingRecipe(GT_Items.Circuit_Integrated.getWithDamage(1, 0), new Object[] {OrePrefixes.circuit.get(Materials.Basic), GT_ToolDictNames.craftingToolScrewdriver, GT_ToolDictNames.craftingToolSolderingIron, GT_ToolDictNames.craftingToolSolderingMetal});
+	    GT_ModHandler.addShapelessCraftingRecipe(GT_Items.Circuit_Integrated.getWithDamage(1, 0), new Object[] {GT_Items.Circuit_Basic.get(1L), GT_ToolDictNames.craftingToolScrewdriver, GT_ToolDictNames.craftingToolSolderingIron, GT_ToolDictNames.craftingToolSolderingMetal});
 	    GT_ModHandler.addCraftingRecipe(GT_Items.Circuit_Integrated.getWithDamage(1, 1)	, false, false, true, false, new Object[] {"C  ", " P ", "   ", 'C', GT_ToolDictNames.craftingToolScrewdriver, 'P', GT_Items.Circuit_Integrated.getWildcard(1)});
 	    GT_ModHandler.addCraftingRecipe(GT_Items.Circuit_Integrated.getWithDamage(1, 2)	, false, false, true, false, new Object[] {" C ", " P ", "   ", 'C', GT_ToolDictNames.craftingToolScrewdriver, 'P', GT_Items.Circuit_Integrated.getWildcard(1)});
 	    GT_ModHandler.addCraftingRecipe(GT_Items.Circuit_Integrated.getWithDamage(1, 3)	, false, false, true, false, new Object[] {"  C", " P ", "   ", 'C', GT_ToolDictNames.craftingToolScrewdriver, 'P', GT_Items.Circuit_Integrated.getWildcard(1)});
