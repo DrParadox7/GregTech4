@@ -20,16 +20,18 @@ public class ProcessingToolHeadSword implements IOreRecipeRegistrator {
 	}
 
 	public void registerOre(OrePrefixes aPrefix, List<OreDictEntry> entries) {
-		for (OreDictEntry entry : entries) {
-			Materials aMaterial = this.getMaterial(aPrefix, entry);
-			if (this.isExecutable(aPrefix, aMaterial) && !aMaterial.contains(SubTag.NO_SMASHING)) {
-				for (ItemStack aStack : entry.ores) {
-					RecipeHandler.executeOnFinish(() ->  {
-						GT_ModHandler.addCraftingRecipe(GT_Utility.copyAmount(1, aStack), false, true,
-								new Object[] { " P ", "FPH", 'P', OrePrefixes.plate.get(aMaterial), 'I',
-										OrePrefixes.ingot.get(aMaterial), 'H', GT_ToolDictNames.craftingToolHardHammer, 'F',
-										GT_ToolDictNames.craftingToolFile });
-					});
+		if (!gregtechmod.GT_Mod.sMinimalItemGeneration) {
+			for (OreDictEntry entry : entries) {
+				Materials aMaterial = this.getMaterial(aPrefix, entry);
+				if (this.isExecutable(aPrefix, aMaterial) && !aMaterial.contains(SubTag.NO_SMASHING)) {
+					for (ItemStack aStack : entry.ores) {
+						RecipeHandler.executeOnFinish(() -> {
+							GT_ModHandler.addCraftingRecipe(GT_Utility.copyAmount(1, aStack), false, true,
+									new Object[]{" P ", "FPH", 'P', OrePrefixes.plate.get(aMaterial), 'I',
+											OrePrefixes.ingot.get(aMaterial), 'H', GT_ToolDictNames.craftingToolHardHammer, 'F',
+											GT_ToolDictNames.craftingToolFile});
+						});
+					}
 				}
 			}
 		}

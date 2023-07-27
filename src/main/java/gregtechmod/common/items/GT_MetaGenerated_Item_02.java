@@ -7,6 +7,8 @@ import gregtechmod.api.items.GT_MetaGenerated_Item;
 import java.util.Arrays;
 import java.util.List;
 
+import static gregtechmod.GT_Mod.sMinimalItemGeneration;
+
 public class GT_MetaGenerated_Item_02 extends GT_MetaGenerated_Item {
 
    public static final List<Materials> sTempToolHeadMaterials = Arrays.asList(new Materials[]{
@@ -37,21 +39,21 @@ public class GT_MetaGenerated_Item_02 extends GT_MetaGenerated_Item {
       } else {
          switch(aPrefix) {
          case toolHeadSword:
-            return (aMaterial.mTypes & 64) != 0 && sTempToolHeadMaterials.contains(aMaterial);
+            return !sMinimalItemGeneration && (aMaterial.mTypes & 64) != 0 && sTempToolHeadMaterials.contains(aMaterial);
          case toolHeadPickaxe:
-            return (aMaterial.mTypes & 64) != 0 && sTempToolHeadMaterials.contains(aMaterial);
+            return !sMinimalItemGeneration && (aMaterial.mTypes & 64) != 0 && sTempToolHeadMaterials.contains(aMaterial);
          case toolHeadShovel:
-            return (aMaterial.mTypes & 64) != 0 && sTempToolHeadMaterials.contains(aMaterial);
+            return !sMinimalItemGeneration && (aMaterial.mTypes & 64) != 0 && sTempToolHeadMaterials.contains(aMaterial);
          case toolHeadAxe:
-            return (aMaterial.mTypes & 64) != 0 && sTempToolHeadMaterials.contains(aMaterial);
+            return !sMinimalItemGeneration && (aMaterial.mTypes & 64) != 0 && sTempToolHeadMaterials.contains(aMaterial);
          case toolHeadHoe:
-            return (aMaterial.mTypes & 64) != 0 && sTempToolHeadMaterials.contains(aMaterial);
+            return !sMinimalItemGeneration && (aMaterial.mTypes & 64) != 0 && sTempToolHeadMaterials.contains(aMaterial);
          case toolHeadHammer:
-            return (aMaterial.mTypes & 64) != 0 && sTempToolHeadMaterials.contains(aMaterial);
+            return !sMinimalItemGeneration && (aMaterial.mTypes & 64) != 0 && sTempToolHeadMaterials.contains(aMaterial);
          case toolHeadFile:
-            return (aMaterial.mTypes & 64) != 0 && sTempToolHeadMaterials.contains(aMaterial);
+            return !sMinimalItemGeneration && (aMaterial.mTypes & 64) != 0 && sTempToolHeadMaterials.contains(aMaterial);
          case toolHeadSaw:
-            return (aMaterial.mTypes & 64) != 0 && sTempToolHeadMaterials.contains(aMaterial);
+            return !sMinimalItemGeneration && (aMaterial.mTypes & 64) != 0 && sTempToolHeadMaterials.contains(aMaterial);
          case gearGt:
             return (aMaterial.mTypes & 128) != 0;
          default:

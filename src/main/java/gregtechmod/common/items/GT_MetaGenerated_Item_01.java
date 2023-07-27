@@ -10,6 +10,8 @@ import gregtechmod.api.interfaces.IIconContainer;
 import gregtechmod.api.items.GT_MetaGenerated_Item;
 import net.minecraft.item.ItemStack;
 
+import static gregtechmod.GT_Mod.sMinimalItemGeneration;
+
 public class GT_MetaGenerated_Item_01 extends GT_MetaGenerated_Item {
    
    private final HashMap<Integer, String> sUnlocalizedNames = new HashMap<>();
@@ -87,25 +89,25 @@ public class GT_MetaGenerated_Item_01 extends GT_MetaGenerated_Item {
          case plate:
             return (aMaterial.mTypes & 6) != 0 || aMaterial == Materials.Paper || aMaterial == Materials.Redstone || aMaterial == Materials.GraniteRed || aMaterial == Materials.GraniteBlack || aMaterial == Materials.Glowstone || aMaterial == Materials.Nikolite || aMaterial == Materials.Electrotine || aMaterial == Materials.Obsidian || aMaterial == Materials.Wood;
          case plateDouble:
-            return aMaterial == Materials.Paper;
+            return !sMinimalItemGeneration && aMaterial == Materials.Paper;
          case plateTriple:
-            return aMaterial == Materials.Paper;
+            return !sMinimalItemGeneration && aMaterial == Materials.Paper;
          case plateQuadruple:
-            return aMaterial == Materials.Paper;
+            return !sMinimalItemGeneration && aMaterial == Materials.Paper;
          case plateQuintuple:
-            return aMaterial == Materials.Paper;
+            return !sMinimalItemGeneration && aMaterial == Materials.Paper;
          case stick:
             return (aMaterial.mTypes & 2) != 0;
          case lense:
             return (aMaterial.mTypes & 4) != 0 && aMaterial.mTransparent && aMaterial.mColor != Dyes._NULL || aMaterial == Materials.EnderPearl || aMaterial == Materials.EnderEye;
          case round:
-            return (aMaterial.mTypes & 2) != 0;
+            return !sMinimalItemGeneration && (aMaterial.mTypes & 2) != 0;
          case bolt:
-            return (aMaterial.mTypes & 2) != 0;
+            return !sMinimalItemGeneration && (aMaterial.mTypes & 2) != 0;
          case screw:
-            return (aMaterial.mTypes & 2) != 0;
+            return !sMinimalItemGeneration && (aMaterial.mTypes & 2) != 0;
          case ring:
-            return (aMaterial.mTypes & 2) != 0;
+            return !sMinimalItemGeneration && (aMaterial.mTypes & 2) != 0;
          case cell:
             return (aMaterial.mTypes & 16) != 0;
          case cellPlasma:

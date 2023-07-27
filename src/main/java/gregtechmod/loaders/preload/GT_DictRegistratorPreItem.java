@@ -134,6 +134,7 @@ public class GT_DictRegistratorPreItem implements Runnable {
 		GT_OreDictUnificator.add("craftingSulfurToGunpowder"	, GT_ModHandler.getTEItem("crystalSulfur", 1));
 		
 		GT_OreDictUnificator.add("itemRubber"			, GT_ModHandler.getIC2Item("rubber", 1));
+		GT_OreDictUnificator.add("ingotRubber"			, GT_ModHandler.getIC2Item("rubber", 1));
 		GT_OreDictUnificator.add("gemIridium"			, GT_ModHandler.getIC2Item("iridiumOre", 1));
 	    GT_OreDictUnificator.add("gemEnderEye"			, new ItemStack(Items.ender_eye, 1));
 	    GT_OreDictUnificator.add("gemEnderPearl"		, new ItemStack(Items.ender_pearl, 1));

@@ -18,13 +18,15 @@ public class ProcessingBolt implements IOreRecipeRegistrator {
 	}
 
 	public void registerOre(OrePrefixes aPrefix, List<OreDictEntry> entries) {
-		for (OreDictEntry entry : entries) {
-			Materials aMaterial = this.getMaterial(aPrefix, entry);
-			if (this.isExecutable(aPrefix, aMaterial) && (aMaterial.mTypes & 2) != 0) {
-				RecipeMaps.LATHE.factory().EUt(4).duration(Math.max(aMaterial.getMass() / 8, 1))
-					.input(RecipeEntry.fromStacks(entry.ores, Match.DAMAGE))
-					.output(GT_OreDictUnificator.get(OrePrefixes.screw, aMaterial, 1))
-					.buildAndRegister();
+		if (!gregtechmod.GT_Mod.sMinimalItemGeneration) {
+			for (OreDictEntry entry : entries) {
+				Materials aMaterial = this.getMaterial(aPrefix, entry);
+				if (this.isExecutable(aPrefix, aMaterial) && (aMaterial.mTypes & 2) != 0) {
+					RecipeMaps.LATHE.factory().EUt(4).duration(Math.max(aMaterial.getMass() / 8, 1))
+						.input(RecipeEntry.fromStacks(entry.ores, Match.DAMAGE))
+						.output(GT_OreDictUnificator.get(OrePrefixes.screw, aMaterial, 1))
+						.buildAndRegister();
+				}
 			}
 		}
 	}

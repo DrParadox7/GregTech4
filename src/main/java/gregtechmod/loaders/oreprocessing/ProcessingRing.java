@@ -22,18 +22,20 @@ public class ProcessingRing implements IOreRecipeRegistrator {
 	}
 
 	public void registerOre(OrePrefixes aPrefix, List<OreDictEntry> entries) {
-		for (OreDictEntry entry : entries) {
-			Materials aMaterial = this.getMaterial(aPrefix, entry);
-			if (this.isExecutable(aPrefix, aMaterial) && !aMaterial.contains(SubTag.NO_SMASHING)) {
-				for (ItemStack aStack : entry.ores) {
-					if (GregTech_API.sRecipeFile.get(GT_ConfigCategories.Tools.hammerrings, OrePrefixes.ring.get(aMaterial), true)) {
-						RecipeHandler.executeOnFinish(() -> {
-							GT_ModHandler.addCraftingRecipe(GT_Utility.copyAmount(1L, new Object[] { aStack }),
-									new Object[] { "H ", " S", Character.valueOf('H'), GT_ToolDictNames.craftingToolHardHammer,
-											Character.valueOf('S'), OrePrefixes.stick.get(aMaterial) });
-							GT_ModHandler.addShapelessCraftingRecipe(GT_Utility.copyAmount(2L, new Object[] { aStack }),
-									new Object[] { GT_ToolDictNames.craftingToolForgeHammer, OrePrefixes.stick.get(aMaterial) });
-						});
+		if (!gregtechmod.GT_Mod.sMinimalItemGeneration) {
+			for (OreDictEntry entry : entries) {
+				Materials aMaterial = this.getMaterial(aPrefix, entry);
+				if (this.isExecutable(aPrefix, aMaterial) && !aMaterial.contains(SubTag.NO_SMASHING)) {
+					for (ItemStack aStack : entry.ores) {
+						if (GregTech_API.sRecipeFile.get(GT_ConfigCategories.Tools.hammerrings, OrePrefixes.ring.get(aMaterial), true)) {
+							RecipeHandler.executeOnFinish(() -> {
+								GT_ModHandler.addCraftingRecipe(GT_Utility.copyAmount(1L, new Object[]{aStack}),
+										new Object[]{"H ", " S", Character.valueOf('H'), GT_ToolDictNames.craftingToolHardHammer,
+												Character.valueOf('S'), OrePrefixes.stick.get(aMaterial)});
+								GT_ModHandler.addShapelessCraftingRecipe(GT_Utility.copyAmount(2L, new Object[]{aStack}),
+										new Object[]{GT_ToolDictNames.craftingToolForgeHammer, OrePrefixes.stick.get(aMaterial)});
+							});
+						}
 					}
 				}
 			}

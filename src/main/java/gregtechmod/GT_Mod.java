@@ -152,7 +152,8 @@ public class GT_Mod implements IGT_Mod {
     public static boolean 
     		sThaumiumObtainable = false,
     		sNerfDustCrafting = true,
-    		sSortToTheEnd = true,
+			sMinimalItemGeneration = false,
+			sSortToTheEnd = true,
     		sCraftingUnification = true,
     		sInventoryUnification = true,
     		sIncreaseDungeonLoot = true,
@@ -379,7 +380,8 @@ public class GT_Mod implements IGT_Mod {
         
     	sItemDespawnTime		= tConfig1.get("general", "ItemDespawnTime"				, 6000 ).getInt(6000);
     	sNerfDustCrafting		= tConfig1.get("general", "NerfDustCrafting"			, true ).getBoolean(true);
-    	sIncreaseDungeonLoot	= tConfig1.get("general", "IncreaseDungeonLoot"			, true ).getBoolean(true);
+		sMinimalItemGeneration = tConfig1.get("general", "MinimalItemGeneration"		, false ).getBoolean(false);
+		sIncreaseDungeonLoot	= tConfig1.get("general", "IncreaseDungeonLoot"			, true ).getBoolean(true);
 		sBookDungeonLoot		= tConfig1.get("general", "BookLoot"					, true ).getBoolean(true);
     	sAxeWhenAdventure		= tConfig1.get("general", "AdventureModeStartingAxe"	, true ).getBoolean(true);
     	sSurvivalIntoAdventure	= tConfig1.get("general", "forceAdventureMode"			, false).getBoolean(false);
@@ -392,7 +394,7 @@ public class GT_Mod implements IGT_Mod {
     	sNerfedWoodenTools		= tConfig1.get("general", "smallerWoodToolDurability"	, true ).getBoolean(true);
     	sNerfedStoneTools		= tConfig1.get("general", "smallerStoneToolDurability"	, true ).getBoolean(true);
     	sSortToTheEnd 			= tConfig1.get("general", "EnsureToBeLoadedLast"		, true ).getBoolean(true);
-    	mOnline 				= tConfig1.get("general", "online"						, true).getBoolean(false);
+		mOnline 				= tConfig1.get("general", "online"						, true).getBoolean(false);
     	
     	if(tConfig1.get("general", "hardermobspawners", true).getBoolean(true)) Blocks.mob_spawner.setHardness(2000.0F);
     	GT_BlockMetaID_Block.mConnectedMachineTextures = tConfig1.get("general", "ConnectedMachineCasingTextures", true).getBoolean(false);
@@ -718,8 +720,7 @@ public class GT_Mod implements IGT_Mod {
         GT_Log.log.info("Activating Recipe handler");
         RecipeHandler.activateHandler();
         GT_Log.log.info("Congratulations, you have been waiting long enough. Have a Cake.");
-        
-        
+
         GT_Log.log.info("Adding Stone related Recipes");
         GT_ModHandler.addSmeltingRecipe(new ItemStack(GregTech_API.sBlockList[5]	, 1		, 0)			, new ItemStack(GregTech_API.sBlockList[5]	, 1	, 7	));
         GT_ModHandler.addSmeltingRecipe(new ItemStack(GregTech_API.sBlockList[5]	, 1		, 1)			, new ItemStack(GregTech_API.sBlockList[5]	, 1	, 0	));

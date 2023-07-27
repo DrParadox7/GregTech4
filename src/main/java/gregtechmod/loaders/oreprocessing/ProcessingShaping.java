@@ -19,6 +19,8 @@ import gregtechmod.common.recipe.RecipeMaps;
 import net.minecraft.item.ItemStack;
 import gregtechmod.common.recipe.RecipeEntry.Match;
 
+import static gregtechmod.GT_Mod.sMinimalItemGeneration;
+
 public class ProcessingShaping implements IOreRecipeRegistrator {
 	
 	public final static List<Materials> PIPES_MED_LARGE = Arrays.asList(new Materials[]{
@@ -57,7 +59,7 @@ public class ProcessingShaping implements IOreRecipeRegistrator {
 						RecipeMaps.EXTRUDING.factory().EUt(128).setShaped(true).duration(8 * tAmount)	.input(RecipeEntry.fromStacks(1, e.ores, Match.STRICT)).nonConsumable(GT_Items.Shape_Extruder_Pipe_Small	.get(1)).output(GT_OreDictUnificator.get(OrePrefixes.pipeSmall	, aMaterial, tAmount)).buildAndRegister();
 					}
 					
-					if ((aMaterial.mTypes & 64) != 0 && GT_MetaGenerated_Item_02.sTempToolHeadMaterials.contains(aMaterial)) {
+					if (!sMinimalItemGeneration && (aMaterial.mTypes & 64) != 0 && GT_MetaGenerated_Item_02.sTempToolHeadMaterials.contains(aMaterial)) {
 						RecipeMaps.EXTRUDING.factory().EUt(128).setShaped(true).duration(Math.max(aMaterial.getMass() * 2 * tAmount, tAmount)).input(RecipeEntry.fromStacks(2, e.ores, Match.STRICT)).nonConsumable(GT_Items.Shape_Extruder_Sword	.get(1)).output(GT_OreDictUnificator.get(OrePrefixes.toolHeadSword	, aMaterial, tAmount)).buildAndRegister();
 						RecipeMaps.EXTRUDING.factory().EUt(128).setShaped(true).duration(Math.max(aMaterial.getMass() * 3 * tAmount, tAmount)).input(RecipeEntry.fromStacks(3, e.ores, Match.STRICT)).nonConsumable(GT_Items.Shape_Extruder_Pickaxe .get(1)).output(GT_OreDictUnificator.get(OrePrefixes.toolHeadPickaxe, aMaterial, tAmount)).buildAndRegister();
 						RecipeMaps.EXTRUDING.factory().EUt(128).setShaped(true).duration(Math.max(aMaterial.getMass() * 1 * tAmount, tAmount)).input(RecipeEntry.fromStacks(1, e.ores, Match.STRICT)).nonConsumable(GT_Items.Shape_Extruder_Shovel	.get(1)).output(GT_OreDictUnificator.get(OrePrefixes.toolHeadShovel	, aMaterial, tAmount)).buildAndRegister();
@@ -85,9 +87,9 @@ public class ProcessingShaping implements IOreRecipeRegistrator {
 						
 						if(tAmount * 2 <= 64 && (tItem = GT_OreDictUnificator.get(OrePrefixes.stick, aMaterial, 2)) != null)
 							RecipeMaps.EXTRUDING.factory().EUt( 96).setShaped(true).duration(Math.max(aMaterial.getMass() * 2 * tAmount, tAmount)).input(RecipeEntry.fromStacks(1, e.ores, Match.STRICT)).nonConsumable(GT_Items.Shape_Extruder_Rod  .get(1)).output(tItem).buildAndRegister();
-						if (tAmount * 8 <= 64 && (tItem = GT_OreDictUnificator.get(OrePrefixes.bolt, aMaterial, 8)) != null)
+						if (!sMinimalItemGeneration && tAmount * 8 <= 64 && (tItem = GT_OreDictUnificator.get(OrePrefixes.bolt, aMaterial, 8)) != null)
 							RecipeMaps.EXTRUDING.factory().EUt(128).setShaped(true).duration(Math.max(aMaterial.getMass() * 2 * tAmount, tAmount)).input(RecipeEntry.fromStacks(1, e.ores, Match.STRICT)).nonConsumable(GT_Items.Shape_Extruder_Bolt .get(1)).output(tItem).buildAndRegister();
-						if (tAmount * 4 <= 64 && (tItem = GT_OreDictUnificator.get(OrePrefixes.ring, aMaterial, 4)) != null)
+						if (!sMinimalItemGeneration && tAmount * 4 <= 64 && (tItem = GT_OreDictUnificator.get(OrePrefixes.ring, aMaterial, 4)) != null)
 							RecipeMaps.EXTRUDING.factory().EUt( 96).setShaped(true).duration(Math.max(aMaterial.getMass() * 2 * tAmount, tAmount)).input(RecipeEntry.fromStacks(1, e.ores, Match.STRICT)).nonConsumable(GT_Items.Shape_Extruder_Ring .get(1)).output(tItem).buildAndRegister();
 						if (!OrePrefixes.block.isIgnored(aMaterial) && (tItem = GT_OreDictUnificator.get(OrePrefixes.block, aMaterial, 1)) != null)
 							RecipeMaps.EXTRUDING.factory().EUt(128).setShaped(true).duration(10 * tAmount										 ).input(RecipeEntry.fromStacks(9, e.ores, Match.STRICT)).nonConsumable(GT_Items.Shape_Extruder_Block.get(1)).output(tItem).buildAndRegister();

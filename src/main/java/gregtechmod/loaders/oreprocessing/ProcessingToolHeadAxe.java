@@ -21,17 +21,19 @@ public class ProcessingToolHeadAxe implements IOreRecipeRegistrator {
 	}
 
 	public void registerOre(OrePrefixes aPrefix, List<OreDictEntry> entries) {
-		for (OreDictEntry entry : entries) {
-			Materials aMaterial = this.getMaterial(aPrefix, entry);
-			if (this.isExecutable(aPrefix, aMaterial) && !aMaterial.contains(SubTag.NO_SMASHING)) {
-				for (ItemStack aStack : entry.ores) {
-					RecipeHandler.executeOnFinish(() -> {
-						GT_ModHandler.addCraftingRecipe(GT_Utility.copyAmount(1L, aStack), false, true,
-								new Object[] { "PIH", "P  ", "F  ", Character.valueOf('P'), OrePrefixes.plate.get(aMaterial),
-										Character.valueOf('I'), OrePrefixes.ingot.get(aMaterial), Character.valueOf('H'),
-										GT_ToolDictNames.craftingToolHardHammer, Character.valueOf('F'),
-										GT_ToolDictNames.craftingToolFile });
-					});
+		if (!gregtechmod.GT_Mod.sMinimalItemGeneration) {
+			for (OreDictEntry entry : entries) {
+				Materials aMaterial = this.getMaterial(aPrefix, entry);
+				if (this.isExecutable(aPrefix, aMaterial) && !aMaterial.contains(SubTag.NO_SMASHING)) {
+					for (ItemStack aStack : entry.ores) {
+						RecipeHandler.executeOnFinish(() -> {
+							GT_ModHandler.addCraftingRecipe(GT_Utility.copyAmount(1L, aStack), false, true,
+									new Object[]{"PIH", "P  ", "F  ", Character.valueOf('P'), OrePrefixes.plate.get(aMaterial),
+											Character.valueOf('I'), OrePrefixes.ingot.get(aMaterial), Character.valueOf('H'),
+											GT_ToolDictNames.craftingToolHardHammer, Character.valueOf('F'),
+											GT_ToolDictNames.craftingToolFile});
+						});
+					}
 				}
 			}
 		}

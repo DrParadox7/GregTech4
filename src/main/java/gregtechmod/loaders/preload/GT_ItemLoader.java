@@ -67,8 +67,11 @@ public class GT_ItemLoader implements Runnable {
 		GregTech_API.sItemList[ 0] = new GT_MetaItem_Material	("GT_Materials");
 		GregTech_API.sItemList[ 3] = new GT_MetaItem_Component	("GT_Components");
 
-		
-        GT_Log.log.info("Adding All Sub-Items with their OreDict and LiquidDict Entries.");
+		if (gregtechmod.GT_Mod.sMinimalItemGeneration) {
+			gregtechmod.api.enums.OrePrefixes.minimalItems();
+			GT_Log.log.info("Restricting item generation to the bare essential.");
+		}
+		GT_Log.log.info("Adding All Sub-Items with their OreDict and LiquidDict Entries.");
         GT_Items.Credit_Copper.set(		GT_MetaItem_Material.addItem( 0, null	, "item.copper_credit.tooltip", false));
         GT_Items.Credit_Silver.set(		GT_MetaItem_Material.addItem( 1, null	, "item.silver_credit.tooltip", false));
         GT_Items.Credit_Gold.set(		GT_MetaItem_Material.addItem( 2, null	, "item.gold_credit.tooltip", false));
