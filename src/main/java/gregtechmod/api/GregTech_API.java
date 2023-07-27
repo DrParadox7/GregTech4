@@ -121,7 +121,7 @@ public class GregTech_API {
 	public static long sServerTickCounter = 0, sClientTickCounter = 0, sWorldTickCounter = 0;
 	
 	/** Getting assigned by the Config */
-	public static boolean sDoShowAllItemsInCreative = false, sColoredGUI = true, sConstantEnergy = true, sMachineExplosions = true, sMachineFlammable = true, sMachineNonWrenchExplosions = true, sMachineRainExplosions = true, sMachineThunderExplosions = true, sMachineFireExplosions = true, sMachineWireFire = true;
+	public static boolean sDoShowAllItemsInCreative = false, sColoredGUI = true, sConstantEnergy = true, sMachineExplosions = true, sMachineFlammable = true, sMachineNonWrenchExplosions = true, sMachineRainExplosions = true, sMachineThunderExplosions = true, sMachineFireExplosions = true, sMachineWireFire = true, sBasicBending = false;
 	
 	/** Getting assigned by the Mod loading */
 	public static boolean sPreloadStarted = false, sPreloadFinished = false, sLoadStarted = false, sLoadFinished = false, sPostloadStarted = false, sPostloadFinished = false;

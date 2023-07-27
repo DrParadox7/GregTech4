@@ -255,8 +255,12 @@ public class GT_MachineRecipeLoader implements Runnable
         RecipeMaps.CHEMICAL.factory().EUt(30).duration( 100).input(OrePrefixes.cell, Materials.Sulfur		, 1).input(OrePrefixes.cell, Materials.Sodium, 1).output(GT_OreDictUnificator.get(OrePrefixes.cell, Materials.SodiumSulfide, 2L)).buildAndRegister();
         RecipeMaps.CHEMICAL.factory().EUt(30).duration(1150).input(OrePrefixes.cell, Materials.Sulfur		, 1).input(GT_Items.Cell_Water.get(2L)).output(GT_OreDictUnificator.get(OrePrefixes.cell, Materials.SulfuricAcid, 3L)).buildAndRegister();
         RecipeMaps.CHEMICAL.factory().EUt(30).duration(  10).input(OrePrefixes.cell, Materials.Hydrogen		, 4).input(GT_Items.Cell_Air.get(1L)).output(GT_Items.Cell_Water.get(5L)).buildAndRegister();
-        
-        RecipeMaps.BENDING.factory().EUt( 8).duration( 100).setShaped(true).input(GT_Items.IC2_Mixed_Metal_Ingot.get(1)).nonConsumable(GT_Items.Circuit_Integrated.getWithDamage(0, 1)).output(GT_OreDictUnificator.get(OrePrefixes.plateAlloy, Materials.Advanced, 1L)).buildAndRegister();
+
+        if (!GregTech_API.sBasicBending) {
+            RecipeMaps.BENDING.factory().EUt(8).duration(100).setShaped(true).input(GT_Items.IC2_Mixed_Metal_Ingot.get(1)).nonConsumable(GT_Items.Circuit_Integrated.getWithDamage(0, 1)).output(GT_OreDictUnificator.get(OrePrefixes.plateAlloy, Materials.Advanced, 1L)).buildAndRegister();
+        } else {
+            RecipeMaps.BENDING.factory().EUt( 8).duration( 100).setShaped(true).input(GT_Items.IC2_Mixed_Metal_Ingot.get(1)).output(GT_OreDictUnificator.get(OrePrefixes.plateAlloy, Materials.Advanced, 1L)).buildAndRegister();
+        }
         if (Loader.isModLoaded("Railcraft")) {
 	        RecipeMaps.BENDING.factory().EUt(15).duration( 200).setShaped(true).input(OrePrefixes.stick, Materials.Aluminium, 6).nonConsumable(GT_Items.Circuit_Integrated.getWithDamage(0, 6)).output(GT_ModHandler.getRCItem("part.rail.standard", 2L)).buildAndRegister();
 	        RecipeMaps.BENDING.factory().EUt(15).duration( 400).setShaped(true).input(OrePrefixes.stick, Materials.Iron, 6).nonConsumable(GT_Items.Circuit_Integrated.getWithDamage(0, 6)).output(GT_ModHandler.getRCItem("part.rail.standard", 4L)).buildAndRegister();
@@ -276,8 +280,7 @@ public class GT_MachineRecipeLoader implements Runnable
         RecipeMaps.BENDING.factory().EUt( 8).duration(1200).setShaped(true).input(OrePrefixes.plate, Materials.Tin, 12).nonConsumable(GT_Items.Circuit_Integrated.getWithDamage(0, 12)).output(GT_Items.Cell_Empty.get(6L)).buildAndRegister();
         RecipeMaps.BENDING.factory().EUt( 4).duration( 800).setShaped(true).input(OrePrefixes.plate, Materials.Iron, 12).nonConsumable(GT_Items.Circuit_Integrated.getWithDamage(0, 12)).output(new ItemStack(Items.bucket, 4, 0)).buildAndRegister();
         RecipeMaps.BENDING.factory().EUt( 8).duration( 100).setShaped(true).input(GT_ModHandler.getIC2Item("casingiron", 2L)).nonConsumable(GT_Items.Circuit_Integrated.getWithDamage(0, 2)).output(GT_ModHandler.getIC2Item("fuelRod", 1L)).buildAndRegister();
-        RecipeMaps.BENDING.factory().EUt( 8).duration( 100).setShaped(true).input(GT_ModHandler.getIC2Item("casingtin", 1L)).nonConsumable(GT_Items.Circuit_Integrated.getWithDamage(0, 1)).output(GT_Items.IC2_Food_Can_Empty.get(1L)).buildAndRegister();
-        
+        RecipeMaps.BENDING.factory().EUt(8).duration(100).setShaped(true).input(GT_ModHandler.getIC2Item("casingtin", 1L)).nonConsumable(GT_Items.Circuit_Integrated.getWithDamage(0, 1)).output(GT_Items.IC2_Food_Can_Empty.get(1L)).buildAndRegister();
         RecipeMaps.VACUUM_FREEZER.factory().EUt(120).duration(100).input(GT_ModHandler.getIC2Item("reactorCoolantSimple", 1, 32767)).output(GT_ModHandler.getIC2Item("reactorCoolantSimple", 1L)).buildAndRegister();
         RecipeMaps.VACUUM_FREEZER.factory().EUt(120).duration(300).input(GT_ModHandler.getIC2Item("reactorCoolantTriple", 1L, 32767)).output(GT_ModHandler.getIC2Item("reactorCoolantTriple", 1L)).buildAndRegister();
         RecipeMaps.VACUUM_FREEZER.factory().EUt(120).duration(600).input(GT_ModHandler.getIC2Item("reactorCoolantSix", 1L, 32767)).output(GT_ModHandler.getIC2Item("reactorCoolantSix", 1L)).buildAndRegister();

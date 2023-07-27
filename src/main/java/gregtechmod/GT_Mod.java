@@ -376,9 +376,10 @@ public class GT_Mod implements IGT_Mod {
         GregTech_API.sMachineThunderExplosions 					= tConfig1.get("machines", "lightning_causes_explosions", true).getBoolean(false);
         GregTech_API.sConstantEnergy 							= tConfig1.get("machines", "constant_need_of_energy", true).getBoolean(false);
         GregTech_API.sColoredGUI 								= tConfig1.get("machines", "colored_guis_when_painted", true).getBoolean(false);
-        GregTech_API.sDoShowAllItemsInCreative 					= tConfig1.get("general", "show_all_metaitems_in_creative_and_NEI", false).getBoolean(false);
-        
-    	sItemDespawnTime		= tConfig1.get("general", "ItemDespawnTime"				, 6000 ).getInt(6000);
+		GregTech_API.sBasicBending	 							= tConfig1.get("machines", "plate_bending_uses_no_circuit", false).getBoolean(true);
+		GregTech_API.sDoShowAllItemsInCreative 					= tConfig1.get("general", "show_all_metaitems_in_creative_and_NEI", false).getBoolean(false);
+
+		sItemDespawnTime		= tConfig1.get("general", "ItemDespawnTime"				, 6000 ).getInt(6000);
     	sNerfDustCrafting		= tConfig1.get("general", "NerfDustCrafting"			, true ).getBoolean(true);
 		sMinimalItemGeneration = tConfig1.get("general", "MinimalItemGeneration"		, false ).getBoolean(false);
 		sIncreaseDungeonLoot	= tConfig1.get("general", "IncreaseDungeonLoot"			, true ).getBoolean(true);

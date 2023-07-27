@@ -63,8 +63,12 @@ public class ProcessingIngot1 implements IOreRecipeRegistrator {
 				
 				if (!aMaterial.contains(SubTag.NO_SMASHING) && GT_OreDictUnificator.get(OrePrefixes.plate, aMaterial) != null) {
 					RecipeMaps.HAMMER.factory().EUt(16).duration(Math.max(aMaterial.getMass(), 1)).input(RecipeEntry.fromStacks(2, entry.ores, Match.STRICT)).output(GT_OreDictUnificator.get(OrePrefixes.plate, aMaterial, 1)).buildAndRegister();
-					RecipeMaps.BENDING.factory().EUt(24).duration(Math.max(aMaterial.getMass() *  2, 1)).setShaped(true).input(RecipeEntry.fromStacks(1, entry.ores, Match.STRICT)).nonConsumable(GT_Items.Circuit_Integrated.getWithDamage(0, 1)).output(GT_OreDictUnificator.get(OrePrefixes.plate, aMaterial, 1)).buildAndRegister();
-					if (GT_OreDictUnificator.get(OrePrefixes.plateDense, aMaterial) != null) 
+					if (!GregTech_API.sBasicBending) {
+						RecipeMaps.BENDING.factory().EUt(24).duration(Math.max(aMaterial.getMass() * 2, 1)).setShaped(true).input(RecipeEntry.fromStacks(1, entry.ores, Match.STRICT)).nonConsumable(GT_Items.Circuit_Integrated.getWithDamage(0, 1)).output(GT_OreDictUnificator.get(OrePrefixes.plate, aMaterial, 1)).buildAndRegister();
+					} else {
+						RecipeMaps.BENDING.factory().EUt(24).duration(Math.max(aMaterial.getMass() * 2, 1)).setShaped(true).input(RecipeEntry.fromStacks(1, entry.ores, Match.STRICT)).output(GT_OreDictUnificator.get(OrePrefixes.plate, aMaterial, 1)).buildAndRegister();
+					}
+					if (GT_OreDictUnificator.get(OrePrefixes.plateDense, aMaterial) != null)
 						RecipeMaps.BENDING.factory().EUt(24).duration(Math.max(aMaterial.getMass() * 18, 1)).setShaped(true).input(RecipeEntry.fromStacks(9, entry.ores, Match.STRICT)).nonConsumable(GT_Items.Circuit_Integrated.getWithDamage(0, 9)).output(GT_OreDictUnificator.get(OrePrefixes.plateDense, aMaterial, 1)).buildAndRegister();
 				}
 

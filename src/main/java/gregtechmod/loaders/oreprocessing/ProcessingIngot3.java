@@ -54,12 +54,20 @@ public class ProcessingIngot3 implements IOreRecipeRegistrator {
 				
 				ItemStack plate = GT_OreDictUnificator.get(OrePrefixes.plateTriple, aMaterial);
 				if (plate != null) {
-					RecipeMaps.BENDING.factory().EUt(24).setShaped(true)
-						.duration(Math.max(aMaterial.getMass() * 3, 1))
-						.input(RecipeEntry.fromStacks(entry.ores, Match.STRICT))
-						.nonConsumable(GT_Items.Circuit_Integrated.getWithDamage(0, 1))
-						.output(plate)
-						.buildAndRegister();
+					if (!GregTech_API.sBasicBending) {
+						RecipeMaps.BENDING.factory().EUt(24).setShaped(true)
+								.duration(Math.max(aMaterial.getMass() * 3, 1))
+								.input(RecipeEntry.fromStacks(entry.ores, Match.STRICT))
+								.nonConsumable(GT_Items.Circuit_Integrated.getWithDamage(0, 1))
+								.output(plate)
+								.buildAndRegister();
+					} else {
+						RecipeMaps.BENDING.factory().EUt(24).setShaped(true)
+								.duration(Math.max(aMaterial.getMass() * 3, 1))
+								.input(RecipeEntry.fromStacks(entry.ores, Match.STRICT))
+								.output(plate)
+								.buildAndRegister();
+					}
 				}
 			}
 		}
