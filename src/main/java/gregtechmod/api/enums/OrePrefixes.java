@@ -2,6 +2,8 @@ package gregtechmod.api.enums;
 
 import gregtechmod.api.GregTech_API;
 import gregtechmod.api.interfaces.IOreRecipeRegistrator;
+import gregtechmod.api.util.GT_ModHandler;
+import gregtechmod.api.util.GT_OreDictUnificator;
 import gregtechmod.api.util.GT_Utility;
 import gregtechmod.api.util.OreDictEntry;
 
@@ -21,9 +23,9 @@ public enum OrePrefixes {
 	oreEnd				(true, true,  false,  false, false, -1), // In case of an End-Ores Mod. Ore -> Material is a Oneway Operation!
 	@Deprecated oreGem	(false, false, false, false, false, -1),
 	ore					(true, true,  false,  false, false, -1), // Regular Ore Prefix. Ore -> Material is a Oneway Operation! Introduced by Eloraam
-	crushedCentrifuged	(true, true,  false,  false, false, -1), 
-	crushedPurified		(true, true,  false,  false, false, -1), 
-	crushed				(true, true,  false,  false, false, -1), 
+	crushedCentrifuged	(true, true,  false,  false, false, -1),
+	crushedPurified		(true, true,  false,  false, false, -1),
+	crushed				(true, true,  false,  false, false, -1),
 	ingotQuintuple		(true, true,  false,  false, false, GregTech_API.MATERIAL_UNIT *		 5), // A quintuple Ingot.
 	ingotQuadruple		(true, true,  false,  false, false, GregTech_API.MATERIAL_UNIT *		 4), // A quadruple Ingot.
 	@Deprecated ingotQuad(false, false, false, false, false, -1),
@@ -235,7 +237,6 @@ public enum OrePrefixes {
 		stick.mNotGeneratedItems.add(Materials.Blaze);
 		ingot.mNotGeneratedItems.add(Materials.Iron);
 		ingot.mNotGeneratedItems.add(Materials.Gold);
-		ingot.mNotGeneratedItems.add(Materials.Rubber);
 		nugget.mNotGeneratedItems.add(Materials.Gold);
 		plate.mNotGeneratedItems.add(Materials.Paper);
 		cell.mNotGeneratedItems.add(Materials.Empty);
@@ -386,6 +387,7 @@ public enum OrePrefixes {
 
 	public static void minimalItems(){
 		List<Materials> removals = new ArrayList<>();
+		integrateIC2();
 
 		removals.add(Materials.Americium);
 		removals.add(Materials.Amethyst);
@@ -686,6 +688,7 @@ public enum OrePrefixes {
 		removals.add(Materials.Kyanite);
 		removals.add(Materials.Kaolinite);
 		removals.add(Materials.Talc);
+		removals.add(Materials.Ash);
 		removals.add(Materials.Palygorskite);
 		removals.add(Materials.Adamantine);
 		removals.add(Materials.FzDarkIron);
@@ -725,9 +728,120 @@ public enum OrePrefixes {
 		for (Materials aRemoval : removals) {
 			for (OrePrefixes aPrefix : OrePrefixes.values()) {
 				aPrefix.mNotGeneratedItems.add(aRemoval);
-				System.out.println(aPrefix + "mNotGeneratedItems.add" + aRemoval);
 			}
 		}
+	}
+
+	public static void integrateIC2(){
+		//Ingot
+		GT_OreDictUnificator.set("ingotRubber", GT_ModHandler.getIC2Item("rubber", 1));
+		GT_OreDictUnificator.set("ingotCopper", GT_ModHandler.getIC2Item( "IngotCopper",1));
+		GT_OreDictUnificator.set("ingotTin", GT_ModHandler.getIC2Item( "IngotTin",1));
+		GT_OreDictUnificator.set("ingotBronze", GT_ModHandler.getIC2Item( "IngotBronze",1));
+		GT_OreDictUnificator.set("ingotLead", GT_ModHandler.getIC2Item( "IngotLead",1));
+		GT_OreDictUnificator.set("ingotSilver", GT_ModHandler.getIC2Item( "IngotSilver",1));
+		ingot.mNotGeneratedItems.add(Materials.Rubber);
+		ingot.mNotGeneratedItems.add(Materials.Copper);
+		ingot.mNotGeneratedItems.add(Materials.Tin);
+		ingot.mNotGeneratedItems.add(Materials.Bronze);
+		ingot.mNotGeneratedItems.add(Materials.Lead);
+		ingot.mNotGeneratedItems.add(Materials.Silver);
+
+		//Dust
+		GT_OreDictUnificator.set("dustBronze", GT_ModHandler.getIC2Item( "DustBronze",1));
+		GT_OreDictUnificator.set("dustCopper", GT_ModHandler.getIC2Item( "DustCopper",1));
+		GT_OreDictUnificator.set("dustGold", GT_ModHandler.getIC2Item( "DustGold",1));
+		GT_OreDictUnificator.set("dustIron", GT_ModHandler.getIC2Item( "DustIron",1));
+		GT_OreDictUnificator.set("dustSilver", GT_ModHandler.getIC2Item( "DustSilver",1));
+		GT_OreDictUnificator.set("dustTin", GT_ModHandler.getIC2Item( "DustTin",1));
+		GT_OreDictUnificator.set("dustLead", GT_ModHandler.getIC2Item( "DustLead",1));
+		GT_OreDictUnificator.set("dustLapis", GT_ModHandler.getIC2Item( "DustLapi",1));
+		GT_OreDictUnificator.set("dustClay", GT_ModHandler.getIC2Item( "DustClay",1));
+		GT_OreDictUnificator.set("dustCoal", GT_ModHandler.getIC2Item( "FuelCoalDust",1));
+		GT_OreDictUnificator.set("dustStone", GT_ModHandler.getIC2Item( "DustStone",1));
+		GT_OreDictUnificator.set("dustLithium", GT_ModHandler.getIC2Item( "DustLithium",1));
+		GT_OreDictUnificator.set("dustSulfur", GT_ModHandler.getIC2Item( "DustSulfur",1));
+		GT_OreDictUnificator.set("dustSiliconDioxide", GT_ModHandler.getIC2Item( "Dustsilicondioxide",1));
+		GT_OreDictUnificator.set("dustDiamond", GT_ModHandler.getIC2Item( "Dustdiamond",1));
+		dust.mNotGeneratedItems.add(Materials.Bronze);
+		dust.mNotGeneratedItems.add(Materials.Copper);
+		dust.mNotGeneratedItems.add(Materials.Gold);
+		dust.mNotGeneratedItems.add(Materials.Iron);
+		dust.mNotGeneratedItems.add(Materials.Silver);
+		dust.mNotGeneratedItems.add(Materials.Tin);
+		dust.mNotGeneratedItems.add(Materials.Lead);
+		dust.mNotGeneratedItems.add(Materials.Lapis);
+		dust.mNotGeneratedItems.add(Materials.Clay);
+		dust.mNotGeneratedItems.add(Materials.Coal);
+		dust.mNotGeneratedItems.add(Materials.Stone);
+		dust.mNotGeneratedItems.add(Materials.Lithium);
+		dust.mNotGeneratedItems.add(Materials.Sulfur);
+		dust.mNotGeneratedItems.add(Materials.Diamond);
+		dust.mNotGeneratedItems.add(Materials.SiliconDioxide);
+
+		//Crushed
+		GT_OreDictUnificator.set("crushedCopper", GT_ModHandler.getIC2Item( "CrushedCopperOre",1));
+		GT_OreDictUnificator.set("crushedGold", GT_ModHandler.getIC2Item( "CrushedGoldOre",1));
+		GT_OreDictUnificator.set("crushedIron", GT_ModHandler.getIC2Item( "CrushedIronOre",1));
+		GT_OreDictUnificator.set("crushedTin", GT_ModHandler.getIC2Item( "CrushedTinOre",1));
+		GT_OreDictUnificator.set("crushedLead", GT_ModHandler.getIC2Item( "CrushedLeadOre",1));
+		GT_OreDictUnificator.set("crushedSilver", GT_ModHandler.getIC2Item( "CrushedSilverOre",1));
+		GT_OreDictUnificator.set("crushedUranium", GT_ModHandler.getIC2Item( "CrushedUranOre",1));
+		crushed.mNotGeneratedItems.add(Materials.Copper);
+		crushed.mNotGeneratedItems.add(Materials.Gold);
+		crushed.mNotGeneratedItems.add(Materials.Iron);
+		crushed.mNotGeneratedItems.add(Materials.Tin);
+		crushed.mNotGeneratedItems.add(Materials.Lead);
+		crushed.mNotGeneratedItems.add(Materials.Silver);
+		crushed.mNotGeneratedItems.add(Materials.Uranium);
+
+		//CrushedPurified
+		GT_OreDictUnificator.set("crushedPurifiedCopper", GT_ModHandler.getIC2Item( "PurifiedCrushedCopperOre",1));
+		GT_OreDictUnificator.set("crushedPurifiedGold", GT_ModHandler.getIC2Item( "PurifiedCrushedGoldOre",1));
+		GT_OreDictUnificator.set("crushedPurifiedIron", GT_ModHandler.getIC2Item( "PurifiedCrushedIronOre",1));
+		GT_OreDictUnificator.set("crushedPurifiedTin", GT_ModHandler.getIC2Item( "PurifiedCrushedTinOre",1));
+		GT_OreDictUnificator.set("crushedPurifiedLead", GT_ModHandler.getIC2Item( "PurifiedCrushedLeadOre",1));
+		GT_OreDictUnificator.set("crushedPurifiedSilver", GT_ModHandler.getIC2Item( "PurifiedCrushedSilverOre",1));
+		GT_OreDictUnificator.set("crushedPurifiedUranium", GT_ModHandler.getIC2Item( "PurifiedCrushedUranOre",1));
+		crushedPurified.mNotGeneratedItems.add(Materials.Copper);
+		crushedPurified.mNotGeneratedItems.add(Materials.Gold);
+		crushedPurified.mNotGeneratedItems.add(Materials.Iron);
+		crushedPurified.mNotGeneratedItems.add(Materials.Tin);
+		crushedPurified.mNotGeneratedItems.add(Materials.Lead);
+		crushedPurified.mNotGeneratedItems.add(Materials.Silver);
+		crushedPurified.mNotGeneratedItems.add(Materials.Uranium);
+
+		//DustTiny
+		GT_OreDictUnificator.set("dustTinyBronze", GT_ModHandler.getIC2Item( "DustBronzeSmall",1));
+		GT_OreDictUnificator.set("dustTinyCopper", GT_ModHandler.getIC2Item( "DustCopperSmall",1));
+		GT_OreDictUnificator.set("dustTinyGold", GT_ModHandler.getIC2Item( "DustGoldSmall",1));
+		GT_OreDictUnificator.set("dustTinyIron", GT_ModHandler.getIC2Item( "DustIronSmall",1));
+		GT_OreDictUnificator.set("dustTinyTin", GT_ModHandler.getIC2Item( "DustTinSmall",1));
+		GT_OreDictUnificator.set("dustTinyLead", GT_ModHandler.getIC2Item( "DustLeadSmall",1));
+		GT_OreDictUnificator.set("dustTinySilver", GT_ModHandler.getIC2Item( "DustSilverSmall",1));
+		dustTiny.mNotGeneratedItems.add(Materials.Bronze);
+		dustTiny.mNotGeneratedItems.add(Materials.Copper);
+		dustTiny.mNotGeneratedItems.add(Materials.Gold);
+		dustTiny.mNotGeneratedItems.add(Materials.Iron);
+		dustTiny.mNotGeneratedItems.add(Materials.Tin);
+		dustTiny.mNotGeneratedItems.add(Materials.Lead);
+		dustTiny.mNotGeneratedItems.add(Materials.Silver);
+
+		//Plate
+		GT_OreDictUnificator.set("plateBronze", GT_ModHandler.getIC2Item( "PlateBronze",1));
+		GT_OreDictUnificator.set("plateCopper", GT_ModHandler.getIC2Item( "PlateCopper",1));
+		GT_OreDictUnificator.set("plateGold", GT_ModHandler.getIC2Item( "PlateGold",1));
+		GT_OreDictUnificator.set("plateIron", GT_ModHandler.getIC2Item( "PlateIron",1));
+		GT_OreDictUnificator.set("plateTin", GT_ModHandler.getIC2Item( "PlateTin",1));
+		GT_OreDictUnificator.set("plateLead", GT_ModHandler.getIC2Item( "PlateLead",1));
+		GT_OreDictUnificator.set("plateSilver", GT_ModHandler.getIC2Item( "PlateSilver",1));
+		plate.mNotGeneratedItems.add(Materials.Bronze);
+		plate.mNotGeneratedItems.add(Materials.Copper);
+		plate.mNotGeneratedItems.add(Materials.Gold);
+		plate.mNotGeneratedItems.add(Materials.Iron);
+		plate.mNotGeneratedItems.add(Materials.Tin);
+		plate.mNotGeneratedItems.add(Materials.Lead);
+		plate.mNotGeneratedItems.add(Materials.Silver);
 	}
 	
 	public static volatile int VERSION = 416;
