@@ -856,6 +856,9 @@ public enum OrePrefixes {
 		nugget.mNotGeneratedItems.add(Materials.Uranium235);
 		nugget.mNotGeneratedItems.add(Materials.Plutonium);
 
+		//Blocks
+		GT_OreDictUnificator.set("blockLead", GT_ModHandler.getIC2Item( "leadBlock",1));
+		block.mNotGeneratedItems.add(Materials.Lead);
 	}
 	
 	public static volatile int VERSION = 416;
