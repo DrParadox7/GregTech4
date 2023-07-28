@@ -968,6 +968,18 @@ public class GT_ModHandler {
 		}
 		return false;
 	}
+
+	/**
+	 * Removes a Smelting Recipe
+	 */
+	public static boolean removeFurnaceSmelting(ItemStack aInput, ItemStack aOutput) {
+		if (aInput != null && aOutput != null) {
+			@SuppressWarnings("unchecked")
+			Map<ItemStack, ItemStack> recipes = FurnaceRecipes.smelting().getSmeltingList();
+			return recipes.entrySet().removeIf(e -> (e.getKey().isItemEqual(aInput) && e.getValue().isItemEqual(aOutput)));
+		}
+		return false;
+	}
 	
 	/**
 	 * Removes a Crafting Recipe and gives you the former output of it.
@@ -1030,7 +1042,7 @@ public class GT_ModHandler {
 		}
 		return rReturn;
     }
-    
+
     /**
      * Checks all Crafting Handlers for Recipe Output
      * Used for the Autocrafting Table
