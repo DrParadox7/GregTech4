@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.IntSupplier;
 
+import gregtechmod.api.items.GT_Durable_Item;
+import net.minecraft.item.Item;
 import org.apache.commons.lang3.tuple.Pair;
 
 import gregtechmod.api.GregTech_API;
@@ -159,18 +161,26 @@ public abstract class AbstractTurbine extends MTEWorkableMultiblock {
 	
 	@Override
 	public void startProcess() {
-		if (GT_Items.Component_Turbine_Bronze.isStackEqual(mInventory[1], true, true)) {
-			mEfficiencyIncrease = 10;
-		} else if (GT_Items.Component_Turbine_Steel.isStackEqual(mInventory[1], true, true)) {
-			mEfficiencyIncrease = 20;
-		} else if (GT_Items.Component_Turbine_Magnalium.isStackEqual(mInventory[1], true, true)) {
-			mEfficiencyIncrease = 50;
-		} else if (GT_Items.Component_Turbine_TungstenSteel.isStackEqual(mInventory[1], true, true)) {
-			mEfficiencyIncrease = 15;
-		} else if (GT_Items.Component_Turbine_Carbon.isStackEqual(mInventory[1], true, true)) {
-			mEfficiencyIncrease = 100;
-		} else {
-			mEfficiencyIncrease = 20;
+		if (mInventory[1] != null) {
+			Item turbineRotor = mInventory[1].getItem();
+
+			 switch (turbineRotor.getUnlocalizedName()){
+				 case("item.GT_Turbine_Steel"):
+					 mEfficiencyIncrease = 20;
+					 break;
+				 case("item.GT_Turbine_Magnalium"):
+					 mEfficiencyIncrease = 50;
+					 break;
+				 case("item.GT_Turbine_Tungstensteel"):
+					 mEfficiencyIncrease = 15;
+					 break;
+				 case("item.GT_Turbine_Carbon"):
+					 mEfficiencyIncrease = 100;
+					 break;
+				 default: // includes case: "item.GT_Turbine_Bronze"
+					 mEfficiencyIncrease = 10;
+					break;
+			 }
 		}
 	}
 	
