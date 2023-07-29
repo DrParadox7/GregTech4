@@ -387,11 +387,12 @@ public enum OrePrefixes {
 	}
 
 	public static void minimalItems(){
-		boolean IC2_loaded = Loader.isModLoaded("IndustrialCraft 2");
-		boolean TF_loaded = Loader.isModLoaded("Thermal Foundation");
+		boolean IC2_loaded = Loader.isModLoaded("IC2");
+		boolean TF_loaded = Loader.isModLoaded("ThermalFoundation");
 
 		if (IC2_loaded)
 			integrateIC2();
+		
 		if (TF_loaded)
 			integrateTF();
 
