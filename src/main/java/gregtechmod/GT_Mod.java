@@ -358,7 +358,8 @@ public class GT_Mod implements IGT_Mod {
 		if (tConfig1.get("general", "TooEasyMode", false).getBoolean(false)) GregTech_API.sAfterGTPostload.add(new GT_TooEasyModeLoader());
     	GregTech_API.DEBUG_MODE									= tConfig1.get("general", "Debug", false).getBoolean(false);
     	GregTech_API.SECONDARY_DEBUG_MODE						= tConfig1.get("general", "Debug2", false).getBoolean(false);
-    	GregTech_API.TICKS_FOR_LAG_AVERAGING 					= tConfig1.get("general", "TicksForLagAveragingWithScanner", 25).getInt(25);
+		GregTech_API.OREDICT_DEBUG_MODE							= tConfig1.get("general", "OredictDebug", false).getBoolean(false);
+		GregTech_API.TICKS_FOR_LAG_AVERAGING 					= tConfig1.get("general", "TicksForLagAveragingWithScanner", 25).getInt(25);
         GregTech_API.MILLISECOND_THRESHOLD_UNTIL_LAG_WARNING	= tConfig1.get("general", "MillisecondsPassedInGTTileEntityUntilLagWarning", 100).getInt(100);
         
     	if (tConfig1.get("general", "disable_STDOUT", false).getBoolean(false)) System.out.close();
@@ -712,12 +713,12 @@ public class GT_Mod implements IGT_Mod {
              if (GregTech_API.sRecipeFile.get(GT_ConfigCategories.Recipes.recipereplacements, "Rubber.Sheet", true))
                  GameRegistry.addRecipe(new ShapedOreRecipe(GT_ModHandler.getIC2Item("rubberTrampoline", 3), "XXX", "XXX", 'X', "plateRubber"));
         });
-        
+
         GT_Log.log.info("Activating OreDictionary Handler, this can take some time, as it scans the whole OreDictionary");
-        
+
         GT_Log.log.info("If your Log stops here, you were too impatient. Wait a bit more next time, before killing Minecraft with the Task Manager.");
         GT_OreDictHandler.instance.activateHandler();
-        
+
         GT_Log.log.info("Activating Recipe handler");
         RecipeHandler.activateHandler();
         GT_Log.log.info("Congratulations, you have been waiting long enough. Have a Cake.");

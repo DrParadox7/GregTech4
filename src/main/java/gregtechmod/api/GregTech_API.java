@@ -74,7 +74,7 @@ public class GregTech_API {
 	public static Object sBlockIcons, sItemIcons;
 	
 	/** Configured Booleans */
-	public static boolean DEBUG_MODE = false, SECONDARY_DEBUG_MODE = false, IC_ENERGY_COMPATIBILITY = true, RF_ENERGY_COMPATIBILITY = true;
+	public static boolean DEBUG_MODE = false, SECONDARY_DEBUG_MODE = false, IC_ENERGY_COMPATIBILITY = true, RF_ENERGY_COMPATIBILITY = true, OREDICT_DEBUG_MODE = false;
 	
 	/** The Configuration Objects */
 	public static GT_Config sMachineFile = null, sWorldgenFile = null, sMaterialProperties = null, sUnification = null, sSpecialFile = null, sRecipeFile = null, sIDFile = null;

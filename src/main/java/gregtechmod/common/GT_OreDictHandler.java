@@ -91,13 +91,16 @@ public class GT_OreDictHandler {
          Blacklist.add("thaumicdyes".toLowerCase());        
          Blacklist.add("ProjRed|Illumination".toLowerCase());
          Blacklist.add("minechem".toLowerCase());
-
-         //
+         Blacklist.add("EtFuturum".toLowerCase());
+         Blacklist.add("TravellersGear".toLowerCase());
+         Blacklist.add("MekanismTools".toLowerCase());
+            //
 
 	    	if (Blacklist.contains(aMod.toLowerCase())) return;
-			if (mActivated || GregTech_API.sPostloadStarted || GT_Mod.sSortToTheEnd && GregTech_API.sLoadFinished) {
+            if (GregTech_API.OREDICT_DEBUG_MODE)
+			    if (mActivated || GregTech_API.sPostloadStarted || GT_Mod.sSortToTheEnd && GregTech_API.sLoadFinished) {
 				GT_Log.log.warn("WARNING: " + aMod + " attempted to register " + aEvent.Name + " very late at the OreDictionary! Some Functionality may not work as expected! Sometimes registration in Postload is required, but you should always register OreDictionary Items in the Load Phase whenever possible.");
-			}
+			    }
 	    	
 			String e = aMod + " -> " + aEvent.Name;
 			String tAssosiation = GT_OreDictUnificator.getAssociation(aEvent.Ore);
@@ -557,10 +560,10 @@ public class GT_OreDictHandler {
     	
     	for (Entry<OrePrefixes, List<OreDictEntry>> e : mEvents.entrySet()) {
     		bar.step(String.valueOf(e.getKey()));
-    		
+
     		if (e.getKey() != null) {
     			e.getKey().processOre(e.getValue());
-    		} else {
+    		} else if (GregTech_API.OREDICT_DEBUG_MODE) {
     			StringBuilder app = new StringBuilder();
     			app.append("WRONG ORE DICTIONARY NAMES DETECTED FOR PREFIX: ");
     			app.append(e.getKey());
