@@ -1,5 +1,6 @@
 package gregtechmod.api.enums;
 
+import cpw.mods.fml.common.Loader;
 import gregtechmod.api.GregTech_API;
 import gregtechmod.api.interfaces.IOreRecipeRegistrator;
 import gregtechmod.api.util.GT_ModHandler;
@@ -386,8 +387,15 @@ public enum OrePrefixes {
 	}
 
 	public static void minimalItems(){
+		boolean IC2_loaded = Loader.isModLoaded("IndustrialCraft 2");
+		boolean TF_loaded = Loader.isModLoaded("Thermal Foundation");
+
+		if (IC2_loaded)
+			integrateIC2();
+		if (TF_loaded)
+			integrateTF();
+
 		List<Materials> removals = new ArrayList<>();
-		integrateIC2();
 
 		removals.add(Materials.Americium);
 		removals.add(Materials.Amethyst);
@@ -859,6 +867,16 @@ public enum OrePrefixes {
 		//Blocks
 		GT_OreDictUnificator.set("blockLead", GT_ModHandler.getIC2Item( "leadBlock",1));
 		block.mNotGeneratedItems.add(Materials.Lead);
+	}
+	public static void integrateTF(){
+		//Platinum
+		GT_OreDictUnificator.set("ingotPlatinum", GT_ModHandler.getTFItem("ingotPlatinum", 1L));
+		GT_OreDictUnificator.set("nuggetPlatinum", GT_ModHandler.getTFItem("nuggetPlatinum", 1L));
+		GT_OreDictUnificator.set("dustPlatinum", GT_ModHandler.getTFItem("dustPlatinum", 1L));
+		ingot.mNotGeneratedItems.add(Materials.Platinum);
+		nugget.mNotGeneratedItems.add(Materials.Platinum);
+		dust.mNotGeneratedItems.add(Materials.Platinum);
+		gearGt.mNotGeneratedItems.add(Materials.Platinum);
 	}
 	
 	public static volatile int VERSION = 416;

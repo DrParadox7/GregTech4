@@ -198,13 +198,22 @@ public class GT_ModHandler {
 	}
 	
 	/**
-	 * Gets an Item from ThermoCraft, and returns a Replacement Item if not possible
+	 * Gets an Item from Thermol Expansion, and returns a Replacement Item if not possible
 	 */
 	public static ItemStack getTEItem(String aItem, long aAmount, ItemStack aReplacement) {
 		if (GT_Utility.isStringInvalid(aItem) || !GregTech_API.sPreloadStarted) return null;
 		return GT_Utility.copyAmount(aAmount, GameRegistry.findItemStack("ThermalExpansion", aItem, (int)aAmount), aReplacement);
 	}
-	
+
+	/**
+	 * Gets an Item from Thermol Foundation, and returns a Replacement Item if not possible
+	 */
+	public static ItemStack getTFItem(String aItem, long aAmount, ItemStack aReplacement) {
+		if (GT_Utility.isStringInvalid(aItem) || !GregTech_API.sPreloadStarted) return null;
+		return GT_Utility.copyAmount(aAmount, GameRegistry.findItemStack("ThermalFoundation", aItem, (int)aAmount), aReplacement);
+	}
+
+
 	/**
 	 * Gets an Item from ThermalExplosion, but the Damage Value can be specified
 	 */
@@ -216,10 +225,17 @@ public class GT_ModHandler {
 	}
 	
 	/**
-	 * Gets an Item from ThermalCraft
+	 * Gets an Item from Thermal Expansion
 	 */
 	public static ItemStack getTEItem(String aItem, long aAmount) {
 		return getTEItem(aItem, aAmount, null);
+	}
+
+	/**
+	 * Gets an Item from Thermal Foundation
+	 */
+	public static ItemStack getTFItem(String aItem, long aAmount) {
+		return getTFItem(aItem, aAmount, null);
 	}
 	
 	/**
