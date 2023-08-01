@@ -40,7 +40,7 @@ public class GT_MetaTileEntity_Boiler_Bronze extends GT_MetaTileEntity_BasicTank
 	
 	@Override public void onRightclick(EntityPlayer aPlayer) {
 		if (aPlayer != null) {
-			if (GT_Utility.areStacksEqual(aPlayer.getCurrentEquippedItem(), new ItemStack(Items.bucket, 1))) {
+			if (GT_Utility.areStacksEqual(aPlayer.getCurrentEquippedItem(), new ItemStack(Items.water_bucket, 1))) {
 				fill(GT_ModHandler.getWater(1000 * aPlayer.getCurrentEquippedItem().stackSize), true);
 				aPlayer.getCurrentEquippedItem().func_150996_a(Items.bucket);
 			} else {
