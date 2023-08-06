@@ -880,5 +880,5 @@ public enum OrePrefixes {
 		gearGt.mNotGeneratedItems.add(Materials.Platinum);
 	}
 	
-	public static volatile int VERSION = 416;
+	public static volatile int VERSION = 417;
 }

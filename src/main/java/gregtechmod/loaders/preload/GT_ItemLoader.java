@@ -167,7 +167,6 @@ public class GT_ItemLoader implements Runnable {
 		//GT_MetaItem_Component.addItem(57, "Empty Battery Hull"			, "craftingBatteryHull"					, "For making Batteries");
 		//GT_MetaItem_Component.addItem(58, "Empty Fuel Can"				, "craftingFuelCan"						, "Mainly for storing Fuel");
 		
-		GT_MetaItem_Component.addItem(64, GT_OreDictNames.craftingWorkBench				, null);
 		GT_MetaItem_Component.addItem(65, GT_OreDictNames.craftingSolarPanelLV			, null);
 		GT_MetaItem_Component.addItem(66, GT_OreDictNames.craftingSolarPanelMV			, null);
 		GT_MetaItem_Component.addItem(67, GT_OreDictNames.craftingSolarPanelHV			, null);
