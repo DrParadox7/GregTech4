@@ -49,8 +49,8 @@ public class GT_DictRegistratorPostItem implements Runnable {
 	    GT_OreDictUnificator.registerOre(GT_OreDictNames.craftingWireGold			, GT_ModHandler.getIC2Item("insulatedGoldCableItem", 1L));
 	    GT_OreDictUnificator.registerOre(GT_OreDictNames.craftingWireIron			, GT_ModHandler.getIC2Item("insulatedIronCableItem", 1L));
 	    GT_OreDictUnificator.registerOre(GT_OreDictNames.craftingWireTin			, GT_ModHandler.getIC2Item("insulatedTinCableItem", 1L, GT_ModHandler.getIC2Item("insulatedCopperCableItem", 1L)));
-	    
-	    GT_OreDictUnificator.registerOre(GT_OreDictNames.craftingRawMachineTier01	, GT_ModHandler.getIC2Item("machine", 1L));
+
+		GT_OreDictUnificator.registerOre(GT_OreDictNames.craftingRawMachineTier01	, GT_ModHandler.getIC2Item("machine", 1L));
 	    GT_OreDictUnificator.registerOre(GT_OreDictNames.craftingRawMachineTier01	, new ItemStack(GregTech_API.sBlockList[1], 1, 79));
 	    
 	    if(!GregTech_API.sRecipeFile.get(GT_ConfigCategories.Recipes.harderrecipes	, "NotUseAdvMachineBlockInGT", true)) {
@@ -62,8 +62,6 @@ public class GT_DictRegistratorPostItem implements Runnable {
 	    GT_OreDictUnificator.registerOre(GT_OreDictNames.craftingRedstoneTorch		, new ItemStack(Blocks.redstone_torch, 1, 32767));
 	    GT_OreDictUnificator.registerOre(OrePrefixes.computer, Materials.Basic		, new ItemStack(GregTech_API.sBlockList[1], 1, 69));
 	    GT_OreDictUnificator.registerOre(OrePrefixes.computer, Materials.Master		, new ItemStack(GregTech_API.sBlockList[1], 1, 4));
-	    GT_OreDictUnificator.registerOre(GT_OreDictNames.craftingWorkBench			, new ItemStack(Blocks.crafting_table, 1));
-	    GT_OreDictUnificator.registerOre(GT_OreDictNames.craftingWorkBench			, new ItemStack(GregTech_API.sBlockList[1], 1, 16));
 	    GT_OreDictUnificator.registerOre(GT_OreDictNames.craftingPiston				, new ItemStack(Blocks.piston, 1, 32767));
 	    GT_OreDictUnificator.registerOre(GT_OreDictNames.craftingPiston				, new ItemStack(Blocks.sticky_piston, 1, 32767));
 	    GT_OreDictUnificator.registerOre(GT_OreDictNames.craftingSafe				, new ItemStack(GregTech_API.sBlockList[1], 1, 45));

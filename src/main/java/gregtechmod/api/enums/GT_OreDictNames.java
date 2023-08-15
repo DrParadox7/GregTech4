@@ -142,7 +142,6 @@ public enum GT_OreDictNames {
 	craftingWireGold,
 	craftingWireIron,
 	craftingWireTin,
-	craftingWorkBench,
 	craftingWorkController,
 	craftingWorkDetector,
 }

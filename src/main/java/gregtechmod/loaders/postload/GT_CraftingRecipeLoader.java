@@ -360,8 +360,8 @@ public class GT_CraftingRecipeLoader implements Runnable {
     	}
     	
     	if (GregTech_API.sRecipeFile.get(GT_ConfigCategories.Recipes.gregtechrecipes, "tesseracts", true)) {
-    		GT_ModHandler.addCraftingRecipe(new ItemStack(GregTech_API.sBlockList[1], 1, 84), new Object[] {"TCT", "CEC", "TMT", 'C', OrePrefixes.circuit.get(Materials.Master)	, 'M', OrePrefixes.computer.get(Materials.Master)	, 'E', GregTech_API.sRecipeFile.get(GT_ConfigCategories.Recipes.disabledrecipes, "enderchest", false)?new ItemStack(Items.ender_eye, 1):GT_OreDictNames.craftingEnderChest, 'T', OrePrefixes.plate.get(Materials.Titanium)});
-    		GT_ModHandler.addCraftingRecipe(new ItemStack(GregTech_API.sBlockList[1], 1, 85), new Object[] {"TCT", "CEC", "TMT", 'C', OrePrefixes.circuit.get(Materials.Elite)	, 'M', GT_OreDictNames.craftingRawMachineTier02		, 'E', GregTech_API.sRecipeFile.get(GT_ConfigCategories.Recipes.disabledrecipes, "enderchest", false)?new ItemStack(Items.ender_eye, 1):GT_OreDictNames.craftingEnderChest, 'T', OrePrefixes.plate.get(Materials.Titanium)});
+    		GT_ModHandler.addCraftingRecipe(new ItemStack(GregTech_API.sBlockList[1], 1, 84), new Object[] {"TCT", "CEC", "TMT", 'C', OrePrefixes.circuit.get(Materials.Master)	, 'M', OrePrefixes.computer.get(Materials.Master)	, 'E', GregTech_API.sRecipeFile.get(GT_ConfigCategories.Recipes.disabledrecipes, "enderchest", false)?new ItemStack(Items.ender_eye, 1):new ItemStack(Blocks.ender_chest, 1), 'T', OrePrefixes.plate.get(Materials.Titanium)});
+    		GT_ModHandler.addCraftingRecipe(new ItemStack(GregTech_API.sBlockList[1], 1, 85), new Object[] {"TCT", "CEC", "TMT", 'C', OrePrefixes.circuit.get(Materials.Elite)	, 'M', GT_OreDictNames.craftingRawMachineTier02		, 'E', GregTech_API.sRecipeFile.get(GT_ConfigCategories.Recipes.disabledrecipes, "enderchest", false)?new ItemStack(Items.ender_eye, 1):new ItemStack(Blocks.ender_chest, 1), 'T', OrePrefixes.plate.get(Materials.Titanium)});
     	}
     	
     	if (GregTech_API.sRecipeFile.get(GT_ConfigCategories.Recipes.gregtechrecipes, "fusionreactor", true)) {
@@ -379,7 +379,7 @@ public class GT_CraftingRecipeLoader implements Runnable {
     	GT_ModHandler.addCraftingRecipe(new ItemStack(GregTech_API.sBlockList[1], 1, 4), new Object[] {"CGD", "GAG", "DGC", 'D', OrePrefixes.circuit.get(Materials.Master), 'G', GT_OreDictNames.craftingMonitorTier02, 'C', OrePrefixes.circuit.get(Materials.Ultimate), 'A', GT_OreDictNames.craftingRawMachineTier02});
 
     	if (GregTech_API.sRecipeFile.get(GT_ConfigCategories.Recipes.gregtechrecipes, "idsu", true)) {
-    		GT_ModHandler.addCraftingRecipe(new ItemStack(GregTech_API.sBlockList[1], 1,101), new Object[] {"IMI", "MCM", "IMI", 'I', OrePrefixes.plateAlloy.get("Iridium"), 'C', GregTech_API.sRecipeFile.get(GT_ConfigCategories.Recipes.disabledrecipes, "enderchest", false)?new ItemStack(Items.ender_eye, 1):GT_OreDictNames.craftingEnderChest, 'M', GregTech_API.sRecipeFile.get(GT_ConfigCategories.Recipes.gregtechrecipes, "aesu", true)?new ItemStack(GregTech_API.sBlockList[1], 1, 100):OrePrefixes.battery.get(Materials.Ultimate)});
+    		GT_ModHandler.addCraftingRecipe(new ItemStack(GregTech_API.sBlockList[1], 1,101), new Object[] {"IMI", "MCM", "IMI", 'I', OrePrefixes.plateAlloy.get("Iridium"), 'C', GregTech_API.sRecipeFile.get(GT_ConfigCategories.Recipes.disabledrecipes, "enderchest", false)?new ItemStack(Items.ender_eye, 1):new ItemStack(Blocks.ender_chest, 1), 'M', GregTech_API.sRecipeFile.get(GT_ConfigCategories.Recipes.gregtechrecipes, "aesu", true)?new ItemStack(GregTech_API.sBlockList[1], 1, 100):OrePrefixes.battery.get(Materials.Ultimate)});
     	}
     	
     	if (GregTech_API.sRecipeFile.get(GT_ConfigCategories.Recipes.gregtechrecipes, "aesu", true)) {
@@ -438,7 +438,7 @@ public class GT_CraftingRecipeLoader implements Runnable {
     	}
     	
     	if (GregTech_API.sRecipeFile.get(GT_ConfigCategories.Recipes.gregtechrecipes, "electricautocraftingtable", true)) {
-    		GT_ModHandler.addCraftingRecipe(new ItemStack(GregTech_API.sBlockList[1], 1, 16), new Object[] {"GBG", "CTC", "GAG", 'B', OrePrefixes.battery.get(Materials.Basic), 'A', GT_OreDictNames.craftingRawMachineTier02	, 'C', OrePrefixes.circuit.get(Materials.Advanced), 'T', GT_OreDictNames.craftingWorkBench, 'G', OrePrefixes.plate.get(Materials.Electrum)});
+    		GT_ModHandler.addCraftingRecipe(new ItemStack(GregTech_API.sBlockList[1], 1, 16), new Object[] {"GBG", "CTC", "GAG", 'B', OrePrefixes.battery.get(Materials.Basic), 'A', GT_OreDictNames.craftingRawMachineTier02	, 'C', OrePrefixes.circuit.get(Materials.Advanced), 'T', "craftingTableWood", 'G', OrePrefixes.plate.get(Materials.Electrum)});
     	}
     	
     	if (GregTech_API.sRecipeFile.get(GT_ConfigCategories.Recipes.gregtechrecipes, "advancedpump", true)) {
@@ -703,18 +703,18 @@ public class GT_CraftingRecipeLoader implements Runnable {
     		GT_ModHandler.addCraftingRecipe(new ItemStack(GregTech_API.sBlockList[1], 1,69), new Object[] {"PRP", "CAC", "PRP", 'P', OrePrefixes.plate.get(Materials.Aluminium)	, 'A', OrePrefixes.circuit.get(Materials.Basic), 'C', new ItemStack(Items.comparator, 1), 'R', new ItemStack(Items.repeater, 1)});
         }
     	
-    	GT_ModHandler.addCraftingRecipe(new ItemStack(GregTech_API.sBlockList[1], 4,70), new Object[] {"WWW", "A A", "WWW", 'W', "plankWood", 'A', OrePrefixes.plate.get(Materials.Aluminium)});
-    	GT_ModHandler.addCraftingRecipe(new ItemStack(GregTech_API.sBlockList[1], 4,71), new Object[] {"III", "A A", "III", 'I', OrePrefixes.plate.get(Materials.Iron), 'A', OrePrefixes.plate.get(Materials.Aluminium)});
+    	GT_ModHandler.addCraftingRecipe(new ItemStack(GregTech_API.sBlockList[1], 4,70), new Object[] {"WWW", "A A", "WWW", 'W', "plankWood", 'A', OrePrefixes.plate.get(Materials.Wood)});
+    	GT_ModHandler.addCraftingRecipe(new ItemStack(GregTech_API.sBlockList[1], 4,71), new Object[] {"III", "A A", "III", 'I', OrePrefixes.plate.get(Materials.Iron), 'A', OrePrefixes.plate.get(Materials.Iron)});
     	
     	GT_ModHandler.addShapelessCraftingRecipe(new ItemStack(GregTech_API.sBlockList[1], 1,71), new Object[] {new ItemStack(GregTech_API.sBlockList[1], 1,74)});
     	GT_ModHandler.addShapelessCraftingRecipe(new ItemStack(GregTech_API.sBlockList[1], 1,72), new Object[] {new ItemStack(GregTech_API.sBlockList[1], 1,71)});
     	GT_ModHandler.addShapelessCraftingRecipe(new ItemStack(GregTech_API.sBlockList[1], 1,73), new Object[] {new ItemStack(GregTech_API.sBlockList[1], 1,72)});
     	GT_ModHandler.addShapelessCraftingRecipe(new ItemStack(GregTech_API.sBlockList[1], 1,74), new Object[] {new ItemStack(GregTech_API.sBlockList[1], 1,73)});
     	
-    	GT_ModHandler.addCraftingRecipe(new ItemStack(GregTech_API.sBlockList[1], 1,112), new Object[] {"PWP", "PMP", "PCP", 'P', OrePrefixes.plate.get(Materials.Iron), 'C', OrePrefixes.circuit.get(Materials.Advanced), 'W', GT_OreDictNames.craftingWorkBench, 'M', GT_OreDictNames.craftingRawMachineTier01});
-    	GT_ModHandler.addCraftingRecipe(new ItemStack(GregTech_API.sBlockList[1], 1,112), new Object[] {"PWP", "PMP", "PCP", 'P', OrePrefixes.plate.get(Materials.Aluminium)  , 'C', OrePrefixes.circuit.get(Materials.Advanced), 'W', GT_OreDictNames.craftingWorkBench, 'M', GT_OreDictNames.craftingRawMachineTier01});
+    	GT_ModHandler.addCraftingRecipe(new ItemStack(GregTech_API.sBlockList[1], 1,112), new Object[] {"PWP", "PMP", "PCP", 'P', OrePrefixes.plate.get(Materials.Iron), 'C', OrePrefixes.circuit.get(Materials.Advanced), 'W', "craftingTableWood", 'M', GT_OreDictNames.craftingRawMachineTier01});
+    	GT_ModHandler.addCraftingRecipe(new ItemStack(GregTech_API.sBlockList[1], 1,112), new Object[] {"PWP", "PMP", "PCP", 'P', OrePrefixes.plate.get(Materials.Aluminium)  , 'C', OrePrefixes.circuit.get(Materials.Advanced), 'W', "craftingTableWood", 'M', GT_OreDictNames.craftingRawMachineTier01});
     	
-    	GT_ModHandler.addCraftingRecipe(new ItemStack(GregTech_API.sBlockList[1], 1,128), new Object[] {"PWP", "PMP", "PPP", 'P', OrePrefixes.plate.get(Materials.Bronze), 'W', GT_OreDictNames.craftingWorkBench , 'M', GT_OreDictNames.craftingRawMachineTier00});
+    	GT_ModHandler.addCraftingRecipe(new ItemStack(GregTech_API.sBlockList[1], 1,128), new Object[] {"PWP", "PMP", "PPP", 'P', OrePrefixes.plate.get(Materials.Bronze), 'W', "craftingTableWood", 'M', GT_OreDictNames.craftingRawMachineTier00});
     	GT_ModHandler.addCraftingRecipe(new ItemStack(GregTech_API.sBlockList[1], 1,129), new Object[] {"PPP", "PWP", "BFB", 'P', OrePrefixes.plate.get(Materials.Bronze), 'W', GT_ToolDictNames.craftingToolWrench, 'B', new ItemStack(Blocks.brick_block, 1, GregTech_API.ITEM_WILDCARD_DAMAGE), 'F', GT_OreDictNames.craftingFurnace});
     	GT_ModHandler.addCraftingRecipe(new ItemStack(GregTech_API.sBlockList[1], 1,130), new Object[] {"WDH", "GMG", "PKP", 'P', OrePrefixes.plate.get(Materials.Bronze), 'W', GT_ToolDictNames.craftingToolWrench, 'H', GT_ToolDictNames.craftingToolHardHammer, 'M', GT_OreDictNames.craftingRawMachineTier00, 'D', OrePrefixes.gem.get(Materials.Diamond), 'G', OrePrefixes.gearGt.get(Materials.Bronze), 'K', GT_OreDictNames.craftingPiston});
     	GT_ModHandler.addCraftingRecipe(new ItemStack(GregTech_API.sBlockList[1], 1,131), new Object[] {"PWP", "PFP", "BMB", 'P', OrePrefixes.plate.get(Materials.Bronze), 'W', GT_ToolDictNames.craftingToolWrench, 'B', new ItemStack(Blocks.brick_block, 1, GregTech_API.ITEM_WILDCARD_DAMAGE), 'M', GT_OreDictNames.craftingRawMachineTier00, 'F', GT_OreDictNames.craftingFurnace});

@@ -78,11 +78,9 @@ public class GT_DictRegistratorPreItem implements Runnable {
     	GT_OreDictUnificator.registerOre("itemRecord" , new ItemStack(Items.record_chirp, 1));
     	GT_OreDictUnificator.registerOre("itemRecord" , new ItemStack(Items.record_11, 1));
     	GT_OreDictUnificator.registerOre("itemRecord" , new ItemStack(Items.record_wait, 1));
-    	
-    	if (Blocks.ender_chest != null)
-    	GT_OreDictUnificator.registerOre("craftingEnderChest"	, new ItemStack(Blocks.ender_chest, 1));
-    	
-    	GT_OreDictUnificator.registerOre("glassReinforced"		, GT_ModHandler.getIC2Item("reinforcedGlass", 1));
+		GT_OreDictUnificator.registerOre("craftingTableWood" , new ItemStack(Blocks.crafting_table, 1));
+
+		GT_OreDictUnificator.registerOre("glassReinforced"		, GT_ModHandler.getIC2Item("reinforcedGlass", 1));
     	GT_OreDictUnificator.registerOre("glassReinforced"		, GT_ModHandler.getTEItem("hardenedGlass", 1));
     	
         GT_Log.log.info("Register Unification Entries");
