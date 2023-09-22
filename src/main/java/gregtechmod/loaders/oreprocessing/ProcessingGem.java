@@ -67,7 +67,7 @@ public class ProcessingGem implements IOreRecipeRegistrator {
 						.buildAndRegister();
 				}
 				
-				if ((aMaterial.mTypes & 4) != 0 && aMaterial.mTransparent && GT_OreDictUnificator.get(OrePrefixes.plate, aMaterial, 1) == null) {
+				if ((aMaterial.mTypes & 4) != 0 && aMaterial.mTransparent && GT_OreDictUnificator.get(OrePrefixes.plate, aMaterial, 1) == null && GT_OreDictUnificator.get(OrePrefixes.lense, aMaterial) != null) {
 					RecipeMaps.LATHE.factory().EUt(16)
 						.duration(Math.max(aMaterial.getMass(), 1))
 						.input(RecipeEntry.fromStacks(entry.ores, Match.STRICT))

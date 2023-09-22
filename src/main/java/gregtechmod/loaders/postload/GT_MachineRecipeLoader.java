@@ -127,7 +127,7 @@ public class GT_MachineRecipeLoader implements Runnable
     	RecipeMaps.BRONZE_BLAST_FURNACE.factory().EUt(1).duration(32400).input(OrePrefixes.dust, Materials.Steel, 9).input(OrePrefixes.block, Materials.Coal, 2).outputs(GT_OreDictUnificator.get(OrePrefixes.ingot, Materials.Steel, 9), GT_OreDictUnificator.get(OrePrefixes.dust, Materials.DarkAsh, 18)).buildAndRegister();
     	RecipeMaps.BRONZE_BLAST_FURNACE.factory().EUt(1).duration(64800).input(OrePrefixes.block, Materials.Iron).input(OrePrefixes.gem, Materials.Coal, 36).outputs(GT_OreDictUnificator.get(OrePrefixes.ingot, Materials.Steel, 9), GT_OreDictUnificator.get(OrePrefixes.dust, Materials.DarkAsh, 36)).buildAndRegister();
     	RecipeMaps.BRONZE_BLAST_FURNACE.factory().EUt(1).duration(64800).input(OrePrefixes.block, Materials.Iron).input(OrePrefixes.block, Materials.Coal, 4).outputs(GT_OreDictUnificator.get(OrePrefixes.ingot, Materials.Steel, 9), GT_OreDictUnificator.get(OrePrefixes.dust, Materials.DarkAsh, 36)).buildAndRegister();
-        if (OreDictionary.doesOreNameExist("fuelCoke")) {
+        if (!OreDictionary.getOres("fuelCoke").isEmpty()) {
         	RecipeMaps.BRONZE_BLAST_FURNACE.factory().EUt(1).duration(4800).input(OrePrefixes.ingot, Materials.Iron).input("fuelCoke", 2).outputs(GT_OreDictUnificator.get(OrePrefixes.ingot, Materials.Steel, 1), GT_OreDictUnificator.get(OrePrefixes.dust, Materials.DarkAsh, 4)).buildAndRegister();
         	RecipeMaps.BRONZE_BLAST_FURNACE.factory().EUt(1).duration(4800).input(OrePrefixes.dust, Materials.Iron).input("fuelCoke", 2).outputs(GT_OreDictUnificator.get(OrePrefixes.ingot, Materials.Steel, 1), GT_OreDictUnificator.get(OrePrefixes.dust, Materials.DarkAsh, 4)).buildAndRegister();
         	RecipeMaps.BRONZE_BLAST_FURNACE.factory().EUt(1).duration(2400).input(OrePrefixes.dust, Materials.Steel).input("fuelCoke").outputs(GT_OreDictUnificator.get(OrePrefixes.ingot, Materials.Steel, 1), GT_OreDictUnificator.get(OrePrefixes.dust, Materials.DarkAsh, 2)).buildAndRegister();
@@ -216,17 +216,17 @@ public class GT_MachineRecipeLoader implements Runnable
 
         RecipeMaps.CHEMICAL.factory().EUt(30).duration( 500).input(OrePrefixes.dust, Materials.NetherQuartz	, 3).input(OrePrefixes.dust, Materials.Sodium		, 1).output(GT_OreDictUnificator.get(OrePrefixes.gem, Materials.NetherQuartz, 1L)).buildAndRegister();
 
-        if (OreDictionary.doesOreNameExist(OrePrefixes.dust.get(Materials.CertusQuartz)))
+        if (!OreDictionary.getOres("dustCertusQuartz").isEmpty())
             RecipeMaps.CHEMICAL.factory().EUt(30).duration( 500).input(OrePrefixes.dust, Materials.CertusQuartz	, 3).input(OrePrefixes.dust, Materials.Sodium		, 1).output(GT_OreDictUnificator.get(OrePrefixes.gem, Materials.CertusQuartz, 1L)).buildAndRegister();
 
-        if (OreDictionary.doesOreNameExist(OrePrefixes.dust.get(Materials.Quartzite)))
+        if (!OreDictionary.getOres("dustQuartzite").isEmpty())
             RecipeMaps.CHEMICAL.factory().EUt(30).duration( 500).input(OrePrefixes.dust, Materials.Quartzite	, 3).input(OrePrefixes.dust, Materials.Sodium		, 1).output(GT_OreDictUnificator.get(OrePrefixes.gem, Materials.Quartzite, 1L)).buildAndRegister();
 
-        if (OreDictionary.doesOreNameExist(OrePrefixes.dust.get(Materials.Uraninite))) {
+        if (!OreDictionary.getOres("dustUranite").isEmpty()) {
             RecipeMaps.CHEMICAL.factory().EUt(30).duration(1000).input(OrePrefixes.dust, Materials.Uraninite, 1).input(OrePrefixes.dust, Materials.Aluminium, 1).output(GT_OreDictUnificator.get(OrePrefixes.dust, Materials.Uranium, 1L)).buildAndRegister();
             RecipeMaps.CHEMICAL.factory().EUt(30).duration(1000).input(OrePrefixes.dust, Materials.Uraninite, 1).input(OrePrefixes.dust, Materials.Magnesium, 1).output(GT_OreDictUnificator.get(OrePrefixes.dust, Materials.Uranium, 1L)).buildAndRegister();
         }
-        if (OreDictionary.doesOreNameExist(OrePrefixes.dust.get(Materials.Calcium))) {
+        if (!OreDictionary.getOres("dustCalcium").isEmpty()) {
             RecipeMaps.CHEMICAL.factory().EUt(30).duration(250).input(OrePrefixes.dust, Materials.Calcium, 1).input(OrePrefixes.dust, Materials.Carbon, 1).output(GT_OreDictUnificator.get(OrePrefixes.dust, Materials.Calcite, 2L)).buildAndRegister();
             RecipeMaps.CHEMICAL.factory().EUt(30).duration(300).input(OrePrefixes.dust, Materials.Calcium, 1).input(OrePrefixes.dust, Materials.Sulfur, 1).output(GT_Items.IC2_Fertilizer.get(3L)).buildAndRegister();
             RecipeMaps.CHEMICAL.factory().EUt(30).duration(400).input(OrePrefixes.dust, Materials.Calcium, 1).input(OrePrefixes.dust, Materials.Phosphorus, 1).output(GT_Items.IC2_Fertilizer.get(4L)).buildAndRegister();
@@ -234,21 +234,21 @@ public class GT_MachineRecipeLoader implements Runnable
             RecipeMaps.CHEMICAL.factory().EUt(30).duration(200).input(OrePrefixes.dust, Materials.Calcium, 1).input(OrePrefixes.dust, Materials.Ash, 3).output(GT_Items.IC2_Fertilizer.get(2L)).buildAndRegister();
             RecipeMaps.CHEMICAL.factory().EUt(30).duration(200).input(OrePrefixes.dust, Materials.Calcium, 1).input(OrePrefixes.dust, Materials.DarkAsh, 1).output(GT_Items.IC2_Fertilizer.get(2L)).buildAndRegister();
         }
-        if (OreDictionary.doesOreNameExist(OrePrefixes.dust.get(Materials.Calcite))) {
+        if (!OreDictionary.getOres("dustCalcite").isEmpty()) {
             RecipeMaps.CHEMICAL.factory().EUt(30).duration(200).input(OrePrefixes.dust, Materials.Calcite, 1).input(OrePrefixes.dust, Materials.Sulfur, 1).output(GT_Items.IC2_Fertilizer.get(2L)).buildAndRegister();
             RecipeMaps.CHEMICAL.factory().EUt(30).duration(300).input(OrePrefixes.dust, Materials.Calcite, 1).input(OrePrefixes.dust, Materials.Phosphorus, 1).output(GT_Items.IC2_Fertilizer.get(3L)).buildAndRegister();
             RecipeMaps.CHEMICAL.factory().EUt(30).duration(200).input(OrePrefixes.dust, Materials.Calcite, 1).input(OrePrefixes.dust, Materials.Phosphate, 1).output(GT_Items.IC2_Fertilizer.get(2L)).buildAndRegister();
             RecipeMaps.CHEMICAL.factory().EUt(30).duration(100).input(OrePrefixes.dust, Materials.Calcite, 1).input(OrePrefixes.dust, Materials.Ash, 3).output(GT_Items.IC2_Fertilizer.get(1L)).buildAndRegister();
             RecipeMaps.CHEMICAL.factory().EUt(30).duration(100).input(OrePrefixes.dust, Materials.Calcite, 1).input(OrePrefixes.dust, Materials.DarkAsh, 1).output(GT_Items.IC2_Fertilizer.get(1L)).buildAndRegister();
         }
-        if (OreDictionary.doesOreNameExist(OrePrefixes.dust.get(Materials.Apatite))) {
+        if (!OreDictionary.getOres("dustApatite").isEmpty()) {
             RecipeMaps.CHEMICAL.factory().EUt(30).duration(300).input(OrePrefixes.dust, Materials.Apatite, 1).input(OrePrefixes.dust, Materials.Sulfur, 1).output(GT_Items.IC2_Fertilizer.get(3L)).buildAndRegister();
             RecipeMaps.CHEMICAL.factory().EUt(30).duration(400).input(OrePrefixes.dust, Materials.Apatite, 1).input(OrePrefixes.dust, Materials.Phosphorus, 1).output(GT_Items.IC2_Fertilizer.get(4L)).buildAndRegister();
             RecipeMaps.CHEMICAL.factory().EUt(30).duration(300).input(OrePrefixes.dust, Materials.Apatite, 1).input(OrePrefixes.dust, Materials.Phosphate, 1).output(GT_Items.IC2_Fertilizer.get(3L)).buildAndRegister();
             RecipeMaps.CHEMICAL.factory().EUt(30).duration(200).input(OrePrefixes.dust, Materials.Apatite, 1).input(OrePrefixes.dust, Materials.Ash, 3).output(GT_Items.IC2_Fertilizer.get(2L)).buildAndRegister();
             RecipeMaps.CHEMICAL.factory().EUt(30).duration(200).input(OrePrefixes.dust, Materials.Apatite, 1).input(OrePrefixes.dust, Materials.DarkAsh, 1).output(GT_Items.IC2_Fertilizer.get(2L)).buildAndRegister();
         }
-        if (OreDictionary.doesOreNameExist(OrePrefixes.dust.get(Materials.Glauconite))) {
+        if (!OreDictionary.getOres("dustGlauconite").isEmpty()) {
             RecipeMaps.CHEMICAL.factory().EUt(30).duration(300).input(OrePrefixes.dust, Materials.Glauconite, 1).input(OrePrefixes.dust, Materials.Sulfur, 1).output(GT_Items.IC2_Fertilizer.get(3L)).buildAndRegister();
             RecipeMaps.CHEMICAL.factory().EUt(30).duration(400).input(OrePrefixes.dust, Materials.Glauconite, 1).input(OrePrefixes.dust, Materials.Phosphorus, 1).output(GT_Items.IC2_Fertilizer.get(4L)).buildAndRegister();
             RecipeMaps.CHEMICAL.factory().EUt(30).duration(400).input(OrePrefixes.dust, Materials.Glauconite, 1).input(OrePrefixes.dust, Materials.Phosphate, 1).output(GT_Items.IC2_Fertilizer.get(3L)).buildAndRegister();
@@ -550,7 +550,8 @@ public class GT_MachineRecipeLoader implements Runnable
         RecipeMaps.CENTRIFUGE.factory().EUt(5).duration(10000).input(OrePrefixes.cell, Materials.Helium, 16).outputs(GT_OreDictUnificator.get(OrePrefixes.cell, Materials.Helium_3, 1L), GT_Items.Cell_Empty.get(15L)).buildAndRegister();
         RecipeMaps.CENTRIFUGE.factory().EUt(5).duration(3000).input(OrePrefixes.cell, Materials.Deuterium, 4).outputs(GT_OreDictUnificator.get(OrePrefixes.cell, Materials.Tritium, 1L), GT_Items.Cell_Empty.get(3L)).buildAndRegister();
         RecipeMaps.CENTRIFUGE.factory().EUt(5).duration(50000).input(OrePrefixes.dust, Materials.Uranium, 4).outputs(GT_OreDictUnificator.get(OrePrefixes.dustTiny, Materials.Uranium235, 1L), GT_OreDictUnificator.get(OrePrefixes.dustTiny, Materials.Plutonium, 1L)).buildAndRegister();
-        RecipeMaps.CENTRIFUGE.factory().EUt(5).duration(100000).input(OrePrefixes.dust, Materials.Plutonium, 4).outputs(GT_OreDictUnificator.get(OrePrefixes.dustTiny, Materials.Plutonium241, 1L), GT_OreDictUnificator.get(OrePrefixes.dustTiny, Materials.Uranium, 1L)).buildAndRegister();
+        if (!OreDictionary.getOres("dustPlutonium241").isEmpty())
+            RecipeMaps.CENTRIFUGE.factory().EUt(5).duration(100000).input(OrePrefixes.dust, Materials.Plutonium, 4).outputs(GT_OreDictUnificator.get(OrePrefixes.dustTiny, Materials.Plutonium241, 1L), GT_OreDictUnificator.get(OrePrefixes.dustTiny, Materials.Uranium, 1L)).buildAndRegister();
         RecipeMaps.CENTRIFUGE.factory().EUt(5).duration(1650).input(new ItemStack(Blocks.mycelium, 8)).outputs(new ItemStack((Block)Blocks.brown_mushroom, 2), new ItemStack((Block)Blocks.red_mushroom, 2), new ItemStack(Items.clay_ball, 1), new ItemStack(Blocks.sand, 4)).buildAndRegister();
         RecipeMaps.CENTRIFUGE.factory().EUt(5).duration(10000).setShaped(true).input(new ItemStack(Items.golden_apple, 1, 1)).input(GT_Items.Cell_Empty.get(2)).outputs(GT_OreDictUnificator.get(OrePrefixes.cell, Materials.Methane, 2L), new ItemStack(Items.gold_ingot, 64)).buildAndRegister();
         RecipeMaps.CENTRIFUGE.factory().EUt(5).duration(10000).setShaped(true).input(new ItemStack(Items.golden_apple, 1, 0)).input(GT_Items.Cell_Empty.get(1)).outputs(GT_OreDictUnificator.get(OrePrefixes.cell, Materials.Methane, 1L), new ItemStack(Items.gold_ingot, 7)).buildAndRegister();
