@@ -127,6 +127,7 @@ public enum GT_OreDictNames {
 	craftingSolarPanelHV,
 	craftingSolarPanelLV,
 	craftingSolarPanelMV,
+	craftingWorkBench,
 	craftingSteamTank,
 	craftingSteamUpgrade,
 	craftingSuperconductor,
