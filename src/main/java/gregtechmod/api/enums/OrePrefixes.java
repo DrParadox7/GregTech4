@@ -503,6 +503,7 @@ public enum OrePrefixes {
 		removals.add(Materials.Hematite);
 		removals.add(Materials.Hepatizon);
 		removals.add(Materials.HSLA);
+		removals.add(Materials.HydratedCoal);
 		removals.add(Materials.Ignatius);
 		removals.add(Materials.Infernal);
 		removals.add(Materials.Infuscolium);
@@ -759,9 +760,9 @@ public enum OrePrefixes {
 		ingot.mNotGeneratedItems.add(Materials.Bronze);
 		ingot.mNotGeneratedItems.add(Materials.Lead);
 		ingot.mNotGeneratedItems.add(Materials.Silver);
-		gem.mNotGeneratedItems.add(Materials.Uranium);
-		gem.mNotGeneratedItems.add(Materials.Uranium235);
-		gem.mNotGeneratedItems.add(Materials.Plutonium);
+		ingot.mNotGeneratedItems.add(Materials.Uranium);
+		ingot.mNotGeneratedItems.add(Materials.Uranium235);
+		ingot.mNotGeneratedItems.add(Materials.Plutonium);
 
 		//Dust
 		GT_OreDictUnificator.set("dustBronze", GT_ModHandler.getIC2Item( "bronzeDust",1));
