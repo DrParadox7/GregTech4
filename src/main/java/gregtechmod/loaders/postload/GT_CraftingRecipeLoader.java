@@ -330,8 +330,7 @@ public class GT_CraftingRecipeLoader implements Runnable {
         if (GregTech_API.sRecipeFile.get(GT_ConfigCategories.Recipes.gregtechrecipes, "SolarPanelHV", false)) GT_ModHandler.addCraftingRecipe(GregTech_API.getGregTechComponent(67, 1), new Object[] {"SSS", "STS", "SSS", 'S', GT_OreDictNames.craftingSolarPanelMV, 'T', GT_OreDictNames.craftingHVTUpgrade});
         
         GT_ModHandler.addCraftingRecipe(GT_ModHandler.getIC2Item("reactorVent", 1, 1), "BAB", "AMA", "BAB", 'B', new ItemStack(Blocks.iron_bars, 1), 'A', OrePrefixes.plate.get(Materials.Aluminium), 'M', GT_ModHandler.getIC2Item("elemotor", 1));
-        GT_ModHandler.addShapelessCraftingRecipe(GT_ModHandler.getIC2Item("reactorPlatingExplosive", 1), new Object[] {GT_ModHandler.getIC2Item("reactorPlating", 1), OrePrefixes.plate.get(Materials.Lead)});
-        
+
         if (GregTech_API.sRecipeFile.get(GT_ConfigCategories.Recipes.gregtechrecipes, "wirelessRedstone", true)) {
         	GT_ModHandler.addCraftingRecipe(GregTech_API.getGregTechComponent(82, 1), new Object[] {"RAR", "QEQ", "CPC", 'A', OrePrefixes.circuit.get(Materials.Advanced), 'R', OrePrefixes.dust.get(Materials.Redstone), 'Q', GT_OreDictNames.craftingQuartz, 'P', OrePrefixes.plate.get(Materials.Gold)	, 'E', new ItemStack(Items.ender_pearl, 1), 'C', new ItemStack(Items.comparator, 1)});
         	GT_ModHandler.addCraftingRecipe(GregTech_API.getGregTechComponent(84, 1), new Object[] {"RAR", "QEQ", "CPC", 'A', OrePrefixes.circuit.get(Materials.Advanced), 'R', GT_OreDictNames.craftingRedstoneTorch	, 'Q', GT_OreDictNames.craftingQuartz, 'P', OrePrefixes.plate.get(Materials.Silver)	, 'E', new ItemStack(Items.ender_pearl, 1), 'C', new ItemStack(Items.comparator, 1)});
