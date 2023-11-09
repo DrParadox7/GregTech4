@@ -1,5 +1,7 @@
 package gregtechmod.api.items;
 
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.Optional;
 import gregtechmod.api.GregTech_API;
 import gregtechmod.api.enums.Materials;
 import gregtechmod.api.enums.OrePrefixes;
@@ -23,6 +25,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
@@ -30,6 +33,9 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import squeek.applecore.api.food.FoodValues;
+import squeek.applecore.api.food.IEdible;
+import squeek.applecore.api.food.ItemFoodProxy;
 
 /**
  * @author Gregorius Techneticies
@@ -43,7 +49,8 @@ import cpw.mods.fml.relauncher.SideOnly;
  * 
  * These Items can also have special RightClick abilities, electric Charge or even be set to become a Food alike Item.
  */
-public abstract class GT_MetaGenerated_Item extends GT_Generic_Item implements ISpecialElectricItem, IElectricItemManager {
+@Optional.Interface(iface = "squeek.applecore.api.food.IEdible", modid = "AppleCore")
+public abstract class GT_MetaGenerated_Item extends GT_Generic_Item implements ISpecialElectricItem, IElectricItemManager, IEdible {
 	/**
 	 * All instances of this Item Class are listed here.
 	 * This gets used to register the Renderer to all Items of this Type, if useStandardMetaItemRenderer() returns true.
@@ -273,17 +280,22 @@ public abstract class GT_MetaGenerated_Item extends GT_Generic_Item implements I
     	IFoodStat tStat = mFoodStats.get((short)getDamage(aStack));
         return tStat == null ? EnumAction.none : tStat.getFoodAction(this, aStack);
     }
-    
-    @Override
+
+	@Override
 	public final ItemStack onEaten(ItemStack aStack, World aWorld, EntityPlayer aPlayer) {
-    	IFoodStat tStat = mFoodStats.get((short)getDamage(aStack));
-    	if (tStat != null) {
-            aPlayer.getFoodStats().addStats(tStat.getFoodLevel(this, aStack, aPlayer), tStat.getSaturation(this, aStack, aPlayer));
-            tStat.onEaten(this, aStack, aPlayer);
-    	}
-        return aStack;
-    }
-    
+		IFoodStat tStat = mFoodStats.get((short) getDamage(aStack));
+		if (tStat != null) {
+			if (Loader.isModLoaded("AppleCore")) {
+				aPlayer.getFoodStats()
+						.func_151686_a(getFoodProxy(this), aStack);
+			} else {
+				aPlayer.getFoodStats().addStats(tStat.getFoodLevel(this, aStack, aPlayer), tStat.getSaturation(this, aStack, aPlayer));
+			}
+			tStat.onEaten(this, aStack, aPlayer);
+		}
+		return aStack;
+	}
+
 	@Override
 	public final boolean onItemUse(ItemStack aStack, EntityPlayer aPlayer, World aWorld, int aX, int aY, int aZ, int aSide, float hitX, float hitY, float hitZ) {
 		ArrayList<IOnItemClick> tList = mClickBehaviors.get((short)getDamage(aStack));
@@ -318,7 +330,7 @@ public abstract class GT_MetaGenerated_Item extends GT_Generic_Item implements I
 		}
 		return null;
     }
-	
+
 	@Override
     @SideOnly(Side.CLIENT)
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -336,7 +348,19 @@ public abstract class GT_MetaGenerated_Item extends GT_Generic_Item implements I
     		}
         }
     }
-	
+	@Optional.Method(modid = "AppleCore")
+	private static ItemFood getFoodProxy(Object edible) {
+		return new ItemFoodProxy((IEdible) edible);
+	}
+
+	@Override
+	@Optional.Method(modid = "AppleCore")
+	public FoodValues getFoodValues(ItemStack aStack) {
+	IFoodStat tStat = mFoodStats.get((short) getDamage(aStack));
+	return tStat == null ? null
+			: new FoodValues(tStat.getFoodLevel(this, aStack, null), tStat.getSaturation(this, aStack, null));
+	}
+
 	@Override
     public String getUnlocalizedName(ItemStack aStack) {
     	return getUnlocalizedName() + "." + getDamage(aStack);
