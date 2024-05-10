@@ -141,7 +141,15 @@ import cpw.mods.fml.relauncher.Side;
  */
 @Mod(modid = "gregtech_addon", name="GregTech-Addon", version="4.16.40", useMetadata=false, dependencies="required-after:IC2; after:Railcraft; after:ThermalExpansion; after:ThermalExpansion|Transport; after:ThermalExpansion|Energy; after:ThermalExpansion|Factory; before:RedPowerCore; before:RedPowerBase; before:RedPowerMachine; before:RedPowerCompat; before:RedPowerWiring; before:RedPowerLogic; before:RedPowerLighting; before:RedPowerWorld; before:RedPowerControl;")
 public class GT_Mod implements IGT_Mod {
-    @Instance
+
+	public static boolean TF_loaded; // Thermal Foundation
+	public static boolean TE_loaded; // Thermal Expansion
+	public static boolean AE2_loaded; // Applied Energistics 2
+	public static boolean RC_loaded; // Railcraft
+	public static boolean AM2_loaded; // Ars Magica 2
+	public static boolean TC_loaded; // Thaumcraft 4
+
+	@Instance
     public static GT_Mod instance;
     
     @SidedProxy(clientSide = "gregtechmod.common.GT_Client", serverSide = "gregtechmod.common.GT_Server")
@@ -241,8 +249,15 @@ public class GT_Mod implements IGT_Mod {
 	@EventHandler
     public void preload(FMLPreInitializationEvent aEvent) {
     	checkVersions();
-    	
-    	try {
+
+		AE2_loaded = Loader.isModLoaded("appliedenergistics2");
+		AM2_loaded = Loader.isModLoaded("arsmagica2");
+		RC_loaded = Loader.isModLoaded("Railcraft");
+		TC_loaded = Loader.isModLoaded("Thaumcraft");
+		TF_loaded = Loader.isModLoaded("ThermalFoundation");
+		TE_loaded = Loader.isModLoaded("ThermalExpansion");
+
+		try {
             Integer.parseInt(((String)Class.forName("ic2.core.IC2").getField("VERSION").get((Object)null)).substring(4, 7));
          } catch (Throwable var16) {
             throw new GT_ItsNotMyFaultException("Ancient IndustrialCraft Version detected, please update your IndustrialCraft here: ic2api.player.to:8080/job/IC2_experimental/?");

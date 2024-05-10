@@ -1,5 +1,6 @@
 package gregtechmod.common.tileentities.energy.production;
 
+import gregtechmod.GT_Mod;
 import gregtechmod.api.GregTech_API;
 import gregtechmod.api.enums.GT_ConfigCategories;
 import gregtechmod.api.interfaces.IGregTechTileEntity;
@@ -30,8 +31,6 @@ public class GT_MetaTileEntity_MagicEnergyAbsorber extends MetaTileEntity {
 	private static ArrayList<?> supportedAspects;
 	
 	public static final ArrayList<EntityEnderCrystal> sUsedDragonCrystalList = new ArrayList<EntityEnderCrystal>();
-	public static final boolean THAUMCRAFT_LOADED;
-	
 	public EntityEnderCrystal mTargetedCrystal;
 	private int elementIndex = 0;
 	private Object energySource = null;
@@ -45,7 +44,7 @@ public class GT_MetaTileEntity_MagicEnergyAbsorber extends MetaTileEntity {
 	public GT_MetaTileEntity_MagicEnergyAbsorber() {}
 	
 	static {
-		if (THAUMCRAFT_LOADED = Loader.isModLoaded("Thaumcraft")) try {
+		if (GT_Mod.TC_loaded) try {
 			supportedAspects = thaumcraft.api.aspects.Aspect.getPrimalAspects();
 		} catch (Throwable e) {}
 	}
@@ -168,7 +167,7 @@ public class GT_MetaTileEntity_MagicEnergyAbsorber extends MetaTileEntity {
     			}
     		}
     		
-    		if (sEnergyFromVis > 0 && isActive2 && getBaseMetaTileEntity().getUniversalEnergyStored() < sEnergyFromVis && THAUMCRAFT_LOADED) {
+    		if (sEnergyFromVis > 0 && isActive2 && getBaseMetaTileEntity().getUniversalEnergyStored() < sEnergyFromVis && GT_Mod.TC_loaded) {
     			try {
     				
     				if (energySource != null) {

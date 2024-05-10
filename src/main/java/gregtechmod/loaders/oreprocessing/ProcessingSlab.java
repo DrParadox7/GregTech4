@@ -21,9 +21,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
 public class ProcessingSlab implements IOreRecipeRegistrator {
-	
-	public static final boolean RAILCRAFT = Loader.isModLoaded("Railcraft");
-	
+
 	public ProcessingSlab() {
 		OrePrefixes.slab.add(this);
 	}
@@ -32,7 +30,7 @@ public class ProcessingSlab implements IOreRecipeRegistrator {
 		for (OreDictEntry entry : entries) {
 			Materials mat = this.getMaterial(aPrefix, entry);
 			if (this.isExecutable(aPrefix, mat) && mat == Materials.Wood) {
-				if (RAILCRAFT) {
+				if (GT_Mod.RC_loaded) {
 					RecipeMaps.CANNING.factory().EUt(4).duration(200).input(GT_ModHandler.getRCItem("fluid.creosote.bucket", 1L)).input(RecipeEntry.fromStacks(entry.ores, Match.DAMAGE)).outputs(GT_ModHandler.getRCItem("part.tie.wood", 1L), new ItemStack(Items.bucket, 1)).buildAndRegister();
 					RecipeMaps.CANNING.factory().EUt(4).duration(200).input(OrePrefixes.cell, Materials.Creosote).input(RecipeEntry.fromStacks(entry.ores, Match.DAMAGE)).outputs(GT_ModHandler.getRCItem("part.tie.wood", 1L), GT_Items.Cell_Empty.get(1)).buildAndRegister();
 				}

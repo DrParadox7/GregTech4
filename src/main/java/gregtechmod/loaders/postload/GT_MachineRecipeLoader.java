@@ -1,5 +1,6 @@
 package gregtechmod.loaders.postload;
 
+import gregtechmod.GT_Mod;
 import ic2.api.recipe.*;
 import net.minecraft.item.*;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -195,7 +196,7 @@ public class GT_MachineRecipeLoader implements Runnable
         RecipeMaps.ELECTROLYZER.factory().EUt(106).duration(24).input(new ItemStack(Items.dye, 3, 15)).output(GT_OreDictUnificator.get(OrePrefixes.dust, Materials.Calcium, 1)).buildAndRegister();
         RecipeMaps.ELECTROLYZER.factory().EUt(25).duration(500).input("sand", 8).outputs(GT_OreDictUnificator.get(OrePrefixes.dust, Materials.SiliconDioxide, 1L)).buildAndRegister();
         
-        if (Loader.isModLoaded("appliedenergistics2")) {
+        if (GT_Mod.AE2_loaded) {
         	Optional<ItemStack> chargedCrystal = appeng.api.AEApi.instance()
         			.definitions()
         			.materials()
@@ -276,7 +277,7 @@ public class GT_MachineRecipeLoader implements Runnable
         } else {
             RecipeMaps.BENDING.factory().EUt( 8).duration( 100).setShaped(true).input(GT_Items.IC2_Mixed_Metal_Ingot.get(1)).output(GT_OreDictUnificator.get(OrePrefixes.plateAlloy, Materials.Advanced, 1L)).buildAndRegister();
         }
-        if (Loader.isModLoaded("Railcraft")) {
+        if (GT_Mod.RC_loaded) {
 	        RecipeMaps.BENDING.factory().EUt(15).duration( 200).setShaped(true).input(OrePrefixes.stick, Materials.Aluminium, 6).nonConsumable(GT_Items.Circuit_Integrated.getWithDamage(0, 6)).output(GT_ModHandler.getRCItem("part.rail.standard", 2L)).buildAndRegister();
 	        RecipeMaps.BENDING.factory().EUt(15).duration( 400).setShaped(true).input(OrePrefixes.stick, Materials.Iron, 6).nonConsumable(GT_Items.Circuit_Integrated.getWithDamage(0, 6)).output(GT_ModHandler.getRCItem("part.rail.standard", 4L)).buildAndRegister();
 	        RecipeMaps.BENDING.factory().EUt(15).duration( 300).setShaped(true).input(OrePrefixes.stick, Materials.Bronze, 6).nonConsumable(GT_Items.Circuit_Integrated.getWithDamage(0, 6)).output(GT_ModHandler.getRCItem("part.rail.standard", 3L)).buildAndRegister();
@@ -309,7 +310,7 @@ public class GT_MachineRecipeLoader implements Runnable
         
         RecipeMaps.ALLOY_SMELTING.factory().EUt(1).duration(100).inputs(new ItemStack(Items.water_bucket, 1, 0)).output(new ItemStack(Items.bucket, 1, 0)).buildAndRegister();
         RecipeMaps.ALLOY_SMELTING.factory().EUt(1).duration(100).inputs(new ItemStack(Items.milk_bucket, 1, 0)).output(new ItemStack(Items.bucket, 1, 0)).buildAndRegister();
-        if (Loader.isModLoaded("ThermalExpansion")) {
+        if (GT_Mod.TF_loaded) {
 	        RecipeMaps.ALLOY_SMELTING.factory().EUt(16).duration(200).input(OrePrefixes.dust , Materials.Lead, 1).input(OrePrefixes.dust, Materials.Obsidian, 2).output(GT_Items.TE_Hardened_Glass.get(2L)).buildAndRegister();
 	        RecipeMaps.ALLOY_SMELTING.factory().EUt(16).duration(200).input(OrePrefixes.ingot, Materials.Lead, 1).input(OrePrefixes.dust, Materials.Obsidian, 2).output(GT_Items.TE_Hardened_Glass.get(2L)).buildAndRegister();
         }
@@ -359,7 +360,7 @@ public class GT_MachineRecipeLoader implements Runnable
         RecipeMaps.ASSEMBLING.factory().EUt(2).duration(1600).input(GT_ModHandler.getIC2Item("batPack", 1, 32767)).output(GT_ModHandler.getIC2Item("reBattery", 6L)).buildAndRegister();
         RecipeMaps.ASSEMBLING.factory().EUt(4).duration(3200).inputs(GT_ModHandler.getIC2Item("hvTransformer", 1L), GT_ModHandler.getIC2Item("transformerUpgrade", 1L)).output(GregTech_API.getGregTechComponent(27, 1)).buildAndRegister();
         
-        if (Loader.isModLoaded("Railcraft")) {
+        if (GT_Mod.RC_loaded) {
 	        RecipeMaps.ASSEMBLING.factory().EUt(8).duration(128).inputs(new ItemStack(Blocks.stone_slab, 3, 0), GT_ModHandler.getRCItem("part.rebar", 1L)).output(GT_ModHandler.getRCItem("part.tie.stone", 1L)).buildAndRegister();
 	        RecipeMaps.ASSEMBLING.factory().EUt(8).duration(128).inputs(new ItemStack(Blocks.stone_slab, 3, 7), GT_ModHandler.getRCItem("part.rebar", 1L)).output(GT_ModHandler.getRCItem("part.tie.stone", 1L)).buildAndRegister();
 	        RecipeMaps.ASSEMBLING.factory().EUt(1).duration(800).input(GT_ModHandler.getRCItem("part.tie.wood", 4L)).output(GT_ModHandler.getRCItem("part.railbed.wood", 1L)).buildAndRegister();
@@ -597,7 +598,7 @@ public class GT_MachineRecipeLoader implements Runnable
         RecipeMaps.PRINTER.factory().EUt(1).duration(200).setShaped(true).input(OrePrefixes.dust, Materials.Wood).output(new ItemStack(Items.paper)).buildAndRegister();
         RecipeMaps.PRINTER.factory().EUt(2).duration(400).setShaped(true).input(new ItemStack(Items.paper, 3)).input(new ItemStack(Items.leather)).output(new ItemStack(Items.book)).buildAndRegister();
         RecipeMaps.PRINTER.factory().EUt(2).duration(400).setShaped(true).input(new ItemStack(Items.paper, 8)).input(new ItemStack(Items.compass)).output(new ItemStack(Items.map)).buildAndRegister();
-        if (Loader.isModLoaded("arsmagica2")) {
+        if (GT_Mod.AM2_loaded) {
         	RecipeMaps.PRINTER.factory().EUt(2).duration(400).setShaped(true).input("paperEmpty", 8).input(OrePrefixes.stick, Materials.Wood, 2).output(GT_OreDictUnificator.getFirstOre("paperArsSpellParchment", 1)).buildAndRegister();
         }
         

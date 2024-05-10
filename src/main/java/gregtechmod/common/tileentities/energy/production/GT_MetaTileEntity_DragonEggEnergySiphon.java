@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import cpw.mods.fml.common.network.NetworkRegistry;
+import gregtechmod.GT_Mod;
 import gregtechmod.api.enums.GT_ConfigCategories;
 import gregtechmod.api.interfaces.IGregTechTileEntity;
 import gregtechmod.api.metatileentity.MetaTileEntity;
@@ -93,7 +94,7 @@ public class GT_MetaTileEntity_DragonEggEnergySiphon extends MetaTileEntity {
     		if (getBaseMetaTileEntity().isAllowedToWork() && hasEgg()) {
     			getBaseMetaTileEntity().setActive(true);
     			if (getBaseMetaTileEntity().increaseStoredEnergyUnits(sDragonEggEnergyPerTick, false)) {
-    				if (sAllowFlux && GT_MetaTileEntity_MagicEnergyAbsorber.THAUMCRAFT_LOADED) {
+    				if (sAllowFlux && GT_Mod.TC_loaded) {
 	        			try {
 	        				if (this.findNode()) {
 	        					thaumcraft.common.tiles.TileNode node = (thaumcraft.common.tiles.TileNode) cachedNode.get();

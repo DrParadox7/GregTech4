@@ -1,5 +1,6 @@
 package gregtechmod.api.util;
 
+import gregtechmod.GT_Mod;
 import gregtechmod.api.GregTech_API;
 import gregtechmod.api.enums.GT_ConfigCategories;
 import gregtechmod.api.enums.GT_Items;
@@ -526,7 +527,7 @@ public class GT_ModHandler {
 					addSawmillRecipe(aInput, amount, aChance, aOutput1, aOutput2);
 				}
 			} else {
-				if (GregTech_API.sRecipeFile.get(GT_ConfigCategories.Machines.rockcrushing, aInput.oreDictName, true) && Loader.isModLoaded("Railcraft")) {
+				if (GregTech_API.sRecipeFile.get(GT_ConfigCategories.Machines.rockcrushing, aInput.oreDictName, true) && GT_Mod.RC_loaded) {
 					for (ItemStack stack : aInput.ores) {
 						if (Block.getBlockFromItem(stack.getItem()) != Blocks.obsidian) {
 							mods.railcraft.api.crafting.IRockCrusherRecipe tRecipe = mods.railcraft.api.crafting.RailcraftCraftingManager.rockCrusher.createNewRecipe(GT_Utility.copyAmount(1, stack), stack.getItemDamage() != GregTech_API.ITEM_WILDCARD_DAMAGE, false);

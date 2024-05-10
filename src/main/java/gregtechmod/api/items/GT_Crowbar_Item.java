@@ -1,5 +1,6 @@
 package gregtechmod.api.items;
 
+import gregtechmod.GT_Mod;
 import gregtechmod.api.GregTech_API;
 import gregtechmod.api.enums.GT_ToolDictNames;
 import gregtechmod.api.util.GT_ModHandler;
@@ -24,7 +25,7 @@ public class GT_Crowbar_Item extends GT_Tool_Item {
 		addToBlockList(Blocks.golden_rail);
 		addToBlockList(Blocks.detector_rail);
 		addToBlockList(Blocks.activator_rail);
-		if (Loader.isModLoaded("Railcraft")) {
+		if (GT_Mod.RC_loaded) {
 			addToBlockList(GT_ModHandler.getRCItem("track.boarding", 1));
 			addToBlockList(GT_ModHandler.getRCItem("track.elevator", 1));
 		}

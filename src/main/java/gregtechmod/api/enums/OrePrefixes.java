@@ -1,6 +1,7 @@
 package gregtechmod.api.enums;
 
-import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.registry.GameRegistry;
+import gregtechmod.GT_Mod;
 import gregtechmod.api.GregTech_API;
 import gregtechmod.api.interfaces.IOreRecipeRegistrator;
 import gregtechmod.api.util.GT_ModHandler;
@@ -11,6 +12,7 @@ import gregtechmod.api.util.OreDictEntry;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public enum OrePrefixes {
@@ -387,14 +389,18 @@ public enum OrePrefixes {
 	}
 
 	public static void minimalItems(){
-		boolean IC2_loaded = Loader.isModLoaded("IC2");
-		boolean TF_loaded = Loader.isModLoaded("ThermalFoundation");
 
-		if (IC2_loaded)
-			integrateIC2();
-		
-		if (TF_loaded)
+		integrateIC2();
+
+		if (GT_Mod.TF_loaded)
 			integrateTF();
+
+		if (GT_Mod.AE2_loaded) {
+			Item AE2MultiMaterial = GameRegistry.findItem("appliedenergistics2", "item.ItemMultiMaterial");
+
+			GT_OreDictUnificator.set("dustNetherQuartz", new ItemStack(AE2MultiMaterial, 1, 3));
+			dust.mNotGeneratedItems.add(Materials.NetherQuartz);
+		}
 
 		List<Materials> removals = new ArrayList<>();
 

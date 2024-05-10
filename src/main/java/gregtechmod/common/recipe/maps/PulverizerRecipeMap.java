@@ -8,6 +8,7 @@ import java.util.function.Predicate;
 import java.util.Optional;
 import java.util.Random;
 
+import gregtechmod.GT_Mod;
 import gregtechmod.api.recipe.ChancedOutput;
 import gregtechmod.api.recipe.Recipe;
 import gregtechmod.api.recipe.RecipeMap;
@@ -29,8 +30,7 @@ import net.minecraftforge.fluids.FluidStack;
 public class PulverizerRecipeMap extends RecipeMap<SimpleRecipeFactory> {
 	
 	// Made NOT to spam with throwing exceptions every recipe check
-	public final static boolean RC = Loader.isModLoaded("Railcraft"), TE = Loader.isModLoaded("ThermalExpansion");
-	
+
 	public PulverizerRecipeMap(int minInputs, int maxInputs, int minOutputs, int maxOutputs) {
 		super(minInputs, maxInputs, minOutputs, maxOutputs, new SimpleRecipeFactory());
 	}
@@ -44,7 +44,7 @@ public class PulverizerRecipeMap extends RecipeMap<SimpleRecipeFactory> {
 			if (GT_Utility.isStackValid(input)) {
 				input = input.copy();
 
-				if (RC) try { // RailCraft recipes
+				if (GT_Mod.RC_loaded) try { // RailCraft recipes
 					mods.railcraft.api.crafting.IRockCrusherRecipe recipe = mods.railcraft.api.crafting.RailcraftCraftingManager.rockCrusher.getRecipe(input);
 					if (recipe != null) {
 						input.stackSize = recipe.getInput().stackSize;
@@ -89,7 +89,7 @@ public class PulverizerRecipeMap extends RecipeMap<SimpleRecipeFactory> {
 					}
 				} catch (Throwable e) {}
 				
-				if (TE) try {  // ThermalExpansion recipes
+				if (GT_Mod.TE_loaded) try {  // ThermalExpansion recipes
 					cofh.thermalexpansion.api.crafting.recipes.IPulverizerRecipe recipe = cofh.thermalexpansion.util.crafting.PulverizerManager.getRecipe(input);
 		    		if (recipe != null) {
 		    			ItemStack secondary = recipe.getSecondaryOutput();

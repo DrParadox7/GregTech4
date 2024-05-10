@@ -12,6 +12,7 @@ import java.util.Objects;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Multimaps;
 
+import gregtechmod.GT_Mod;
 import gregtechmod.api.GregTech_API;
 import gregtechmod.api.util.GT_Log;
 import gregtechmod.api.util.GT_Utility;
@@ -153,7 +154,7 @@ public class RecipeHandler {
 	
 	private static void processTE() {
 		// Removing TE recipes
-		if (Loader.isModLoaded("ThermalExpansion")) {
+		if (GT_Mod.TF_loaded) {
 			cofh.thermalexpansion.ThermalExpansion.config.set("RecipeManagers.Smelter.Recipes", "Steel", false);
 		}
 	}

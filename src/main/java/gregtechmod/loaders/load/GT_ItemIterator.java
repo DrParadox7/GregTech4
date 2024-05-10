@@ -112,7 +112,7 @@ public class GT_ItemIterator implements Runnable {
 		RecipeMaps.CANNING.factory().EUt(1).duration(600).inputs(new ItemStack(Items.cake, 1, GregTech_API.ITEM_WILDCARD_DAMAGE), GT_Items.IC2_Food_Can_Empty.get(6L)).output(GT_Items.IC2_Food_Can_Filled.get(6)).buildAndRegister();
 		RecipeMaps.CANNING.factory().EUt(1).duration(300).inputs(new ItemStack(Items.mushroom_stew, 1, GregTech_API.ITEM_WILDCARD_DAMAGE), GT_Items.IC2_Food_Can_Empty.get(3L)).output(GT_Items.IC2_Food_Can_Filled.get(3)).output(new ItemStack(Items.bowl, 1)).buildAndRegister();
 
-		if (Loader.isModLoaded("appliedenergistics2")) {
+		if (GT_Mod.AE2_loaded) {
 			Optional<ItemStack> opt = appeng.api.AEApi.instance().definitions().blocks().quartz().maybeStack(1);
 			if (opt.isPresent())
 				GT_OreDictUnificator.add(OrePrefixes.block, Materials.CertusQuartz, opt.get());
