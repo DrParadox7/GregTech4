@@ -51,7 +51,7 @@ public class GT_MetaTileEntity_Lightningrod extends MetaTileEntity {
 	@Override
     public void onPostTick() {
 	    if (getBaseMetaTileEntity().isServerSide()) {
-	    	if (getBaseMetaTileEntity().getTimer()%256==0&&(getBaseMetaTileEntity().getWorld().isThundering()||(getBaseMetaTileEntity().getWorld().isRaining()&&getBaseMetaTileEntity().getRandomNumber(10)==0))) {
+	    	if (getBaseMetaTileEntity().getTimer()%256==0&&(getBaseMetaTileEntity().getWorld().getWorldInfo().isThundering()||(getBaseMetaTileEntity().getWorld().isRaining()&&getBaseMetaTileEntity().getRandomNumber(10)==0))) {
 	    		int rodvalue = 0;
 	    		boolean rodvalid = true;
 	    		
@@ -67,7 +67,7 @@ public class GT_MetaTileEntity_Lightningrod extends MetaTileEntity {
 	        		}
 	        	}
 	        	
-	        	if (!getBaseMetaTileEntity().getWorld().isThundering() && getBaseMetaTileEntity().getYCoord()+rodvalue<128) rodvalue=0;
+	        	if (!getBaseMetaTileEntity().getWorld().getWorldInfo().isThundering() && getBaseMetaTileEntity().getYCoord()+rodvalue<128) rodvalue=0;
 	        	
 	        	if (getBaseMetaTileEntity().getRandomNumber(4096*getBaseMetaTileEntity().getWorld().getHeight())<rodvalue*(getBaseMetaTileEntity().getYCoord()+rodvalue)) {
 	            	setEUVar(25000000);

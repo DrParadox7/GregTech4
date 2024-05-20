@@ -32,7 +32,7 @@ public class GT_Cover_Drain extends GT_CoverBehavior {
 						if (aTileEntity.getWorld().getPrecipitationHeight(aTileEntity.getXCoord(), aTileEntity.getZCoord()) - 2 < aTileEntity.getYCoord()) {
 							int tAmount = (int)(aTileEntity.getBiome(aTileEntity.getXCoord(), aTileEntity.getZCoord()).rainfall*10);
 							if (tAmount > 0) {
-								((IFluidHandler)aTileEntity).fill(ForgeDirection.getOrientation(aSide), GT_ModHandler.getWater(aTileEntity.getWorld().isThundering()?tAmount*2:tAmount), true);
+								((IFluidHandler)aTileEntity).fill(ForgeDirection.getOrientation(aSide), GT_ModHandler.getWater(aTileEntity.getWorld().getWorldInfo().isThundering()?tAmount*2:tAmount), true);
 							}
 						}
 					}

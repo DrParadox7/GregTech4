@@ -403,7 +403,7 @@ public class BaseMetaTileEntity extends BaseTileEntity implements IGregTechTileE
 					        	    mRunningThroughTick = false;
 					        		return;
 					        	}
-				        	    if (GregTech_API.sMachineThunderExplosions && worldObj.isThundering() && getRandomNumber(3) == 0) {
+				        	    if (GregTech_API.sMachineThunderExplosions && worldObj.getWorldInfo().isThundering() && getRandomNumber(3) == 0) {
 				            	    doEnergyExplosion();
 				        	    }
 			    	        }

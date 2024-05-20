@@ -21,7 +21,7 @@ public class GT_Cover_SolarPanel extends GT_CoverBehavior {
 	public int doCoverThings(byte aSide, byte aInputRedstone, int aCoverID, int aCoverVariable, ICoverable aTileEntity) {
 		if (aSide == 1) {
 			if (aTileEntity.getInputVoltage()*32 >= mEUtDay) {
-				if (!aTileEntity.getWorld().isThundering()) {
+				if (!aTileEntity.getWorld().getWorldInfo().isThundering()) {
 					boolean bRain = aTileEntity.getWorld().isRaining() && aTileEntity.getBiome(aTileEntity.getXCoord(), aTileEntity.getZCoord()).rainfall>0;
 					if (!bRain || aTileEntity.getWorld().skylightSubtracted < 4) {
 						if (aTileEntity.getSkyAtSide((byte)aSide)) {
