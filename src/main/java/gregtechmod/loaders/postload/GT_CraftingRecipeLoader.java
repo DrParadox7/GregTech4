@@ -346,7 +346,7 @@ public class GT_CraftingRecipeLoader implements Runnable {
     	GT_ModHandler.addCraftingRecipe(new ItemStack(GregTech_API.sBlockList[0], 4,13), new Object[] {"AAA", "CMC", "AAA", 'C', OrePrefixes.circuit.get(Materials.Basic)	, 'A', OrePrefixes.plate.get(Materials.Aluminium)			, 'M', GT_OreDictNames.craftingRawMachineTier01});
     	GT_ModHandler.addCraftingRecipe(new ItemStack(GregTech_API.sBlockList[0], 4,14), new Object[] {"SSS", "CMC", "SSS", 'C', OrePrefixes.circuit.get(Materials.Advanced), 'S', GT_OreDictNames.craftingPlateSteel					, 'M', GT_OreDictNames.craftingRawMachineTier02});
     	GT_ModHandler.addCraftingRecipe(new ItemStack(GregTech_API.sBlockList[0], 4,15), new Object[] {"TTT", "CMC", "TTT", 'C', OrePrefixes.circuit.get(Materials.Elite)	, 'T', OrePrefixes.plate.get(Materials.Chrome)				, 'M', GT_OreDictNames.craftingRawMachineTier04});
-    	GT_ModHandler.addCraftingRecipe(new ItemStack(GregTech_API.sBlockList[4], 2,13), new Object[] {"PPP", "BHB", "PPP", 'P', OrePrefixes.plate.get(Materials.Bronze)	, 'B', new ItemStack(Blocks.brick_block, 1, GregTech_API.ITEM_WILDCARD_DAMAGE), 'H', GT_ToolDictNames.craftingToolHardHammer});
+    	GT_ModHandler.addCraftingRecipe(new ItemStack(GregTech_API.sBlockList[4], 6,13), new Object[] {"PPP", "BHB", "PPP", 'P', OrePrefixes.plate.get(Materials.Bronze)	, 'B', new ItemStack(Blocks.brick_block, 1, GregTech_API.ITEM_WILDCARD_DAMAGE), 'H', GT_ToolDictNames.craftingToolHardHammer});
     	
     	boolean tNeedsSteel = GregTech_API.sRecipeFile.get(GT_ConfigCategories.Recipes.harderrecipes, "steelForIC2Machines", true);
     	
