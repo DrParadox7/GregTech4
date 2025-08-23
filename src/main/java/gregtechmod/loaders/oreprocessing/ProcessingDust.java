@@ -240,7 +240,7 @@ public class ProcessingDust implements IOreRecipeRegistrator {
 				
 				
 				for (ItemStack aStack : entry.ores) {
-					if (null != tStack && !aMaterial.contains(SubTag.NO_SMELTING)) {
+					if (tStack != null && !aMaterial.contains(SubTag.NO_SMELTING)) {
 						if (aMaterial.mBlastFurnaceRequired) {
 							RecipeHandler.scheduleSmeltingToRemove((in, out) -> in.isItemEqual(aStack));
 							if (aMaterial.mBlastFurnaceTemp <= 1000)

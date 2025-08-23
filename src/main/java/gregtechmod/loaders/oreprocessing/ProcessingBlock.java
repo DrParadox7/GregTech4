@@ -30,11 +30,12 @@ public class ProcessingBlock implements IOreRecipeRegistrator {
 			Materials aMaterial = this.getMaterial(aPrefix, entry);
 			if (this.isExecutable(aPrefix, aMaterial) ) {
 				int outFromBlock = aMaterial == Materials.NetherQuartz || aMaterial == Materials.CertusQuartz ? 4 : 9;
-				
-				if (GT_OreDictUnificator.get(OrePrefixes.plate, aMaterial) != null) 
+				ItemStack plate = GT_OreDictUnificator.get(OrePrefixes.plate, aMaterial, 9);
+
+				if (plate != null)
 					RecipeMaps.CUTTING.factory().EUt(30).duration(Math.max(aMaterial.getMass() * 10, 1))
 						.input(RecipeEntry.fromStacks(entry.ores, Match.DAMAGE))
-						.output(GT_OreDictUnificator.get(OrePrefixes.plate, aMaterial, 9))
+						.output(plate)
 						.buildAndRegister();
 				ItemStack tStack1 = GT_OreDictUnificator.get(OrePrefixes.ingot, aMaterial, 1L);
 				ItemStack tStack2 = GT_OreDictUnificator.get(OrePrefixes.gem, aMaterial, 1L);
@@ -42,18 +43,25 @@ public class ProcessingBlock implements IOreRecipeRegistrator {
 				
 				if (GregTech_API.sRecipeFile.get(GT_ConfigCategories.Recipes.storageblockcrafting, OrePrefixes.block.get(aMaterial), false)) {
 					if (tStack1 == null && tStack2 == null && tStack3 != null) {
-						RecipeHandler.executeOnFinish(() -> GT_ModHandler.addCraftingRecipe(GT_OreDictUnificator.get(OrePrefixes.block, aMaterial, 1L),
-								new Object[] { "XXX", "XXX", "XXX", Character.valueOf('X'), OrePrefixes.dust.get(aMaterial) }));
+						ItemStack output = GT_OreDictUnificator.get(OrePrefixes.block, aMaterial, 1L);
+
+						if (output != null)
+							RecipeHandler.executeOnFinish(() -> GT_ModHandler.addCraftingRecipe(output,
+									new Object[] { "XXX", "XXX", "XXX", 'X', OrePrefixes.dust.get(aMaterial) }));
 					}
 
 					if (tStack2 != null) {
-						RecipeHandler.executeOnFinish(() -> GT_ModHandler.addCraftingRecipe(GT_OreDictUnificator.get(OrePrefixes.block, aMaterial, 1L),
-								new Object[] { "XXX", "XXX", "XXX", Character.valueOf('X'), OrePrefixes.gem.get(aMaterial) }));
+						ItemStack output = GT_OreDictUnificator.get(OrePrefixes.block, aMaterial, 1L);
+						if (output != null)
+							RecipeHandler.executeOnFinish(() -> GT_ModHandler.addCraftingRecipe(output,
+									new Object[] { "XXX", "XXX", "XXX", 'X', OrePrefixes.gem.get(aMaterial) }));
 					}
 
 					if (tStack1 != null) {
-						RecipeHandler.executeOnFinish(() -> GT_ModHandler.addCraftingRecipe(GT_OreDictUnificator.get(OrePrefixes.block, aMaterial, 1L),
-								new Object[] { "XXX", "XXX", "XXX", Character.valueOf('X'), OrePrefixes.ingot.get(aMaterial) }));
+						ItemStack output = GT_OreDictUnificator.get(OrePrefixes.block, aMaterial, 1L);
+						if (output != null)
+							RecipeHandler.executeOnFinish(() -> GT_ModHandler.addCraftingRecipe(output,
+									new Object[] { "XXX", "XXX", "XXX", 'X', OrePrefixes.ingot.get(aMaterial) }));
 					}
 				}
 

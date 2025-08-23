@@ -40,9 +40,13 @@ public class ProcessingNugget implements IOreRecipeRegistrator {
 					.buildAndRegister();
 				
 				RecipeHandler.executeOnFinish(() -> {
-					GameRegistry.addRecipe(new GT_Shapeless_Recipe(GT_OreDictUnificator.get(OrePrefixes.ingot, aMaterial, 1L), new Object[] { entry.oreDictName, entry.oreDictName, entry.oreDictName, entry.oreDictName, entry.oreDictName, entry.oreDictName, entry.oreDictName, entry.oreDictName, entry.oreDictName }));
-					if (round != null)
-						GameRegistry.addRecipe(new GT_Shapeless_Recipe(GT_OreDictUnificator.get(OrePrefixes.round, aMaterial, 1L), new Object[] { GT_ToolDictNames.craftingToolFile.toString(), entry.oreDictName, entry.oreDictName }));
+					ItemStack ingot = GT_OreDictUnificator.get(OrePrefixes.ingot, aMaterial, 1L);
+					if (ingot != null) {
+						GameRegistry.addRecipe(new GT_Shapeless_Recipe(ingot, new Object[]{entry.oreDictName, entry.oreDictName, entry.oreDictName, entry.oreDictName, entry.oreDictName, entry.oreDictName, entry.oreDictName, entry.oreDictName, entry.oreDictName}));
+						if (round != null)
+							GameRegistry.addRecipe(new GT_Shapeless_Recipe(GT_OreDictUnificator.get(OrePrefixes.round, aMaterial, 1L), new Object[]{GT_ToolDictNames.craftingToolFile.toString(), entry.oreDictName, entry.oreDictName}));
+
+					}
 				});
 			}
 		}
