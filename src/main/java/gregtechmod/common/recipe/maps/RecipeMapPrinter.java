@@ -14,6 +14,7 @@ import gregtechmod.api.util.GT_Utility;
 import gregtechmod.common.recipe.RecipeEntry;
 import gregtechmod.common.recipe.RecipeEntry.Match;
 import gregtechmod.common.recipe.factory.SimpleRecipeFactory;
+import gregtechmod.GT_Mod;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -52,7 +53,7 @@ public class RecipeMapPrinter extends RecipeMap<SimpleRecipeFactory> {
 				fact.output(GT_Utility.copy(1, itemInputs.get(2)));
 				return fact.build();
 			}
-			if (Loader.isModLoaded("arsmagica2")) {
+			if (GT_Mod.AM2_loaded) {
 				if (itemInputs.get(2).getItem().getUnlocalizedName().equals("item.ArsMagica:spell_recipe") &&
 						itemInputs.get(0).getItem().getUnlocalizedName().equals("item.ArsMagica:spell_parchment")
 						&& itemInputs.get(1).getItem().getUnlocalizedName().equals("item.ArsMagica:rune_blank")) {
