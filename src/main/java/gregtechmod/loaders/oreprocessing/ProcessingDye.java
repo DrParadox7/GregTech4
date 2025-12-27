@@ -32,12 +32,13 @@ public class ProcessingDye implements IOreRecipeRegistrator {
 					List<ItemStack> ores = entry.ores.stream()
 							.filter(s -> s.getMaxStackSize() >= 16 && GT_Utility.getContainerItem(s) == null)
 							.collect(Collectors.toList());
-			        RecipeMaps.CANNING.factory()
-			        	.EUt(1).duration(800)
-			        	.input(RecipeEntry.fromStacks(16, ores, Match.STRICT))
-			        	.input(GT_Items.Spray_Empty.get(1))
-			        	.output(GT_Items.SPRAY_CAN_DYES[aDye.mColor].get(1))
-			        	.buildAndRegister();
+					if (!ores.isEmpty())
+						RecipeMaps.CANNING.factory()
+							.EUt(1).duration(800)
+							.input(RecipeEntry.fromStacks(16, ores, Match.STRICT))
+							.input(GT_Items.Spray_Empty.get(1))
+							.output(GT_Items.SPRAY_CAN_DYES[aDye.mColor].get(1))
+							.buildAndRegister();
 			    }
 			}
 		}

@@ -6,7 +6,9 @@ public enum GT_ConfigCategories {
 	machineconfig,
 	specialunificationtargets,
 	enchants,
-	forceoredict;
+	forceoredict,
+	oredictMod,
+	oredictParameters;
 	
 	public enum Materials {
 		blastfurnacerequirements, 

@@ -93,10 +93,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.EnumMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -194,7 +196,7 @@ public class GT_Mod implements IGT_Mod {
     public static final ArrayList<String>		mSoundNames		= new ArrayList<String>();
     public static final ArrayList<ItemStack>	mSoundItems		= new ArrayList<ItemStack>();
     public static final ArrayList<Integer>		mSoundCounts	= new ArrayList<Integer>();
-    
+
     public static String sMessage = "";
     private boolean tNothingRegistered = true;
     
@@ -274,7 +276,7 @@ public class GT_Mod implements IGT_Mod {
     	File tFile = new File(new File(aEvent.getModConfigurationDirectory(), "GregTech"), "GregTech.cfg");
     	Configuration tConfig1 = new Configuration(tFile);
     	tConfig1.load();
-    	
+
     	File gtDir = new File(aEvent.getModConfigurationDirectory(), "GregTech");
 		GregTech_API.sRecipeFile 			= new GT_Config(new Configuration(new File(gtDir, "DynamicConfig.cfg")));
 		GregTech_API.sMachineFile 			= new GT_Config(new Configuration(new File(gtDir, "MachineStats.cfg")));
@@ -283,10 +285,14 @@ public class GT_Mod implements IGT_Mod {
 		GregTech_API.sUnification 			= new GT_Config(new Configuration(new File(gtDir, "Unification.cfg")));
 		GregTech_API.sSpecialFile			= new GT_Config(new Configuration(new File(gtDir, "Other.cfg")));
 		GregTech_API.sIDFile				= new GT_Config(GT_Config.sConfigFileIDs = new Configuration(new File(gtDir, "IDs.cfg")));
-		
+
 		GregTech_API.sSpecialFile.mConfig.getCategory(GT_ConfigCategories.enchants.toString()).setComment("There you can set allowed enchant IDs to specific GT tools\nIt will let you apply choosen enchant in anvil to GT tool");
 		GregTech_API.sUnification.mConfig.getCategory(GT_ConfigCategories.forceoredict.toString()).setComment("Forced OreDict registration\nAs examples, not any mod devs registering their blocks of ingots to OreDict\nTo disable force name type \"false\" insteadof name");
-		
+
+
+
+		GT_OreDictHandler.loadingOredictConfigs();
+
     	mDoNotInit = (!tFile.getAbsolutePath().toLowerCase().contains("voltz")) && (tFile.getAbsolutePath().toLowerCase().contains(".technic") || tFile.getAbsolutePath().toLowerCase().contains("tekkit"));
     	if (mDoNotInit) {
             GT_Log.log.warn("Detected Technic Launcher.");

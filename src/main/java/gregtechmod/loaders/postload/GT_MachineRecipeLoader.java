@@ -1,6 +1,7 @@
 package gregtechmod.loaders.postload;
 
 import gregtechmod.GT_Mod;
+import gregtechmod.common.GT_OreDictHandler;
 import ic2.api.recipe.*;
 import net.minecraft.item.*;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -14,7 +15,6 @@ import gregtechmod.common.recipe.UnifierRecipeEntry;
 import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
 
-import cpw.mods.fml.common.Loader;
 import gregtechmod.api.*;
 import net.minecraft.block.*;
 import net.minecraft.init.Blocks;
@@ -196,7 +196,7 @@ public class GT_MachineRecipeLoader implements Runnable
         RecipeMaps.ELECTROLYZER.factory().EUt(106).duration(24).input(new ItemStack(Items.dye, 3, 15)).output(GT_OreDictUnificator.get(OrePrefixes.dust, Materials.Calcium, 1)).buildAndRegister();
         RecipeMaps.ELECTROLYZER.factory().EUt(25).duration(500).input("sand", 8).outputs(GT_OreDictUnificator.get(OrePrefixes.dust, Materials.SiliconDioxide, 1L)).buildAndRegister();
         
-        if (GT_Mod.AE2_loaded) {
+        if (GT_Mod.AE2_loaded && GT_OreDictHandler.isModOredictEnabled("appliedenergistics2")) {
         	Optional<ItemStack> chargedCrystal = appeng.api.AEApi.instance()
         			.definitions()
         			.materials()
