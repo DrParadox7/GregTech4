@@ -297,7 +297,9 @@ public class GT_ModHandler {
 	 * Adds a Scrapbox Drop. Fails at April first for the "suddenly Hoes"-Feature of IC2
 	 */
 	public static boolean addScrapboxDrop(float aChance, ItemStack aOutput) {
-		aOutput = GT_OreDictUnificator.get(true, aOutput);
+		if (GT_Mod.sCraftingUnification)
+			aOutput = GT_OreDictUnificator.get(true, aOutput);
+
 		if (aOutput == null || aChance <= 0) return false;
 		aOutput.stackSize = 1;
 		if (GT_Config.system && !GT_Utility.areStacksEqual(aOutput, new ItemStack(Items.wooden_hoe, 1, 0))) return false;
@@ -330,7 +332,8 @@ public class GT_ModHandler {
 	 */
 	@SuppressWarnings("deprecation")
 	public static boolean addSmeltingRecipe(ItemStack aInput, ItemStack aOutput) {
-		aOutput = GT_OreDictUnificator.get(true, aOutput);
+		if (GT_Mod.sCraftingUnification)
+			aOutput = GT_OreDictUnificator.get(true, aOutput);
 		if (aInput == null || aOutput == null) return false;
 		if (aInput.getItem().hasContainerItem()) return false;
 		if (!GregTech_API.sRecipeFile.get(GT_ConfigCategories.Machines.smelting, aInput, true)) return false;
@@ -368,7 +371,8 @@ public class GT_ModHandler {
 	 * LiquidTransposer Recipe for both directions
 	 */
 	public static boolean addLiquidTransposerRecipe(ItemStack aEmptyContainer, FluidStack aLiquid, ItemStack aFullContainer, int aRF) {
-		aFullContainer = GT_OreDictUnificator.get(true, aFullContainer);
+		if (GT_Mod.sCraftingUnification)
+			aFullContainer = GT_OreDictUnificator.get(true, aFullContainer);
 		if (aEmptyContainer == null || aFullContainer == null || aLiquid == null) return false;
 		if (!GregTech_API.sRecipeFile.get(GT_ConfigCategories.Machines.liquidtransposer, aFullContainer, true)) return false;
 		try {
@@ -381,7 +385,8 @@ public class GT_ModHandler {
 	 * LiquidTransposer Recipe for filling Containers
 	 */
 	public static boolean addLiquidTransposerFillRecipe(ItemStack aEmptyContainer, FluidStack aLiquid, ItemStack aFullContainer, int aRF) {
-		aFullContainer = GT_OreDictUnificator.get(true, aFullContainer);
+		if (GT_Mod.sCraftingUnification)
+			aFullContainer = GT_OreDictUnificator.get(true, aFullContainer);
 		if (aEmptyContainer == null || aFullContainer == null || aLiquid == null) return false;
 		if (!GregTech_API.sRecipeFile.get(GT_ConfigCategories.Machines.liquidtransposerfilling, aFullContainer, true)) return false;
 		try {
@@ -394,7 +399,8 @@ public class GT_ModHandler {
 	 * LiquidTransposer Recipe for emptying Containers
 	 */
 	public static boolean addLiquidTransposerEmptyRecipe(ItemStack aFullContainer, FluidStack aLiquid, ItemStack aEmptyContainer, int aRF) {
-		aEmptyContainer = GT_OreDictUnificator.get(true, aEmptyContainer);
+		if (GT_Mod.sCraftingUnification)
+			aEmptyContainer = GT_OreDictUnificator.get(true, aEmptyContainer);
 		if (aFullContainer == null || aEmptyContainer == null || aLiquid == null) return false;
 		if (!GregTech_API.sRecipeFile.get(GT_ConfigCategories.Machines.liquidtransposeremptying, aFullContainer, true)) return false;
 		try {
@@ -416,7 +422,8 @@ public class GT_ModHandler {
 	 * IC2-Extractor Recipe. Overloads old Recipes automatically
 	 */
 	public static boolean addExtractionRecipe(ItemStack aInput, ItemStack aOutput) {
-		aOutput = GT_OreDictUnificator.get(true, aOutput);
+		if (GT_Mod.sCraftingUnification)
+			aOutput = GT_OreDictUnificator.get(true, aOutput);
 		if (aInput == null || aOutput == null) return false;
 		GT_Utility.removeSimpleIC2MachineRecipe(aInput, getExtractorRecipeList(), null);
 		if (!GregTech_API.sRecipeFile.get(GT_ConfigCategories.Machines.extractor, aInput, true)) return false;
@@ -432,7 +439,8 @@ public class GT_ModHandler {
 	 * RC-BlastFurnace Recipes
 	 */
 	public static boolean addRCBlastFurnaceRecipe(ItemStack aInput, ItemStack aOutput, int aTime) {
-		aOutput = GT_OreDictUnificator.get(true, aOutput);
+		if (GT_Mod.sCraftingUnification)
+			aOutput = GT_OreDictUnificator.get(true, aOutput);
 		if (aInput == null || aOutput == null || aTime <= 0) return false;
 		if (!GregTech_API.sRecipeFile.get(GT_ConfigCategories.Machines.rcblastfurnace, aInput, true)) return false;
 		aInput = GT_Utility.copy(aInput);
@@ -466,9 +474,10 @@ public class GT_ModHandler {
 	}
 	
 	public static boolean addPulverisationRecipe(ItemStack aInput, ItemStack aOutput1, ItemStack aOutput2, int aChance, boolean aOverwrite) {
-		aOutput1 = GT_OreDictUnificator.get(true, aOutput1);
-		aOutput2 = GT_OreDictUnificator.get(true, aOutput2);
-		
+		if (GT_Mod.sCraftingUnification) {
+			aOutput1 = GT_OreDictUnificator.get(true, aOutput1);
+			aOutput2 = GT_OreDictUnificator.get(true, aOutput2);
+		}
 		String assocIn = GT_OreDictUnificator.getAssociation(aInput);
 		String assocOut = GT_OreDictUnificator.getAssociation(aOutput1);
 		
@@ -586,8 +595,10 @@ public class GT_ModHandler {
 	 * Induction Smelter Recipes for TE
 	 */
 	public static boolean addInductionSmelterRecipe(ItemStack aInput1, ItemStack aInput2, ItemStack aOutput1, ItemStack aOutput2, int aEnergy, int aChance) {
-		aOutput1 = GT_OreDictUnificator.get(true, aOutput1);
-		aOutput2 = GT_OreDictUnificator.get(true, aOutput2);
+		if (GT_Mod.sCraftingUnification) {
+			aOutput1 = GT_OreDictUnificator.get(true, aOutput1);
+			aOutput2 = GT_OreDictUnificator.get(true, aOutput2);
+		}
 		if (aInput1 == null || aOutput1 == null || GT_Utility.getContainerItem(aInput1) != null) return false;
 		if (!GregTech_API.sRecipeFile.get(GT_ConfigCategories.Machines.inductionsmelter, aInput2==null?aInput1:aOutput1, true)) return false;
 	    try {
@@ -614,7 +625,8 @@ public class GT_ModHandler {
 	 */
 	public static boolean addAlloySmelterRecipe(ItemStack aInput1, ItemStack aInput2, ItemStack aOutput1, int aDuration, int aEUt, boolean aAllowSecondaryInputEmpty) {
 		if (aInput1 == null || (aInput2 == null && !aAllowSecondaryInputEmpty) || aOutput1 == null) return false;
-		aOutput1 = GT_OreDictUnificator.get(true, aOutput1);
+		if (GT_Mod.sCraftingUnification)
+			aOutput1 = GT_OreDictUnificator.get(true, aOutput1);
 		boolean temp = false;
 		if (RecipeMaps.ALLOY_SMELTING.factory().EUt(aEUt).duration(aDuration).inputs(aInput1, aInput2).output(aOutput1).buildAndRegister()) temp = true;
 		if (addInductionSmelterRecipe(aInput1, aInput2, aOutput1, null, aDuration * aEUt * 2, 0)) temp = true;
@@ -625,7 +637,8 @@ public class GT_ModHandler {
 	 * Smelts Ores to Ingots
 	 */
 	public static boolean addOreToIngotSmeltingRecipe(ItemStack aInput, ItemStack aOutput) {
-		aOutput = GT_OreDictUnificator.get(true, aOutput);
+		if (GT_Mod.sCraftingUnification)
+			aOutput = GT_OreDictUnificator.get(true, aOutput);
 		if (aInput == null || aOutput == null) return false;
 		addSmeltingRecipe(aInput, GT_Utility.copy(aOutput));
 		return true;
@@ -736,7 +749,8 @@ public class GT_ModHandler {
 	 * IC2-Compressor Recipe. Overloads old Recipes automatically
 	 */
 	public static boolean addCompressionRecipe(ItemStack aInput, ItemStack aOutput) {
-		aOutput = GT_OreDictUnificator.get(true, aOutput);
+		if (GT_Mod.sCraftingUnification)
+			aOutput = GT_OreDictUnificator.get(true, aOutput);
 		if (aInput == null || aOutput == null) return false;
 		if (!GregTech_API.sRecipeFile.get(GT_ConfigCategories.Machines.compression, aInput, true)) return false;
 		GT_Utility.addSimpleIC2MachineRecipe(aInput, getCompressorRecipeList(), null, aOutput);
@@ -748,7 +762,8 @@ public class GT_ModHandler {
 	}
 	
 	public static boolean addCompressionRecipe(OreDictEntry aInput, int amount, ItemStack aOutput) {
-		aOutput = GT_OreDictUnificator.get(true, aOutput);
+		if (GT_Mod.sCraftingUnification)
+			aOutput = GT_OreDictUnificator.get(true, aOutput);
 		if (aInput == null || aOutput == null) return false;
 		if (!GregTech_API.sRecipeFile.get(GT_ConfigCategories.Machines.compression, aInput.oreDictName, true)) return false;
 		GT_Utility.addSimpleIC2MachineRecipe(RecipeEntry.fromStacks(amount, aInput.ores, Match.STRICT), getCompressorRecipeList(), null, aOutput);
@@ -774,7 +789,8 @@ public class GT_ModHandler {
 	 * Rolling Machine Crafting Recipe
 	 */
 	public static boolean addRollingMachineRecipe(ItemStack aResult, Object[] aRecipe) {
-		aResult = GT_OreDictUnificator.get(true, aResult);
+		if (GT_Mod.sCraftingUnification)
+			aResult = GT_OreDictUnificator.get(true, aResult);
 		if (aResult == null || aRecipe == null || aResult.stackSize <= 0) return false;
 		try {
 			mods.railcraft.api.crafting.RailcraftCraftingManager.rollingMachine.getRecipeList().add(new ShapedOreRecipe(GT_Utility.copy(aResult), aRecipe));
@@ -825,7 +841,9 @@ public class GT_ModHandler {
 	 * Regular Crafting Recipes. Deletes conflicting Recipes too.
 	 */
 	public static boolean addCraftingRecipe(ItemStack aResult, boolean aUseIC2Handler, boolean aMirrored, boolean aBuffered, boolean aKeepNBT, Object... aRecipe) {
-		aResult = GT_OreDictUnificator.get(true, aResult);
+		if (GT_Mod.sCraftingUnification)
+			aResult = GT_OreDictUnificator.get(true, aResult);
+
 		if (aResult != null && aResult.getItemDamage() == GregTech_API.ITEM_WILDCARD_DAMAGE) Items.feather.setDamage(aResult, 0);
 		if (aRecipe == null || aRecipe.length <= 0) return false;
 		for (byte i = 0; i < aRecipe.length; i++) {
@@ -923,7 +941,9 @@ public class GT_ModHandler {
 	 * Shapeless Crafting Recipes. Deletes conflicting Recipes too.
 	 */
 	public static boolean addShapelessCraftingRecipe(ItemStack aResult, boolean aUseIC2Handler, boolean aBuffered, boolean aKeepNBT, Object... aRecipe) {
-		aResult = GT_OreDictUnificator.get(true, aResult);
+		if (GT_Mod.sCraftingUnification)
+			aResult = GT_OreDictUnificator.get(true, aResult);
+
 		if (aRecipe == null || aRecipe.length <= 0) return false;
 		for (byte i = 0; i < aRecipe.length; i++) {
 			if (aRecipe[i] instanceof Enum) {
@@ -996,23 +1016,23 @@ public class GT_ModHandler {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Removes a Crafting Recipe and gives you the former output of it.
 	 * @param aRecipe The content of the Crafting Grid as ItemStackArray with length 9
 	 * @return the output of the old Recipe or null if there was nothing.
 	 */
-    public static ItemStack removeRecipe(ItemStack... aRecipe) {
-    	if (aRecipe == null) return null;
-    	boolean temp = false;
-    	for (byte i = 0; i < aRecipe.length; i++) {
-    		if (aRecipe[i] != null) {
-    			temp = true;
-        		break;
-    		}
-    	}
-    	if (!temp) return null;
-    	ItemStack rReturn = null;
+	public static ItemStack removeRecipe(ItemStack... aRecipe) {
+		if (aRecipe == null) return null;
+		boolean temp = false;
+		for (ItemStack itemStack : aRecipe) {
+			if (itemStack != null) {
+				temp = true;
+				break;
+			}
+		}
+		if (!temp) return null;
+		ItemStack rReturn = null;
 		InventoryCrafting aCrafting = new InventoryCrafting(new Container() {@Override public boolean canInteractWith(EntityPlayer var1) {return false;}}, 3, 3);
 		for (int i = 0; i < aRecipe.length && i < 9; i++) aCrafting.setInventorySlotContents(i, aRecipe[i]);
 		@SuppressWarnings("unchecked")
@@ -1037,7 +1057,7 @@ public class GT_ModHandler {
 			} catch(Throwable e) {GT_Log.log.catching(e);}
 		}
 		return rReturn;
-    }
+	}
     
 	/**
 	 * Removes a Crafting Recipe.
