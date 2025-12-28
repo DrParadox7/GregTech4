@@ -25,6 +25,7 @@ import gregtechmod.api.util.GT_Log;
 import gregtechmod.api.util.GT_ModHandler;
 import gregtechmod.api.util.GT_OreDictUnificator;
 import gregtechmod.api.util.GT_RecipeRegistrator;
+import gregtechmod.api.util.GT_Shaped_NBT_Keeping_Recipe;
 import gregtechmod.api.util.GT_Shaped_Recipe;
 import gregtechmod.api.util.GT_Shapeless_NBT_Keeping_Recipe;
 import gregtechmod.api.util.GT_Shapeless_Recipe;
@@ -557,7 +558,7 @@ public class GT_Mod implements IGT_Mod {
     	new GT_ConnectionHandler().run();
 
     	RecipeSorter.register("gregtech_addon:shaped"					, GT_Shaped_Recipe.class				, RecipeSorter.Category.SHAPED		, "after:forge:shapedore before:minecraft:shapeless");
-    	RecipeSorter.register("gregtech_addon:shaped_nbt_keeping"		, GT_Shapeless_NBT_Keeping_Recipe.class	, RecipeSorter.Category.SHAPED		, "after:gregtech_addon:shaped before:minecraft:shapeless");
+    	RecipeSorter.register("gregtech_addon:shaped_nbt_keeping"		, GT_Shaped_NBT_Keeping_Recipe.class	, RecipeSorter.Category.SHAPED		, "after:gregtech_addon:shaped before:minecraft:shapeless");
     	RecipeSorter.register("gregtech_addon:shapeless"				, GT_Shapeless_Recipe.class				, RecipeSorter.Category.SHAPELESS	, "after:minecraft:shapeless");
     	RecipeSorter.register("gregtech_addon:shapeless_nbt_keeping"	, GT_Shapeless_NBT_Keeping_Recipe.class	, RecipeSorter.Category.SHAPELESS	, "after:gregtech_addon:shapeless");
 
