@@ -154,7 +154,7 @@ public class RecipeHandler {
 	
 	private static void processTE() {
 		// Removing TE recipes
-		if (GT_Mod.TF_loaded) {
+		if (GT_Mod.TE_loaded) {
 			cofh.thermalexpansion.ThermalExpansion.config.set("RecipeManagers.Smelter.Recipes", "Steel", false);
 		}
 	}
