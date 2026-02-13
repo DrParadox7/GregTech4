@@ -310,7 +310,7 @@ public class GT_MachineRecipeLoader implements Runnable
         
         RecipeMaps.ALLOY_SMELTING.factory().EUt(1).duration(100).inputs(new ItemStack(Items.water_bucket, 1, 0)).output(new ItemStack(Items.bucket, 1, 0)).buildAndRegister();
         RecipeMaps.ALLOY_SMELTING.factory().EUt(1).duration(100).inputs(new ItemStack(Items.milk_bucket, 1, 0)).output(new ItemStack(Items.bucket, 1, 0)).buildAndRegister();
-        if (GT_Mod.TF_loaded) {
+        if (GT_Mod.TE_loaded) {
 	        RecipeMaps.ALLOY_SMELTING.factory().EUt(16).duration(200).input(OrePrefixes.dust , Materials.Lead, 1).input(OrePrefixes.dust, Materials.Obsidian, 2).output(GT_Items.TE_Hardened_Glass.get(2L)).buildAndRegister();
 	        RecipeMaps.ALLOY_SMELTING.factory().EUt(16).duration(200).input(OrePrefixes.ingot, Materials.Lead, 1).input(OrePrefixes.dust, Materials.Obsidian, 2).output(GT_Items.TE_Hardened_Glass.get(2L)).buildAndRegister();
         }
