@@ -27,7 +27,7 @@ You are welcome to participate in development, but if you planning to **add some
 
 #### Setting up enviroment
 ```
-git clone https://github.com/Nukepowered/GregTech4.git
+git clone https://github.com/DrParadox7/GregTech4.git
 gradlew setupDecompWorkspace
 gradlew eclipse/idea
 ```
