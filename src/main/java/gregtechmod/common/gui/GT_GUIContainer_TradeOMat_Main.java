@@ -2,21 +2,25 @@ package gregtechmod.common.gui;
 
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.*;
+
+import gregtechmod.api.gui.*;
 import gregtechmod.api.interfaces.*;
 import gregtechmod.common.containers.*;
-import gregtechmod.api.gui.*;
 
-public class GT_GUIContainer_TradeOMat_Main extends GT_GUIContainerMetaTile_Machine
-{
-    public GT_GUIContainer_TradeOMat_Main(final InventoryPlayer aInventoryPlayer, final IGregTechTileEntity aTileEntity) {
-        super(new GT_Container_TradeOMat_Main(aInventoryPlayer, aTileEntity), "gregtech_addon:textures/gui/Tradeomat_Main.png");
+public class GT_GUIContainer_TradeOMat_Main extends GT_GUIContainerMetaTile_Machine {
+
+    public GT_GUIContainer_TradeOMat_Main(final InventoryPlayer aInventoryPlayer,
+        final IGregTechTileEntity aTileEntity) {
+        super(
+            new GT_Container_TradeOMat_Main(aInventoryPlayer, aTileEntity),
+            "gregtech_addon:textures/gui/Tradeomat_Main.png");
     }
-    
+
     @Override
     protected void drawGuiContainerForegroundLayer(final int par1, final int par2) {
         this.fontRenderer.drawString(I18n.format("metatileentity.GT_TradeOMat.name"), 8, 5, 4210752);
     }
-    
+
     @Override
     protected void drawGuiContainerBackgroundLayer(final float par1, final int par2, final int par3) {
         super.drawGuiContainerBackgroundLayer(par1, par2, par3);

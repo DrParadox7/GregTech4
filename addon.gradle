@@ -1,0 +1,5 @@
+ext.modVersion = "v417.61LE"
+version = ext.modVersion
+
+// Old FG 1.2 script disabled test compilation.
+compileTestJava.enabled = false

@@ -1,20 +1,24 @@
 package gregtechmod.common.gui;
 
 import net.minecraft.entity.player.*;
+
+import gregtechmod.api.gui.*;
 import gregtechmod.api.interfaces.*;
 import gregtechmod.common.containers.*;
-import gregtechmod.api.gui.*;
 
-public class GT_GUIContainer_ElectricRetrieverAdvanced extends GT_GUIContainerMetaTile_Machine
-{
-    public GT_GUIContainer_ElectricRetrieverAdvanced(final InventoryPlayer aInventoryPlayer, final IGregTechTileEntity aTileEntity) {
-        super(new GT_Container_ElectricRetrieverAdvanced(aInventoryPlayer, aTileEntity), "gregtech_addon:textures/gui/ElectricRetrieverAdvanced.png");
+public class GT_GUIContainer_ElectricRetrieverAdvanced extends GT_GUIContainerMetaTile_Machine {
+
+    public GT_GUIContainer_ElectricRetrieverAdvanced(final InventoryPlayer aInventoryPlayer,
+        final IGregTechTileEntity aTileEntity) {
+        super(
+            new GT_Container_ElectricRetrieverAdvanced(aInventoryPlayer, aTileEntity),
+            "gregtech_addon:textures/gui/ElectricRetrieverAdvanced.png");
     }
-    
+
     @Override
     protected void drawGuiContainerForegroundLayer(final int par1, final int par2) {
-    	Integer[] arr = ((GT_Container_ElectricRetrieverAdvanced)this.mContainer).mTargetSlots.get();
-    	
+        Integer[] arr = ((GT_Container_ElectricRetrieverAdvanced) this.mContainer).mTargetSlots.get();
+
         this.fontRenderer.drawString("" + arr[0], 120, 9, 16448255);
         this.fontRenderer.drawString("" + arr[1], 137, 9, 16448255);
         this.fontRenderer.drawString("" + arr[2], 155, 9, 16448255);
@@ -25,7 +29,7 @@ public class GT_GUIContainer_ElectricRetrieverAdvanced extends GT_GUIContainerMe
         this.fontRenderer.drawString("" + arr[7], 137, 43, 16448255);
         this.fontRenderer.drawString("" + arr[8], 155, 43, 16448255);
     }
-    
+
     @Override
     protected void drawGuiContainerBackgroundLayer(final float par1, final int par2, final int par3) {
         super.drawGuiContainerBackgroundLayer(par1, par2, par3);

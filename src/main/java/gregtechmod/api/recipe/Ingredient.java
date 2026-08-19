@@ -7,27 +7,29 @@ import net.minecraft.item.ItemStack;
 /**
  * A class describing recipe one-slot ingredient
  * All items could possible be matched to current slot
+ * 
  * @author TheDarkDnKTv
  *
  */
 public interface Ingredient {
-	/**
-	 * Check if ItemStack matches for current slot
-	 */
-	public boolean match(ItemStack input);
-	
-	/**
-	 * Returns all possible stacks could be matched here
-	 */
-	public List<ItemStack> getVariants();
-	
-	/**
-	 * Get a ingredient count
-	 */
-	public int getCount();
-	
-	/**
-	 * Determine if this ingredient is matches any items with same ID
-	 */
-	public boolean isWildcard();
+
+    /**
+     * Check if ItemStack matches for current slot
+     */
+    public boolean match(ItemStack input);
+
+    /**
+     * Returns all possible stacks could be matched here
+     */
+    public List<ItemStack> getVariants();
+
+    /**
+     * Get a ingredient count
+     */
+    public int getCount();
+
+    /**
+     * Determine if this ingredient is matches any items with same ID
+     */
+    public boolean isWildcard();
 }

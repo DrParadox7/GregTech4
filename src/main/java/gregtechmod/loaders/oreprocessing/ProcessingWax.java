@@ -10,16 +10,21 @@ import gregtechmod.common.recipe.RecipeMaps;
 
 public class ProcessingWax implements IOreRecipeRegistrator {
 
-	public ProcessingWax() {
-		OrePrefixes.wax.add(this);
-	}
+    public ProcessingWax() {
+        OrePrefixes.wax.add(this);
+    }
 
-	@Override
-	public void registerOre(OrePrefixes aPrefix, List<OreDictEntry> entries) {
-		for (OreDictEntry entry : entries) {
-			if (this.isExecutable(aPrefix, this.getMaterial(aPrefix, entry)) && entry.oreDictName.equals("waxMagical")) {
-				RecipeMaps.MAGIC_FUELS.factory().EUt(6).duration(1).input(RecipeEntry.fromStacks(1, entry.ores)).buildAndRegister();
-			}
-		}
-	}
+    @Override
+    public void registerOre(OrePrefixes aPrefix, List<OreDictEntry> entries) {
+        for (OreDictEntry entry : entries) {
+            if (this.isExecutable(aPrefix, this.getMaterial(aPrefix, entry))
+                && entry.oreDictName.equals("waxMagical")) {
+                RecipeMaps.MAGIC_FUELS.factory()
+                    .EUt(6)
+                    .duration(1)
+                    .input(RecipeEntry.fromStacks(1, entry.ores))
+                    .buildAndRegister();
+            }
+        }
+    }
 }
