@@ -6,17 +6,17 @@ import gregtechmod.api.metatileentity.implementations.GT_MetaPipeEntity_Frame;
 
 public class GT_MetaPipeEntity_Frame_TungstenSteel extends GT_MetaPipeEntity_Frame {
 
-   public GT_MetaPipeEntity_Frame_TungstenSteel(int aID, String aName) {
-      super(aID, aName);
-   }
+    public GT_MetaPipeEntity_Frame_TungstenSteel(int aID, String aName) {
+        super(aID, aName);
+    }
 
-   public GT_MetaPipeEntity_Frame_TungstenSteel() {}
+    public GT_MetaPipeEntity_Frame_TungstenSteel() {}
 
-   public IMetaTileEntity newMetaEntity(IGregTechTileEntity aTileEntity) {
-      return new GT_MetaPipeEntity_Frame_TungstenSteel();
-   }
+    public IMetaTileEntity newMetaEntity(IGregTechTileEntity aTileEntity) {
+        return new GT_MetaPipeEntity_Frame_TungstenSteel();
+    }
 
-   public int getTextureIndex(byte aSide, byte aConnections, boolean aConnected, boolean aRedstone) {
-      return 400;
-   }
+    public int getTextureIndex(byte aSide, byte aConnections, boolean aConnected, boolean aRedstone) {
+        return 400;
+    }
 }

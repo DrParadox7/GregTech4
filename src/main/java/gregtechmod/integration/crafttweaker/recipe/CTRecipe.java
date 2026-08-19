@@ -1,5 +1,8 @@
 package gregtechmod.integration.crafttweaker.recipe;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import gregtechmod.api.recipe.Recipe;
 import minetweaker.api.item.IItemStack;
 import minetweaker.api.liquid.ILiquidStack;
@@ -8,9 +11,6 @@ import minetweaker.mc1710.liquid.MCLiquidStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenGetter;
 import stanhebben.zenscript.annotations.ZenMethod;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @ZenClass("mods.gregtechmod.recipe.Recipe")
 public class CTRecipe {
@@ -58,42 +58,48 @@ public class CTRecipe {
 
     @ZenGetter("outputs")
     public List<IItemStack> getOutputs() {
-        return backingRecipe.getOutputs().stream()
+        return backingRecipe.getOutputs()
+            .stream()
             .map(MineTweakerMC::getIItemStack)
             .collect(Collectors.toList());
     }
 
     @ZenGetter("chancedOutputs")
     public List<CTChancedOutput> getChancedOutputs() {
-        return backingRecipe.getChancedOutputs().stream()
+        return backingRecipe.getChancedOutputs()
+            .stream()
             .map(CTChancedOutput::new)
             .collect(Collectors.toList());
     }
 
     @ZenMethod
     public List<IItemStack> getAllOutputs() {
-        return backingRecipe.getAllOutputs().stream()
+        return backingRecipe.getAllOutputs()
+            .stream()
             .map(MineTweakerMC::getIItemStack)
             .collect(Collectors.toList());
     }
 
     @ZenGetter("fluidOutputs")
     public List<ILiquidStack> getFluidOutputs() {
-        return backingRecipe.getFluidOutputs().stream()
+        return backingRecipe.getFluidOutputs()
+            .stream()
             .map(MCLiquidStack::new)
             .collect(Collectors.toList());
     }
 
     @ZenGetter("inputs")
     public List<CTIngredient> getInputs() {
-        return backingRecipe.getInputs().stream()
+        return backingRecipe.getInputs()
+            .stream()
             .map(CTIngredient::new)
             .collect(Collectors.toList());
     }
 
     @ZenGetter("fluidInputs")
     public List<ILiquidStack> getFluidInputs() {
-        return backingRecipe.getFluidInputs().stream()
+        return backingRecipe.getFluidInputs()
+            .stream()
             .map(MCLiquidStack::new)
             .collect(Collectors.toList());
     }

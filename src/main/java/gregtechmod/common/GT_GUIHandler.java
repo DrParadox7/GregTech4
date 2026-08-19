@@ -1,5 +1,9 @@
 package gregtechmod.common;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
+
 import cpw.mods.fml.common.network.IGuiHandler;
 import gregtechmod.api.gui.GT_Container_BasicMachine;
 import gregtechmod.api.gui.GT_Container_BasicTank;
@@ -139,210 +143,337 @@ import gregtechmod.common.gui.GUI_Printer;
 import gregtechmod.common.gui.GUI_UniversalMacerator;
 import gregtechmod.common.tileentities.deprecated.GT_TileEntityMetaID_Machine;
 import gregtechmod.common.tileentities.deprecated.GT_TileEntity_Sonictron;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
 
 public class GT_GUIHandler implements IGuiHandler {
-	
-	public GT_GUIHandler() {
-//		NetworkRegistry.instance().registerGuiHandler(GregTech_API.gregtechmod, this);
-	}
-	
-	@Override
-	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+
+    public GT_GUIHandler() {
+        // NetworkRegistry.instance().registerGuiHandler(GregTech_API.gregtechmod, this);
+    }
+
+    @Override
+    public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
         TileEntity tTileEntity = world.getTileEntity(x, y, z);
-        if (ID ==   0) return new GT_ContainerMetaID_Machine			(player.inventory, (GT_TileEntityMetaID_Machine)		tTileEntity);
-        
-        if (ID ==   6) return new GT_Container_Sonictron				(player.inventory, (GT_TileEntity_Sonictron)			tTileEntity);
-        
-        if (ID ==  33) return new GT_Container_Item_Destructopack		(player.inventory, player.getCurrentEquippedItem());
-        
-        if (ID ==  96) return new GT_Container_1by1						(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID ==  97) return new GT_Container_2by2						(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID ==  98) return new GT_Container_3by3						(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID ==  99) return new GT_Container_4by4						(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 100) return new GT_Container_ElectricAutoWorkbench	(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 101) return new GT_Container_Translocator				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 102) return new GT_Container_ElectricBufferSmall		(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 103) return new GT_Container_ElectricBufferLarge		(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 104) return new GT_Container_AdvancedTranslocator		(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 105) return new GT_Container_ElectricBufferAdvanced	(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 106) return new GT_Container_RockBreaker				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 107) return new GT_Container_ElectricSorter			(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 108) return new GT_Container_ElectricItemClearer		(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 109) return new GT_Container_Electrolyzer				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 110) return new GT_Container_CropHarvestor			(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 111) return new GT_Container_Scrapboxinator			(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 112) return new GT_Container_Grinder					(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 113) return new GT_Container_BlastFurnace				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 114) return new GT_Container_BasicTank				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 115) return new GT_Container_ImplosionCompressor		(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 116) return new GT_Container_Sawmill					(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 117) return new GT_Container_BasicTank				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 118) return new GT_Container_BasicTank				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 119) return new GT_Container_BasicTank				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 120) return new GT_Container_BasicTank				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 121) return new GT_Container_BasicTank				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 122) return new GT_Container_VacuumFreezer			(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 123) return new GT_Container_ElectricRegulatorAdvanced(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 124) return new GT_Container_ChemicalReactor			(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 125) return new GT_Container_BasicTank				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 126) return new GT_Container_MagicEnergyAbsorber		(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 127) return new GT_Container_DistillationTower		(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 128) return new GT_Container_Safe						(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 129) return new GT_Container_ElectricInventoryManager (player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 130) return new GT_Container_AdvancedPump				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 131) return new GT_Container_BasicMachine				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 132) return new GT_Container_BasicMachine				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 133) return new GT_Container_BasicMachine				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 134) return new GT_Container_BasicMachine				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 135) return new GT_Container_BasicMachine				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 136) return new GT_Container_BasicMachine				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 137) return new GT_Container_BasicMachine				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 138) return new GT_Container_BasicMachine				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 139) return new GT_Container_ElectricTypeSorter		(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 140) return new GT_Container_BasicMachine				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 141) return new GT_Container_BasicMachine				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 142) return new GT_Container_Printer					(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 143) return new GT_Container_FusionComputer			(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 144) return new GT_Container_BasicTank				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 145) return new GT_Container_BasicTank				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 146) return new GT_Container_Centrifuge				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 147) return new GT_Container_RedstoneCircuitBlock		(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 148) return new GT_Container_BasicMachine				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 149) return new UniversalMacerator					(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 150) return new GT_Container_AESU_Meta				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 151) return new GT_Container_IDSU_Meta				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 152) return new GT_Container_Teleporter				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 153) return new GT_Container_BasicTank				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 154) return new GT_Container_BasicTank				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 155) return new GT_Container_MaintenanceHatch			(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 156) return new GT_Container_MultiMachine				(player.inventory, (IGregTechTileEntity)				tTileEntity);
+        if (ID == 0) return new GT_ContainerMetaID_Machine(player.inventory, (GT_TileEntityMetaID_Machine) tTileEntity);
+
+        if (ID == 6) return new GT_Container_Sonictron(player.inventory, (GT_TileEntity_Sonictron) tTileEntity);
+
+        if (ID == 33) return new GT_Container_Item_Destructopack(player.inventory, player.getCurrentEquippedItem());
+
+        if (ID == 96) return new GT_Container_1by1(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 97) return new GT_Container_2by2(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 98) return new GT_Container_3by3(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 99) return new GT_Container_4by4(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 100)
+            return new GT_Container_ElectricAutoWorkbench(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 101) return new GT_Container_Translocator(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 102) return new GT_Container_ElectricBufferSmall(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 103) return new GT_Container_ElectricBufferLarge(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 104)
+            return new GT_Container_AdvancedTranslocator(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 105)
+            return new GT_Container_ElectricBufferAdvanced(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 106) return new GT_Container_RockBreaker(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 107) return new GT_Container_ElectricSorter(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 108) return new GT_Container_ElectricItemClearer(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 109) return new GT_Container_Electrolyzer(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 110) return new GT_Container_CropHarvestor(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 111) return new GT_Container_Scrapboxinator(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 112) return new GT_Container_Grinder(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 113) return new GT_Container_BlastFurnace(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 114) return new GT_Container_BasicTank(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 115) return new GT_Container_ImplosionCompressor(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 116) return new GT_Container_Sawmill(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 117) return new GT_Container_BasicTank(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 118) return new GT_Container_BasicTank(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 119) return new GT_Container_BasicTank(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 120) return new GT_Container_BasicTank(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 121) return new GT_Container_BasicTank(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 122) return new GT_Container_VacuumFreezer(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 123)
+            return new GT_Container_ElectricRegulatorAdvanced(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 124) return new GT_Container_ChemicalReactor(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 125) return new GT_Container_BasicTank(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 126) return new GT_Container_MagicEnergyAbsorber(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 127) return new GT_Container_DistillationTower(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 128) return new GT_Container_Safe(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 129)
+            return new GT_Container_ElectricInventoryManager(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 130) return new GT_Container_AdvancedPump(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 131) return new GT_Container_BasicMachine(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 132) return new GT_Container_BasicMachine(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 133) return new GT_Container_BasicMachine(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 134) return new GT_Container_BasicMachine(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 135) return new GT_Container_BasicMachine(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 136) return new GT_Container_BasicMachine(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 137) return new GT_Container_BasicMachine(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 138) return new GT_Container_BasicMachine(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 139) return new GT_Container_ElectricTypeSorter(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 140) return new GT_Container_BasicMachine(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 141) return new GT_Container_BasicMachine(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 142) return new GT_Container_Printer(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 143) return new GT_Container_FusionComputer(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 144) return new GT_Container_BasicTank(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 145) return new GT_Container_BasicTank(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 146) return new GT_Container_Centrifuge(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 147)
+            return new GT_Container_RedstoneCircuitBlock(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 148) return new GT_Container_BasicMachine(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 149) return new UniversalMacerator(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 150) return new GT_Container_AESU_Meta(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 151) return new GT_Container_IDSU_Meta(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 152) return new GT_Container_Teleporter(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 153) return new GT_Container_BasicTank(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 154) return new GT_Container_BasicTank(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 155) return new GT_Container_MaintenanceHatch(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 156) return new GT_Container_MultiMachine(player.inventory, (IGregTechTileEntity) tTileEntity);
         // free 157-158
-        if (ID == 159) return new GT_Container_BasicMachine				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 160) return new GT_Container_AdvancedWorkbench		(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 161) return new GT_Container_BronzeWorkbench			(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 162) return new GT_Container_BasicMachine				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 163) return new GT_Container_BronzeBoiler				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 164) return new GT_Container_BasicMachine				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 165) return new GT_Container_BasicMachine				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 166) return new GT_Container_BasicMachine				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 167) return new GT_Container_BasicMachine				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 168) return new GT_Container_BasicMachine				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 169) return new GT_Container_BasicMachine				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 170) return new GT_Container_BronzeBlastFurnace		(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 171) return new GT_Container_SteelBoiler				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 172) return new GT_Container_BasicMachine				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 173) return new GT_Container_ElectricFilter			(player.inventory, (IGregTechTileEntity)				tTileEntity);  
-        if (ID == 174) return new GT_Container_ElectricTypeFilter		(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 175) return new GT_Container_BasicTank				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 176) return new GT_Container_TradeOMat_Inventory_Objects(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 177) return new GT_Container_TradeOMat_Main			(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 178) return new GT_Container_TradeOMat_Inventory_Money(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 179) return new GT_Container_TradeOMat_Settings		(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 180) return new GT_Container_BasicMachine				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 181) return new GT_Container_BasicMachine				(player.inventory, (IGregTechTileEntity)				tTileEntity);
-        if (ID == 182) return new GT_Container_ElectricRetrieverAdvanced(player.inventory, (IGregTechTileEntity)				tTileEntity);
+        if (ID == 159) return new GT_Container_BasicMachine(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 160) return new GT_Container_AdvancedWorkbench(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 161) return new GT_Container_BronzeWorkbench(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 162) return new GT_Container_BasicMachine(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 163) return new GT_Container_BronzeBoiler(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 164) return new GT_Container_BasicMachine(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 165) return new GT_Container_BasicMachine(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 166) return new GT_Container_BasicMachine(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 167) return new GT_Container_BasicMachine(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 168) return new GT_Container_BasicMachine(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 169) return new GT_Container_BasicMachine(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 170) return new GT_Container_BronzeBlastFurnace(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 171) return new GT_Container_SteelBoiler(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 172) return new GT_Container_BasicMachine(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 173) return new GT_Container_ElectricFilter(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 174) return new GT_Container_ElectricTypeFilter(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 175) return new GT_Container_BasicTank(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 176)
+            return new GT_Container_TradeOMat_Inventory_Objects(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 177) return new GT_Container_TradeOMat_Main(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 178)
+            return new GT_Container_TradeOMat_Inventory_Money(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 179) return new GT_Container_TradeOMat_Settings(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 180) return new GT_Container_BasicMachine(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 181) return new GT_Container_BasicMachine(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 182)
+            return new GT_Container_ElectricRetrieverAdvanced(player.inventory, (IGregTechTileEntity) tTileEntity);
         return null;
-	}
-	
-	@Override
-	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+    }
+
+    @Override
+    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
         TileEntity tTileEntity = world.getTileEntity(x, y, z);
-        if (ID ==   0) return new GT_GUIContainerMetaID_Machine				(player.inventory, (GT_TileEntityMetaID_Machine)	tTileEntity, "");
-        
-        if (ID ==   6) return new GT_GUIContainer_Sonictron					(player.inventory, (GT_TileEntity_Sonictron)		tTileEntity);
-        
-        if (ID ==  33) return new GT_GUIContainer_Destructopack				(player.inventory, player.getCurrentEquippedItem());
-        
-        if (ID ==  96) return new GT_GUIContainer_1by1						(player.inventory, (IGregTechTileEntity)tTileEntity, "");
-        if (ID ==  97) return new GT_GUIContainer_2by2						(player.inventory, (IGregTechTileEntity)tTileEntity, "");
-        if (ID ==  98) return new GT_GUIContainer_3by3						(player.inventory, (IGregTechTileEntity)tTileEntity, "");
-        if (ID ==  99) return new GT_GUIContainer_4by4						(player.inventory, (IGregTechTileEntity)tTileEntity, "");
-        if (ID == 100) return new GT_GUIContainer_ElectricAutoWorkbench		(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 101) return new GT_GUIContainer_Translocator				(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 102) return new GT_GUIContainer_ElectricBufferSmall		(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 103) return new GT_GUIContainer_ElectricBufferLarge		(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 104) return new GT_GUIContainer_AdvancedTranslocator		(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 105) return new GT_GUIContainer_ElectricBufferAdvanced	(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 106) return new GT_GUIContainer_RockBreaker				(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 107) return new GT_GUIContainer_ElectricSorter			(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 108) return new GT_GUIContainer_ElectricItemClearer		(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 109) return new GT_GUIContainer_Electrolyzer				(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 110) return new GT_GUIContainer_CropHarvestor				(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 111) return new GT_GUIContainer_Scrapboxinator			(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 112) return new GT_GUIContainer_Grinder					(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 113) return new GT_GUIContainer_BlastFurnace				(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 114) return new GT_GUIContainer_Quantumtank				(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 115) return new GT_GUIContainer_ImplosionCompressor		(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 116) return new GT_GUIContainer_Sawmill					(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 117) return new GT_GUIContainer_DieselGenerator			(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 118) return new GT_GUIContainer_GasTurbine				(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 119) return new GT_GUIContainer_ThermalGenerator			(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 120) return new GT_GUIContainer_SemifluidGenerator		(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 121) return new GT_GUIContainer_PlasmaGenerator			(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 122) return new GT_GUIContainer_VacuumFreezer				(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 123) return new GT_GUIContainer_ElectricRegulatorAdvanced	(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 124) return new GT_GUIContainer_ChemicalReactor			(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 125) return new GT_GUIContainer_MagicEnergyConverter		(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 126) return new GT_GUIContainer_MagicEnergyAbsorber		(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 127) return new GT_GUIContainer_DistillationTower			(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 128) return new GT_GUIContainer_Safe						(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 129) return new GT_GUIContainer_ElectricInventoryManager	(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 130) return new GT_GUIContainer_AdvancedPump				(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 131) return new GT_GUIContainer_BasicMachine_Macerator	(player.inventory, (IGregTechTileEntity)tTileEntity, "GT_Macerator.name", "Macerator.png");
-        if (ID == 132) return new GT_GUIContainer_BasicMachine_Extractor	(player.inventory, (IGregTechTileEntity)tTileEntity, "GT_Extractor.name", "Extractor.png");
-        if (ID == 133) return new GT_GUIContainer_BasicMachine_Compressor	(player.inventory, (IGregTechTileEntity)tTileEntity, "GT_Compressor.name", "Compressor.png");
-        if (ID == 134) return new GT_GUIContainer_BasicMachine				(player.inventory, (IGregTechTileEntity)tTileEntity, "GT_Recycler.name", "Recycler.png");
-        if (ID == 135) return new GT_GUIContainer_BasicMachine_E_Furnace	(player.inventory, (IGregTechTileEntity)tTileEntity, "GT_E_Furnace.name", "E_Furnace.png");
-        if (ID == 136) return new GT_GUIContainer_BasicMachine_Wiremill		(player.inventory, (IGregTechTileEntity)tTileEntity, "GT_Wiremill.name", "Wiremill.png");
-        if (ID == 137) return new GT_GUIContainer_BasicMachine_AlloySmelter	(player.inventory, (IGregTechTileEntity)tTileEntity, "GT_AlloySmelter.name", "E_Furnace.png");
-        if (ID == 138) return new GT_GUIContainer_BasicMachine_Canner		(player.inventory, (IGregTechTileEntity)tTileEntity, "GT_Canner.name", "Canner.png");
-        if (ID == 139) return new GT_GUIContainer_ElectricTypeSorter		(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 140) return new GT_GUIContainer_BasicMachine_Bender		(player.inventory, (IGregTechTileEntity)tTileEntity, "GT_Bender.name", "Bender.png");
-        if (ID == 141) return new GT_GUIContainer_BasicMachine_Assembler	(player.inventory, (IGregTechTileEntity)tTileEntity, "GT_Assembler.name", "Assembler.png");
-        if (ID == 142) return new GUI_Printer								(player.inventory, (IGregTechTileEntity)tTileEntity, "GT_Printer.name", "Printer.png");
-        if (ID == 143) return new GT_GUIContainer_FusionComputer			(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 144) return new GT_GUIContainer_FusionInjector			(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 145) return new GT_GUIContainer_FusionExtractor			(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 146) return new GT_GUIContainer_Centrifuge				(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 147) return new GT_GUIContainer_RedstoneCircuitBlock		(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 148) return new GT_GUIContainer_BasicMachine_E_Furnace	(player.inventory, (IGregTechTileEntity)tTileEntity, "GT_Microwave.name", "E_Furnace.png");
-        if (ID == 149) return new GUI_UniversalMacerator					(player.inventory, (IGregTechTileEntity)tTileEntity, "GT_Pulverizer.name", "UniversalMacerator.png");
-        if (ID == 150) return new GT_GUIContainer_AESU_Meta					(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 151) return new GT_GUIContainer_IDSU_Meta					(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 152) return new GT_GUIContainer_Teleporter				(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 153) return new GT_GUIContainer_Hatch_Input				(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 154) return new GT_GUIContainer_Hatch_Output				(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 155) return new GT_GUIContainer_MaintenanceHatch			(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 156) return new GT_GUIContainer_MultiMachine				(player.inventory, (IGregTechTileEntity)tTileEntity);
+        if (ID == 0)
+            return new GT_GUIContainerMetaID_Machine(player.inventory, (GT_TileEntityMetaID_Machine) tTileEntity, "");
+
+        if (ID == 6) return new GT_GUIContainer_Sonictron(player.inventory, (GT_TileEntity_Sonictron) tTileEntity);
+
+        if (ID == 33) return new GT_GUIContainer_Destructopack(player.inventory, player.getCurrentEquippedItem());
+
+        if (ID == 96) return new GT_GUIContainer_1by1(player.inventory, (IGregTechTileEntity) tTileEntity, "");
+        if (ID == 97) return new GT_GUIContainer_2by2(player.inventory, (IGregTechTileEntity) tTileEntity, "");
+        if (ID == 98) return new GT_GUIContainer_3by3(player.inventory, (IGregTechTileEntity) tTileEntity, "");
+        if (ID == 99) return new GT_GUIContainer_4by4(player.inventory, (IGregTechTileEntity) tTileEntity, "");
+        if (ID == 100)
+            return new GT_GUIContainer_ElectricAutoWorkbench(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 101) return new GT_GUIContainer_Translocator(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 102)
+            return new GT_GUIContainer_ElectricBufferSmall(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 103)
+            return new GT_GUIContainer_ElectricBufferLarge(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 104)
+            return new GT_GUIContainer_AdvancedTranslocator(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 105)
+            return new GT_GUIContainer_ElectricBufferAdvanced(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 106) return new GT_GUIContainer_RockBreaker(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 107) return new GT_GUIContainer_ElectricSorter(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 108)
+            return new GT_GUIContainer_ElectricItemClearer(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 109) return new GT_GUIContainer_Electrolyzer(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 110) return new GT_GUIContainer_CropHarvestor(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 111) return new GT_GUIContainer_Scrapboxinator(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 112) return new GT_GUIContainer_Grinder(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 113) return new GT_GUIContainer_BlastFurnace(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 114) return new GT_GUIContainer_Quantumtank(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 115)
+            return new GT_GUIContainer_ImplosionCompressor(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 116) return new GT_GUIContainer_Sawmill(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 117) return new GT_GUIContainer_DieselGenerator(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 118) return new GT_GUIContainer_GasTurbine(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 119) return new GT_GUIContainer_ThermalGenerator(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 120)
+            return new GT_GUIContainer_SemifluidGenerator(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 121) return new GT_GUIContainer_PlasmaGenerator(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 122) return new GT_GUIContainer_VacuumFreezer(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 123)
+            return new GT_GUIContainer_ElectricRegulatorAdvanced(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 124) return new GT_GUIContainer_ChemicalReactor(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 125)
+            return new GT_GUIContainer_MagicEnergyConverter(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 126)
+            return new GT_GUIContainer_MagicEnergyAbsorber(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 127)
+            return new GT_GUIContainer_DistillationTower(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 128) return new GT_GUIContainer_Safe(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 129)
+            return new GT_GUIContainer_ElectricInventoryManager(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 130) return new GT_GUIContainer_AdvancedPump(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 131) return new GT_GUIContainer_BasicMachine_Macerator(
+            player.inventory,
+            (IGregTechTileEntity) tTileEntity,
+            "GT_Macerator.name",
+            "Macerator.png");
+        if (ID == 132) return new GT_GUIContainer_BasicMachine_Extractor(
+            player.inventory,
+            (IGregTechTileEntity) tTileEntity,
+            "GT_Extractor.name",
+            "Extractor.png");
+        if (ID == 133) return new GT_GUIContainer_BasicMachine_Compressor(
+            player.inventory,
+            (IGregTechTileEntity) tTileEntity,
+            "GT_Compressor.name",
+            "Compressor.png");
+        if (ID == 134) return new GT_GUIContainer_BasicMachine(
+            player.inventory,
+            (IGregTechTileEntity) tTileEntity,
+            "GT_Recycler.name",
+            "Recycler.png");
+        if (ID == 135) return new GT_GUIContainer_BasicMachine_E_Furnace(
+            player.inventory,
+            (IGregTechTileEntity) tTileEntity,
+            "GT_E_Furnace.name",
+            "E_Furnace.png");
+        if (ID == 136) return new GT_GUIContainer_BasicMachine_Wiremill(
+            player.inventory,
+            (IGregTechTileEntity) tTileEntity,
+            "GT_Wiremill.name",
+            "Wiremill.png");
+        if (ID == 137) return new GT_GUIContainer_BasicMachine_AlloySmelter(
+            player.inventory,
+            (IGregTechTileEntity) tTileEntity,
+            "GT_AlloySmelter.name",
+            "E_Furnace.png");
+        if (ID == 138) return new GT_GUIContainer_BasicMachine_Canner(
+            player.inventory,
+            (IGregTechTileEntity) tTileEntity,
+            "GT_Canner.name",
+            "Canner.png");
+        if (ID == 139)
+            return new GT_GUIContainer_ElectricTypeSorter(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 140) return new GT_GUIContainer_BasicMachine_Bender(
+            player.inventory,
+            (IGregTechTileEntity) tTileEntity,
+            "GT_Bender.name",
+            "Bender.png");
+        if (ID == 141) return new GT_GUIContainer_BasicMachine_Assembler(
+            player.inventory,
+            (IGregTechTileEntity) tTileEntity,
+            "GT_Assembler.name",
+            "Assembler.png");
+        if (ID == 142) return new GUI_Printer(
+            player.inventory,
+            (IGregTechTileEntity) tTileEntity,
+            "GT_Printer.name",
+            "Printer.png");
+        if (ID == 143) return new GT_GUIContainer_FusionComputer(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 144) return new GT_GUIContainer_FusionInjector(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 145) return new GT_GUIContainer_FusionExtractor(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 146) return new GT_GUIContainer_Centrifuge(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 147)
+            return new GT_GUIContainer_RedstoneCircuitBlock(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 148) return new GT_GUIContainer_BasicMachine_E_Furnace(
+            player.inventory,
+            (IGregTechTileEntity) tTileEntity,
+            "GT_Microwave.name",
+            "E_Furnace.png");
+        if (ID == 149) return new GUI_UniversalMacerator(
+            player.inventory,
+            (IGregTechTileEntity) tTileEntity,
+            "GT_Pulverizer.name",
+            "UniversalMacerator.png");
+        if (ID == 150) return new GT_GUIContainer_AESU_Meta(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 151) return new GT_GUIContainer_IDSU_Meta(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 152) return new GT_GUIContainer_Teleporter(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 153) return new GT_GUIContainer_Hatch_Input(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 154) return new GT_GUIContainer_Hatch_Output(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 155) return new GT_GUIContainer_MaintenanceHatch(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 156) return new GT_GUIContainer_MultiMachine(player.inventory, (IGregTechTileEntity) tTileEntity);
         // free 157-158
-        if (ID == 159) return new GT_GUIContainer_BasicMachine_Lathe		(player.inventory, (IGregTechTileEntity)tTileEntity, "GT_Lathe.name", "Lathe.png");
-        if (ID == 160) return new GT_GUIContainer_AdvancedWorkbench			(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 161) return new GT_GUIContainer_BronzeWorkbench			(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 162) return new GT_GUIContainer_BasicMachine_Cutter		(player.inventory, (IGregTechTileEntity)tTileEntity, "GT_Cutter.name", "Cutter.png");
-        if (ID == 163) return new GT_GUIContainer_BronzeBoiler				(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 164) return new GT_GUIContainer_BasicMachine				(player.inventory, (IGregTechTileEntity)tTileEntity, "GT_BronzeMacerator.name", "BronzeMacerator.png");
-        if (ID == 165) return new GT_GUIContainer_BasicMachine_E_Furnace	(player.inventory, (IGregTechTileEntity)tTileEntity, "GT_BronzeFurnace.name", "BronzeFurnace.png");
-        if (ID == 166) return new GT_GUIContainer_BasicMachine_AlloySmelter	(player.inventory, (IGregTechTileEntity)tTileEntity, "steam_alloy_smelter.gui", "BronzeFurnace.png");
-        if (ID == 167) return new GT_GUIContainer_BasicMachine				(player.inventory, (IGregTechTileEntity)tTileEntity, "steam_hammerer.gui", "BronzeHammer.png", (byte)6, (byte)3);
-        if (ID == 168) return new GT_GUIContainer_BasicMachine_Compressor	(player.inventory, (IGregTechTileEntity)tTileEntity, "steam_compressor.gui", "BronzeCompressor.png");
-        if (ID == 169) return new GT_GUIContainer_BasicMachine_Extractor	(player.inventory, (IGregTechTileEntity)tTileEntity, "steam_extractor.gui", "BronzeExtractor.png");
-        if (ID == 170) return new GT_GUIContainer_BronzeBlastFurnace		(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 171) return new GT_GUIContainer_SteelBoiler				(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 172) return new GT_GUIContainer_BasicMachine_E_Furnace	(player.inventory, (IGregTechTileEntity)tTileEntity, "GT_SteelFurnace.name", "SteelFurnace.png");
-        if (ID == 173) return new GT_GUIContainer_ElectricFilter			(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 174) return new GT_GUIContainer_ElectricTypeFilter		(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 175) return new GT_GUIContainer_DigitalTank				(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 176) return new GT_GUIContainer_TradeOMat_Inventory_Objects(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 177) return new GT_GUIContainer_TradeOMat_Main			(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 178) return new GT_GUIContainer_TradeOMat_Inventory_Money	(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 179) return new GT_GUIContainer_TradeOMat_Settings		(player.inventory, (IGregTechTileEntity)tTileEntity);
-        if (ID == 180) return new GT_GUIContainer_BasicMachine				(player.inventory, (IGregTechTileEntity)tTileEntity, "GT_Scanner.name", "Scanner.png");
-        if (ID == 181) return new GT_GUIContainer_BasicMachine_Extruder		(player.inventory, (IGregTechTileEntity)tTileEntity, "GT_Extruder.name", "Extruder.png");
-        if (ID == 182) return new GT_GUIContainer_ElectricRetrieverAdvanced	(player.inventory, (IGregTechTileEntity)tTileEntity);
+        if (ID == 159) return new GT_GUIContainer_BasicMachine_Lathe(
+            player.inventory,
+            (IGregTechTileEntity) tTileEntity,
+            "GT_Lathe.name",
+            "Lathe.png");
+        if (ID == 160)
+            return new GT_GUIContainer_AdvancedWorkbench(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 161) return new GT_GUIContainer_BronzeWorkbench(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 162) return new GT_GUIContainer_BasicMachine_Cutter(
+            player.inventory,
+            (IGregTechTileEntity) tTileEntity,
+            "GT_Cutter.name",
+            "Cutter.png");
+        if (ID == 163) return new GT_GUIContainer_BronzeBoiler(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 164) return new GT_GUIContainer_BasicMachine(
+            player.inventory,
+            (IGregTechTileEntity) tTileEntity,
+            "GT_BronzeMacerator.name",
+            "BronzeMacerator.png");
+        if (ID == 165) return new GT_GUIContainer_BasicMachine_E_Furnace(
+            player.inventory,
+            (IGregTechTileEntity) tTileEntity,
+            "GT_BronzeFurnace.name",
+            "BronzeFurnace.png");
+        if (ID == 166) return new GT_GUIContainer_BasicMachine_AlloySmelter(
+            player.inventory,
+            (IGregTechTileEntity) tTileEntity,
+            "steam_alloy_smelter.gui",
+            "BronzeFurnace.png");
+        if (ID == 167) return new GT_GUIContainer_BasicMachine(
+            player.inventory,
+            (IGregTechTileEntity) tTileEntity,
+            "steam_hammerer.gui",
+            "BronzeHammer.png",
+            (byte) 6,
+            (byte) 3);
+        if (ID == 168) return new GT_GUIContainer_BasicMachine_Compressor(
+            player.inventory,
+            (IGregTechTileEntity) tTileEntity,
+            "steam_compressor.gui",
+            "BronzeCompressor.png");
+        if (ID == 169) return new GT_GUIContainer_BasicMachine_Extractor(
+            player.inventory,
+            (IGregTechTileEntity) tTileEntity,
+            "steam_extractor.gui",
+            "BronzeExtractor.png");
+        if (ID == 170)
+            return new GT_GUIContainer_BronzeBlastFurnace(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 171) return new GT_GUIContainer_SteelBoiler(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 172) return new GT_GUIContainer_BasicMachine_E_Furnace(
+            player.inventory,
+            (IGregTechTileEntity) tTileEntity,
+            "GT_SteelFurnace.name",
+            "SteelFurnace.png");
+        if (ID == 173) return new GT_GUIContainer_ElectricFilter(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 174)
+            return new GT_GUIContainer_ElectricTypeFilter(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 175) return new GT_GUIContainer_DigitalTank(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 176)
+            return new GT_GUIContainer_TradeOMat_Inventory_Objects(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 177) return new GT_GUIContainer_TradeOMat_Main(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 178)
+            return new GT_GUIContainer_TradeOMat_Inventory_Money(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 179)
+            return new GT_GUIContainer_TradeOMat_Settings(player.inventory, (IGregTechTileEntity) tTileEntity);
+        if (ID == 180) return new GT_GUIContainer_BasicMachine(
+            player.inventory,
+            (IGregTechTileEntity) tTileEntity,
+            "GT_Scanner.name",
+            "Scanner.png");
+        if (ID == 181) return new GT_GUIContainer_BasicMachine_Extruder(
+            player.inventory,
+            (IGregTechTileEntity) tTileEntity,
+            "GT_Extruder.name",
+            "Extruder.png");
+        if (ID == 182)
+            return new GT_GUIContainer_ElectricRetrieverAdvanced(player.inventory, (IGregTechTileEntity) tTileEntity);
 
         return null;
-	}
+    }
 }

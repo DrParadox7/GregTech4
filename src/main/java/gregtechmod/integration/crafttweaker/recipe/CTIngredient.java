@@ -1,13 +1,13 @@
 package gregtechmod.integration.crafttweaker.recipe;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import gregtechmod.api.recipe.Ingredient;
 import minetweaker.api.item.IItemStack;
 import minetweaker.api.minecraft.MineTweakerMC;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenGetter;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @ZenClass("mods.gregtechmod.recipe.Ingredient")
 public class CTIngredient {
@@ -17,7 +17,8 @@ public class CTIngredient {
 
     public CTIngredient(Ingredient ingredient) {
         this.count = ingredient.getCount();
-        this.variants = ingredient.getVariants().stream()
+        this.variants = ingredient.getVariants()
+            .stream()
             .map(MineTweakerMC::getIItemStack)
             .collect(Collectors.toList());
     }

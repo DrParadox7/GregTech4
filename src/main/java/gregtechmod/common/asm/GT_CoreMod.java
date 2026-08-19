@@ -13,53 +13,50 @@ import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
  */
 @IFMLLoadingPlugin.Name(GT_CoreMod.NAME)
 @IFMLLoadingPlugin.MCVersion("1.7.10")
-@IFMLLoadingPlugin.TransformerExclusions({"gregtechmod.common.asm."})
+@IFMLLoadingPlugin.TransformerExclusions({ "gregtechmod.common.asm." })
 @IFMLLoadingPlugin.SortingIndex(1001)
 public class GT_CoreMod implements IFMLLoadingPlugin {
-	
-	public static final String NAME = "GregTech-Core";
-	public static final Logger log;
-	
-	@Override
-	public String[] getASMTransformerClass() {
-		return new String[] {
-				"gregtechmod.common.asm.EnergyNetTransformer",
-				"gregtechmod.common.asm.IC2ReactorSlotTransformer",
-				"gregtechmod.common.asm.AnvilTransformer"
-		};
-	}
 
-	@Override
-	public String getModContainerClass() {
-		return null;
-	}
+    public static final String NAME = "GregTech-Core";
+    public static final Logger log;
 
-	@Override
-	public String getSetupClass() {
-		return null;
-	}
+    @Override
+    public String[] getASMTransformerClass() {
+        return new String[] { "gregtechmod.common.asm.EnergyNetTransformer",
+            "gregtechmod.common.asm.IC2ReactorSlotTransformer", "gregtechmod.common.asm.AnvilTransformer" };
+    }
 
-	@Override
-	public void injectData(Map<String, Object> data) {}
+    @Override
+    public String getModContainerClass() {
+        return null;
+    }
 
-	@Override
-	public String getAccessTransformerClass() {
-		return null;
-	}
-	
-	static String getIC2CoreClass(String clz) {
-		return "ic2.core." + clz;
-	}
-	
-	static String getIC2APIClass(String clz) {
-		return "ic2.api." + clz;
-	}
-	
-	static String formatName(String name) {
-		return name.replace('.', '/');
-	}
-	
-	static {
-		log	= LogManager.getLogger(NAME); 
-	}
+    @Override
+    public String getSetupClass() {
+        return null;
+    }
+
+    @Override
+    public void injectData(Map<String, Object> data) {}
+
+    @Override
+    public String getAccessTransformerClass() {
+        return null;
+    }
+
+    static String getIC2CoreClass(String clz) {
+        return "ic2.core." + clz;
+    }
+
+    static String getIC2APIClass(String clz) {
+        return "ic2.api." + clz;
+    }
+
+    static String formatName(String name) {
+        return name.replace('.', '/');
+    }
+
+    static {
+        log = LogManager.getLogger(NAME);
+    }
 }

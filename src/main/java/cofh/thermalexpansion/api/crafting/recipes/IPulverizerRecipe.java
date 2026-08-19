@@ -4,14 +4,14 @@ import net.minecraft.item.ItemStack;
 
 public interface IPulverizerRecipe {
 
-	ItemStack getInput();
+    ItemStack getInput();
 
-	ItemStack getPrimaryOutput();
+    ItemStack getPrimaryOutput();
 
-	ItemStack getSecondaryOutput();
+    ItemStack getSecondaryOutput();
 
-	int getEnergy();
+    int getEnergy();
 
-	int getSecondaryOutputChance();
+    int getSecondaryOutputChance();
 
 }

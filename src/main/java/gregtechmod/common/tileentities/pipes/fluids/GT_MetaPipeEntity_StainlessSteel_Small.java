@@ -6,25 +6,25 @@ import gregtechmod.api.metatileentity.implementations.GT_MetaPipeEntity_Fluid;
 
 public class GT_MetaPipeEntity_StainlessSteel_Small extends GT_MetaPipeEntity_Fluid {
 
-   public GT_MetaPipeEntity_StainlessSteel_Small(int aID, String aName) {
-      super(aID, aName);
-   }
+    public GT_MetaPipeEntity_StainlessSteel_Small(int aID, String aName) {
+        super(aID, aName);
+    }
 
-   public GT_MetaPipeEntity_StainlessSteel_Small() {}
+    public GT_MetaPipeEntity_StainlessSteel_Small() {}
 
-   public IMetaTileEntity newMetaEntity(IGregTechTileEntity aTileEntity) {
-      return new GT_MetaPipeEntity_StainlessSteel_Small();
-   }
+    public IMetaTileEntity newMetaEntity(IGregTechTileEntity aTileEntity) {
+        return new GT_MetaPipeEntity_StainlessSteel_Small();
+    }
 
-   public int getTextureIndex(byte aSide, byte aConnections, boolean aConnected, boolean aRedstone) {
-      return aConnected?403:378;
-   }
+    public int getTextureIndex(byte aSide, byte aConnections, boolean aConnected, boolean aRedstone) {
+        return aConnected ? 403 : 378;
+    }
 
-   public float getThickNess() {
-      return 0.375F;
-   }
+    public float getThickNess() {
+        return 0.375F;
+    }
 
-   public int getFluidCapacityPerTick() {
-      return 120;
-   }
+    public int getFluidCapacityPerTick() {
+        return 120;
+    }
 }

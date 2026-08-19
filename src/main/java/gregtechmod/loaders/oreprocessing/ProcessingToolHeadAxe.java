@@ -2,6 +2,8 @@ package gregtechmod.loaders.oreprocessing;
 
 import java.util.List;
 
+import net.minecraft.item.ItemStack;
+
 import gregtechmod.api.enums.GT_ToolDictNames;
 import gregtechmod.api.enums.Materials;
 import gregtechmod.api.enums.OrePrefixes;
@@ -10,32 +12,34 @@ import gregtechmod.api.interfaces.IOreRecipeRegistrator;
 import gregtechmod.api.util.GT_ModHandler;
 import gregtechmod.api.util.GT_Utility;
 import gregtechmod.api.util.OreDictEntry;
-
 import gregtechmod.common.RecipeHandler;
-import net.minecraft.item.ItemStack;
 
 public class ProcessingToolHeadAxe implements IOreRecipeRegistrator {
 
-	public ProcessingToolHeadAxe() {
-		OrePrefixes.toolHeadAxe.add(this);
-	}
+    public ProcessingToolHeadAxe() {
+        OrePrefixes.toolHeadAxe.add(this);
+    }
 
-	public void registerOre(OrePrefixes aPrefix, List<OreDictEntry> entries) {
-		if (!gregtechmod.GT_Mod.sMinimalItemGeneration) {
-			for (OreDictEntry entry : entries) {
-				Materials aMaterial = this.getMaterial(aPrefix, entry);
-				if (this.isExecutable(aPrefix, aMaterial) && !aMaterial.contains(SubTag.NO_SMASHING)) {
-					for (ItemStack aStack : entry.ores) {
-						RecipeHandler.executeOnFinish(() -> {
-							GT_ModHandler.addCraftingRecipe(GT_Utility.copyAmount(1L, aStack), false, true,
-									new Object[]{"PIH", "P  ", "F  ", Character.valueOf('P'), OrePrefixes.plate.get(aMaterial),
-											Character.valueOf('I'), OrePrefixes.ingot.get(aMaterial), Character.valueOf('H'),
-											GT_ToolDictNames.craftingToolHardHammer, Character.valueOf('F'),
-											GT_ToolDictNames.craftingToolFile});
-						});
-					}
-				}
-			}
-		}
-	}
+    public void registerOre(OrePrefixes aPrefix, List<OreDictEntry> entries) {
+        if (!gregtechmod.GT_Mod.sMinimalItemGeneration) {
+            for (OreDictEntry entry : entries) {
+                Materials aMaterial = this.getMaterial(aPrefix, entry);
+                if (this.isExecutable(aPrefix, aMaterial) && !aMaterial.contains(SubTag.NO_SMASHING)) {
+                    for (ItemStack aStack : entry.ores) {
+                        RecipeHandler.executeOnFinish(() -> {
+                            GT_ModHandler.addCraftingRecipe(
+                                GT_Utility.copyAmount(1L, aStack),
+                                false,
+                                true,
+                                new Object[] { "PIH", "P  ", "F  ", Character.valueOf('P'),
+                                    OrePrefixes.plate.get(aMaterial), Character.valueOf('I'),
+                                    OrePrefixes.ingot.get(aMaterial), Character.valueOf('H'),
+                                    GT_ToolDictNames.craftingToolHardHammer, Character.valueOf('F'),
+                                    GT_ToolDictNames.craftingToolFile });
+                        });
+                    }
+                }
+            }
+        }
+    }
 }

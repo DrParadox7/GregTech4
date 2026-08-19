@@ -1,16 +1,20 @@
 package gregtechmod.common.gui;
 
 import net.minecraft.entity.player.*;
+
+import gregtechmod.api.gui.*;
 import gregtechmod.api.interfaces.*;
 import gregtechmod.common.containers.*;
-import gregtechmod.api.gui.*;
 
-public class GT_GUIContainer_ElectricTypeFilter extends GT_GUIContainerMetaTile_Machine
-{
-    public GT_GUIContainer_ElectricTypeFilter(final InventoryPlayer aInventoryPlayer, final IGregTechTileEntity aTileEntity) {
-        super(new GT_Container_ElectricTypeFilter(aInventoryPlayer, aTileEntity), "gregtech_addon:textures/gui/ElectricTypeFilter.png");
+public class GT_GUIContainer_ElectricTypeFilter extends GT_GUIContainerMetaTile_Machine {
+
+    public GT_GUIContainer_ElectricTypeFilter(final InventoryPlayer aInventoryPlayer,
+        final IGregTechTileEntity aTileEntity) {
+        super(
+            new GT_Container_ElectricTypeFilter(aInventoryPlayer, aTileEntity),
+            "gregtech_addon:textures/gui/ElectricTypeFilter.png");
     }
-    
+
     @Override
     protected void drawGuiContainerBackgroundLayer(final float par1, final int par2, final int par3) {
         super.drawGuiContainerBackgroundLayer(par1, par2, par3);

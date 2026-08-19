@@ -4,16 +4,16 @@ import net.minecraft.item.ItemStack;
 
 public interface ISmelterRecipe {
 
-	ItemStack getPrimaryInput();
+    ItemStack getPrimaryInput();
 
-	ItemStack getSecondaryInput();
+    ItemStack getSecondaryInput();
 
-	ItemStack getPrimaryOutput();
+    ItemStack getPrimaryOutput();
 
-	ItemStack getSecondaryOutput();
+    ItemStack getSecondaryOutput();
 
-	int getEnergy();
+    int getEnergy();
 
-	int getSecondaryOutputChance();
+    int getSecondaryOutputChance();
 
 }

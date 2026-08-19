@@ -1,20 +1,5 @@
 package gregtechmod.api.items;
 
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.Optional;
-import gregtechmod.api.GregTech_API;
-import gregtechmod.api.enums.Materials;
-import gregtechmod.api.enums.OrePrefixes;
-import gregtechmod.api.enums.SubTag;
-import gregtechmod.api.interfaces.IFoodStat;
-import gregtechmod.api.interfaces.IIconContainer;
-import gregtechmod.api.interfaces.IOnItemClick;
-import gregtechmod.api.util.*;
-import ic2.api.item.ElectricItem;
-import ic2.api.item.IElectricItem;
-import ic2.api.item.IElectricItemManager;
-import ic2.api.item.ISpecialElectricItem;
-
 import java.util.*;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -31,8 +16,23 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import gregtechmod.api.GregTech_API;
+import gregtechmod.api.enums.Materials;
+import gregtechmod.api.enums.OrePrefixes;
+import gregtechmod.api.enums.SubTag;
+import gregtechmod.api.interfaces.IFoodStat;
+import gregtechmod.api.interfaces.IIconContainer;
+import gregtechmod.api.interfaces.IOnItemClick;
+import gregtechmod.api.util.*;
+import ic2.api.item.ElectricItem;
+import ic2.api.item.IElectricItem;
+import ic2.api.item.IElectricItemManager;
+import ic2.api.item.ISpecialElectricItem;
 import squeek.applecore.api.food.FoodValues;
 import squeek.applecore.api.food.IEdible;
 import squeek.applecore.api.food.ItemFoodProxy;
@@ -40,567 +40,652 @@ import squeek.applecore.api.food.ItemFoodProxy;
 /**
  * @author Gregorius Techneticies
  * 
- * One Item for everything!
+ *         One Item for everything!
  * 
- * This brilliant Item Class is used for automatically generating all possible variations of Material Items, like Dusts, Ingots, Gems, Plates and similar.
- * It saves me a ton of work, when adding Items, because I always have to make a new Item SubType for each OreDict Prefix, when adding a new Material.
+ *         This brilliant Item Class is used for automatically generating all possible variations of Material Items,
+ *         like Dusts, Ingots, Gems, Plates and similar.
+ *         It saves me a ton of work, when adding Items, because I always have to make a new Item SubType for each
+ *         OreDict Prefix, when adding a new Material.
  * 
- * As you can see, up to 32766 Items can be generated using this Class. And the last 766 Items can be custom defined, just to save space and MetaData.
+ *         As you can see, up to 32766 Items can be generated using this Class. And the last 766 Items can be custom
+ *         defined, just to save space and MetaData.
  * 
- * These Items can also have special RightClick abilities, electric Charge or even be set to become a Food alike Item.
+ *         These Items can also have special RightClick abilities, electric Charge or even be set to become a Food alike
+ *         Item.
  */
 @Optional.Interface(iface = "squeek.applecore.api.food.IEdible", modid = "AppleCore")
-public abstract class GT_MetaGenerated_Item extends GT_Generic_Item implements ISpecialElectricItem, IElectricItemManager, IEdible {
-	/**
-	 * All instances of this Item Class are listed here.
-	 * This gets used to register the Renderer to all Items of this Type, if useStandardMetaItemRenderer() returns true.
-	 * 
-	 * You can also use the unlocalized Name gotten from getUnlocalizedName() as Key if you want to get a specific Item.
-	 */
-	public static final HashMap<String, GT_MetaGenerated_Item> sInstances = new HashMap<String, GT_MetaGenerated_Item>();
-	
-	/* ---------- CONSTRUCTOR AND MEMBER VARIABLES ---------- */
-	
-	private BitSet mEnabledItems = new BitSet(766);
-	private final OrePrefixes[] mGeneratedPrefixList;
-	public IIcon[][] mIconList = new IIcon[mEnabledItems.size()][1];
-	
-	public final HashMap<Short, ArrayList<IOnItemClick>> mClickBehaviors = new HashMap<Short, ArrayList<IOnItemClick>>();
-	public final HashMap<Short, IFoodStat> mFoodStats = new HashMap<Short, IFoodStat>();
-	public final HashMap<Short, Integer[]> mElectricStats = new HashMap<Short, Integer[]>();
-	public final HashMap<Short, Short> mBurnValues = new HashMap<Short, Short>();
-	public final HashMap<Short, String> mMetaTooltip = new HashMap<Short, String>();
-	
-	/**
-	 * Creates the Item using these Parameters.
-	 * @param aID the Item ID.
-	 * @param aUnlocalized The Unlocalized Name of this Item.
-	 * @param aGeneratedPrefixList The OreDict Prefixes you want to have generated.
-	 */
-	public GT_MetaGenerated_Item(String aUnlocalized, OrePrefixes... aGeneratedPrefixList) {
-		super(aUnlocalized, "item.generated.tooltip");
-		mGeneratedPrefixList = Arrays.copyOf(aGeneratedPrefixList, 32);
-		setCreativeTab(GregTech_API.TAB_GREGTECH_MATERIALS);
+public abstract class GT_MetaGenerated_Item extends GT_Generic_Item
+    implements ISpecialElectricItem, IElectricItemManager, IEdible {
+
+    /**
+     * All instances of this Item Class are listed here.
+     * This gets used to register the Renderer to all Items of this Type, if useStandardMetaItemRenderer() returns true.
+     * 
+     * You can also use the unlocalized Name gotten from getUnlocalizedName() as Key if you want to get a specific Item.
+     */
+    public static final HashMap<String, GT_MetaGenerated_Item> sInstances = new HashMap<String, GT_MetaGenerated_Item>();
+
+    /* ---------- CONSTRUCTOR AND MEMBER VARIABLES ---------- */
+
+    private BitSet mEnabledItems = new BitSet(766);
+    private final OrePrefixes[] mGeneratedPrefixList;
+    public IIcon[][] mIconList = new IIcon[mEnabledItems.size()][1];
+
+    public final HashMap<Short, ArrayList<IOnItemClick>> mClickBehaviors = new HashMap<Short, ArrayList<IOnItemClick>>();
+    public final HashMap<Short, IFoodStat> mFoodStats = new HashMap<Short, IFoodStat>();
+    public final HashMap<Short, Integer[]> mElectricStats = new HashMap<Short, Integer[]>();
+    public final HashMap<Short, Short> mBurnValues = new HashMap<Short, Short>();
+    public final HashMap<Short, String> mMetaTooltip = new HashMap<Short, String>();
+
+    /**
+     * Creates the Item using these Parameters.
+     * 
+     * @param aID                  the Item ID.
+     * @param aUnlocalized         The Unlocalized Name of this Item.
+     * @param aGeneratedPrefixList The OreDict Prefixes you want to have generated.
+     */
+    public GT_MetaGenerated_Item(String aUnlocalized, OrePrefixes... aGeneratedPrefixList) {
+        super(aUnlocalized, "item.generated.tooltip");
+        mGeneratedPrefixList = Arrays.copyOf(aGeneratedPrefixList, 32);
+        setCreativeTab(GregTech_API.TAB_GREGTECH_MATERIALS);
         setHasSubtypes(true);
         setMaxDamage(0);
-        
+
         sInstances.put(getUnlocalizedName(), this);
         for (int i = 0; i < 32000; i++) {
-			OrePrefixes tPrefix = mGeneratedPrefixList[i / 1000];
-			if (tPrefix == null) continue;
-			Materials tMaterial = GregTech_API.sGeneratedMaterials[i % 1000];
-			if (tMaterial == null) continue;
-			if (doesMaterialAllowGeneration(tPrefix, tMaterial)) {
-				String tOreName = getOreDictString(tPrefix, tMaterial);
-				tPrefix = OrePrefixes.getOrePrefix(tOreName);
-				if (tPrefix != null && tPrefix.mIsUnificatable) {
-					GT_OreDictUnificator.setLater(tOreName, new ItemStack(this, 1, i));
-				} else {
-					registerAtOreDict(tOreName, (short)i);
-				}
-			}
-		}
-	}
-	
-	/* ---------- OVERRIDEABLE FUNCTIONS ---------- */
-	
-	/**
-	 * @param aPrefix the OreDict Prefix
-	 * @param aMaterial the Material
-	 * @param aMetaData a Index from [0 - 31999]
-	 * @return the Localized Name when default LangFiles are used.
-	 */
-	public String getDefaultLocalization(OrePrefixes aPrefix, Materials aMaterial, int aMetaData) {
-		if (StatCollector.canTranslate(aPrefix.mUnlocalizedName)) {
-			return StatCollector.translateToLocalFormatted(aPrefix.mUnlocalizedName, StatCollector.translateToLocal(aMaterial.getUnlocalizedName()));
-		}
-		
-		return StatCollector.canTranslate(aMaterial.getUnlocalizedName()) ? StatCollector.translateToLocal(aMaterial.getUnlocalizedName()) : getUnlocalizedName();
-	}
-	
-	/**
-	 * @param aMetaData a Index from [0 - 31999]
-	 * @param aMaterial the Material
-	 * @return an Icon Container for the Item Display.
-	 */
-	public abstract IIconContainer getIconContainer(int aMetaData, Materials aMaterial);
-	
-	/**
-	 * @param aPrefix this can be null, you have to return false in that case
-	 * @param aMaterial this can be null, you have to return false in that case
-	 * @return if this Item should be generated and visible.
-	 */
-	public boolean doesMaterialAllowGeneration(OrePrefixes aPrefix, Materials aMaterial) {
-		// You have to check for at least these Conditions in every Case! So add a super Call like the following for this before executing your Code:
-		// if (!super.doesMaterialAllowGeneration(aPrefix, aMaterial)) return false;
-		return aPrefix != null && aMaterial != null && !aPrefix.dontGenerateItem(aMaterial);
-	}
-	
-	/**
-	 * @param aPrefix always != null
-	 * @param aMaterial always != null
-	 * @param aDoShowAllItems this is the Configuration Setting of the User, if he wants to see all the Stuff like Tiny Dusts or Crushed Ores as well.
-	 * @return if this Item should be visible in NEI or Creative
-	 */
-	public boolean doesShowInCreative(OrePrefixes aPrefix, Materials aMaterial, boolean aDoShowAllItems) {
-		return true;
-	}
-	
-	/**
-	 * @return the name of the Item to be registered at the OreDict.
-	 */
-	public String getOreDictString(OrePrefixes aPrefix, Materials aMaterial) {
-		return aPrefix.get(aMaterial);
-	}
-	
-	/**
-	 * @return the Color Modulation the Material is going to be rendered with.
-	 */
-	public short[] getRGBa(ItemStack aStack) {
-		int aMetaData = getDamage(aStack);
-		if (aMetaData < 0) return Materials._NULL.mRGBa;
-		if (aMetaData < 32000) {
-			Materials tMaterial = GregTech_API.sGeneratedMaterials[aMetaData % 1000];
-			if (tMaterial == null) return Materials._NULL.mRGBa;
-			for (byte i = 0; i < tMaterial.mRGBa.length; i++) {
-				if (tMaterial.mRGBa[i] > 255) tMaterial.mRGBa[i] = 255;
-				if (tMaterial.mRGBa[i] < 0) tMaterial.mRGBa[i] = 0;
-			}
-			return tMaterial.mRGBa;
-		}
+            OrePrefixes tPrefix = mGeneratedPrefixList[i / 1000];
+            if (tPrefix == null) continue;
+            Materials tMaterial = GregTech_API.sGeneratedMaterials[i % 1000];
+            if (tMaterial == null) continue;
+            if (doesMaterialAllowGeneration(tPrefix, tMaterial)) {
+                String tOreName = getOreDictString(tPrefix, tMaterial);
+                tPrefix = OrePrefixes.getOrePrefix(tOreName);
+                if (tPrefix != null && tPrefix.mIsUnificatable) {
+                    GT_OreDictUnificator.setLater(tOreName, new ItemStack(this, 1, i));
+                } else {
+                    registerAtOreDict(tOreName, (short) i);
+                }
+            }
+        }
+    }
+
+    /* ---------- OVERRIDEABLE FUNCTIONS ---------- */
+
+    /**
+     * @param aPrefix   the OreDict Prefix
+     * @param aMaterial the Material
+     * @param aMetaData a Index from [0 - 31999]
+     * @return the Localized Name when default LangFiles are used.
+     */
+    public String getDefaultLocalization(OrePrefixes aPrefix, Materials aMaterial, int aMetaData) {
+        if (StatCollector.canTranslate(aPrefix.mUnlocalizedName)) {
+            return StatCollector.translateToLocalFormatted(
+                aPrefix.mUnlocalizedName,
+                StatCollector.translateToLocal(aMaterial.getUnlocalizedName()));
+        }
+
+        return StatCollector.canTranslate(aMaterial.getUnlocalizedName())
+            ? StatCollector.translateToLocal(aMaterial.getUnlocalizedName())
+            : getUnlocalizedName();
+    }
+
+    /**
+     * @param aMetaData a Index from [0 - 31999]
+     * @param aMaterial the Material
+     * @return an Icon Container for the Item Display.
+     */
+    public abstract IIconContainer getIconContainer(int aMetaData, Materials aMaterial);
+
+    /**
+     * @param aPrefix   this can be null, you have to return false in that case
+     * @param aMaterial this can be null, you have to return false in that case
+     * @return if this Item should be generated and visible.
+     */
+    public boolean doesMaterialAllowGeneration(OrePrefixes aPrefix, Materials aMaterial) {
+        // You have to check for at least these Conditions in every Case! So add a super Call like the following for
+        // this before executing your Code:
+        // if (!super.doesMaterialAllowGeneration(aPrefix, aMaterial)) return false;
+        return aPrefix != null && aMaterial != null && !aPrefix.dontGenerateItem(aMaterial);
+    }
+
+    /**
+     * @param aPrefix         always != null
+     * @param aMaterial       always != null
+     * @param aDoShowAllItems this is the Configuration Setting of the User, if he wants to see all the Stuff like Tiny
+     *                        Dusts or Crushed Ores as well.
+     * @return if this Item should be visible in NEI or Creative
+     */
+    public boolean doesShowInCreative(OrePrefixes aPrefix, Materials aMaterial, boolean aDoShowAllItems) {
+        return true;
+    }
+
+    /**
+     * @return the name of the Item to be registered at the OreDict.
+     */
+    public String getOreDictString(OrePrefixes aPrefix, Materials aMaterial) {
+        return aPrefix.get(aMaterial);
+    }
+
+    /**
+     * @return the Color Modulation the Material is going to be rendered with.
+     */
+    public short[] getRGBa(ItemStack aStack) {
+        int aMetaData = getDamage(aStack);
+        if (aMetaData < 0) return Materials._NULL.mRGBa;
+        if (aMetaData < 32000) {
+            Materials tMaterial = GregTech_API.sGeneratedMaterials[aMetaData % 1000];
+            if (tMaterial == null) return Materials._NULL.mRGBa;
+            for (byte i = 0; i < tMaterial.mRGBa.length; i++) {
+                if (tMaterial.mRGBa[i] > 255) tMaterial.mRGBa[i] = 255;
+                if (tMaterial.mRGBa[i] < 0) tMaterial.mRGBa[i] = 0;
+            }
+            return tMaterial.mRGBa;
+        }
         return Materials._NULL.mRGBa;
-	}
-	
-	/**
-	 * @return if this MetaGenerated Item should use my Default Renderer System.
-	 */
-	public boolean useStandardMetaItemRenderer() {
-		return true;
-	}
-	
-	/* ---------- FOR ADDING CUSTOM ITEMS INTO THE REMAINING 766 RANGE ---------- */
-	
-	/**
-	 * This adds a Custom Item to the ending Range.
-	 * @param aID The Id of the assigned Item [0 - 765] (The MetaData gets auto-shifted by +32000)
-	 * @param aEnglish The Default Localized Name of the created Item
-	 * @param aToolTip The Default ToolTip of the created Item, you can also insert null for having no ToolTip
-	 * @param aFoodBehavior The Food Value of this Item. Can be null aswell.
-	 * @param aOreDictNames The OreDict Names you want to give the Item.
-	 * @return An ItemStack containing the newly created Item.
-	 */
-	public final ItemStack addItem(int aID, String aToolTip, IFoodStat aFoodBehavior, Object... aOreDictNames) {
-		if (aToolTip == null) aToolTip = "";
-		if (aID >= 0 && aID < mEnabledItems.size()) {
-			mMetaTooltip.put(Short.valueOf((short)(32000+aID)), aToolTip);
-			mEnabledItems.set(aID);
-			setFoodBehavior(32000+aID, aFoodBehavior);
-			ItemStack rStack = new ItemStack(this, 1, 32000+aID);
-			for (Object tOreDictName : aOreDictNames) GT_OreDictUnificator.registerOreLater(tOreDictName, rStack);
-			return rStack;
-		}
-		return null;
-	}
-	
-	/**
-	 * Adds a special Clicking Behavior to the Item.
-	 * 
-	 * Note: the boolean Behaviors sometimes won't be executed if another boolean Behavior returned true before.
-	 * 
-	 * @param aMetaValue the Meta Value of the Item you want to add it to. [0 - 32765]
-	 * @param aClickBehavior the Click Behavior you want to add.
-	 * @return the Item itself for convenience in constructing.
-	 */
-	public final GT_MetaGenerated_Item addClickBehavior(int aMetaValue, IOnItemClick aClickBehavior) {
-		if (aMetaValue < 0 || aMetaValue >= 32000 + mEnabledItems.length() || aClickBehavior == null) return this;
-		ArrayList<IOnItemClick> tList = mClickBehaviors.get((short)aMetaValue);
-		if (tList == null) {
-			tList = new ArrayList<IOnItemClick>(1);
-			mClickBehaviors.put((short)aMetaValue, tList);
-		}
-		tList.add(aClickBehavior);
-		return this;
-	}
-	
-	/**
-	 * Sets a Food Behavior for the Item.
-	 * 
-	 * @param aMetaValue the Meta Value of the Item you want to set it to. [0 - 32765]
-	 * @param aFoodBehavior the Food Behavior you want to add.
-	 * @return the Item itself for convenience in constructing.
-	 */
-	public final GT_MetaGenerated_Item setFoodBehavior(int aMetaValue, IFoodStat aFoodBehavior) {
-		if (aMetaValue < 0 || aMetaValue >= 32000 + mEnabledItems.length()) return this;
-		if (aFoodBehavior == null) mFoodStats.remove((short)aMetaValue); else mFoodStats.put((short)aMetaValue, aFoodBehavior);
-		return this;
-	}
-	
-	/**
-	 * Sets the Furnace Burn Value for the Item.
-	 * 
-	 * @param aMetaValue the Meta Value of the Item you want to set it to. [0 - 32765]
-	 * @param aValue 200 = 1 Burn Process = 500 EU, max = 32767 (that is 81917.5 EU)
-	 * @return the Item itself for convenience in constructing.
-	 */
-	public final GT_MetaGenerated_Item setBurnValue(int aMetaValue, int aValue) {
-		if (aMetaValue < 0 || aMetaValue >= 32000 + mEnabledItems.length() || aValue < 0) return this;
-		if (aValue == 0) mBurnValues.remove((short)aMetaValue); else mBurnValues.put((short)aMetaValue, aValue>Short.MAX_VALUE?Short.MAX_VALUE:(short)aValue);
-		return this;
-	}
-	
-	/**
-	 * @param aMetaValue the Meta Value of the Item you want to set it to. [0 - 32765]
-	 * @param aMaxCharge Maximum Charge. (if this is < 0 it will remove the Electric Behavior)
-	 * @param aTransferLimit Transfer Limit.
-	 * @param aTier The electric Tier.
-	 * @param aSpecialData If this Item has a Fixed Charge, like a SingleUse Battery (if > 0).
-	 * Use -1 if you want to make this Battery chargeable. (the use and canUse Functions will still discharge if you just use this)
-	 * Use -2 if you want to make this Battery dischargeable.
-	 * Use -3 if you want to make this Battery charge/discharge-able.
-	 * @return the Item itself for convenience in constructing.
-	 */
-	public final GT_MetaGenerated_Item setElectricStats(int aMetaValue, int aMaxCharge, int aTransferLimit, int aTier, int aSpecialData) {
-		if (aMetaValue < 0 || aMetaValue >= 32000 + mEnabledItems.length()) return this;
-		if (aMaxCharge < 0) mElectricStats.remove((short)aMetaValue); else {
-			mElectricStats.put((short)aMetaValue, new Integer[] {aMaxCharge, Math.max(0, aTransferLimit), Math.max(0, aTier), aSpecialData});
-			if (aMetaValue >= 32000) mIconList[aMetaValue-32000] = Arrays.copyOf(mIconList[aMetaValue-32000], Math.max(9, mIconList[aMetaValue-32000].length));
-		}
-		return this;
-	}
-	
-	/* ---------- INTERNAL OVERRIDES ---------- */
-	
+    }
+
+    /**
+     * @return if this MetaGenerated Item should use my Default Renderer System.
+     */
+    public boolean useStandardMetaItemRenderer() {
+        return true;
+    }
+
+    /* ---------- FOR ADDING CUSTOM ITEMS INTO THE REMAINING 766 RANGE ---------- */
+
+    /**
+     * This adds a Custom Item to the ending Range.
+     * 
+     * @param aID           The Id of the assigned Item [0 - 765] (The MetaData gets auto-shifted by +32000)
+     * @param aEnglish      The Default Localized Name of the created Item
+     * @param aToolTip      The Default ToolTip of the created Item, you can also insert null for having no ToolTip
+     * @param aFoodBehavior The Food Value of this Item. Can be null aswell.
+     * @param aOreDictNames The OreDict Names you want to give the Item.
+     * @return An ItemStack containing the newly created Item.
+     */
+    public final ItemStack addItem(int aID, String aToolTip, IFoodStat aFoodBehavior, Object... aOreDictNames) {
+        if (aToolTip == null) aToolTip = "";
+        if (aID >= 0 && aID < mEnabledItems.size()) {
+            mMetaTooltip.put(Short.valueOf((short) (32000 + aID)), aToolTip);
+            mEnabledItems.set(aID);
+            setFoodBehavior(32000 + aID, aFoodBehavior);
+            ItemStack rStack = new ItemStack(this, 1, 32000 + aID);
+            for (Object tOreDictName : aOreDictNames) GT_OreDictUnificator.registerOreLater(tOreDictName, rStack);
+            return rStack;
+        }
+        return null;
+    }
+
+    /**
+     * Adds a special Clicking Behavior to the Item.
+     * 
+     * Note: the boolean Behaviors sometimes won't be executed if another boolean Behavior returned true before.
+     * 
+     * @param aMetaValue     the Meta Value of the Item you want to add it to. [0 - 32765]
+     * @param aClickBehavior the Click Behavior you want to add.
+     * @return the Item itself for convenience in constructing.
+     */
+    public final GT_MetaGenerated_Item addClickBehavior(int aMetaValue, IOnItemClick aClickBehavior) {
+        if (aMetaValue < 0 || aMetaValue >= 32000 + mEnabledItems.length() || aClickBehavior == null) return this;
+        ArrayList<IOnItemClick> tList = mClickBehaviors.get((short) aMetaValue);
+        if (tList == null) {
+            tList = new ArrayList<IOnItemClick>(1);
+            mClickBehaviors.put((short) aMetaValue, tList);
+        }
+        tList.add(aClickBehavior);
+        return this;
+    }
+
+    /**
+     * Sets a Food Behavior for the Item.
+     * 
+     * @param aMetaValue    the Meta Value of the Item you want to set it to. [0 - 32765]
+     * @param aFoodBehavior the Food Behavior you want to add.
+     * @return the Item itself for convenience in constructing.
+     */
+    public final GT_MetaGenerated_Item setFoodBehavior(int aMetaValue, IFoodStat aFoodBehavior) {
+        if (aMetaValue < 0 || aMetaValue >= 32000 + mEnabledItems.length()) return this;
+        if (aFoodBehavior == null) mFoodStats.remove((short) aMetaValue);
+        else mFoodStats.put((short) aMetaValue, aFoodBehavior);
+        return this;
+    }
+
+    /**
+     * Sets the Furnace Burn Value for the Item.
+     * 
+     * @param aMetaValue the Meta Value of the Item you want to set it to. [0 - 32765]
+     * @param aValue     200 = 1 Burn Process = 500 EU, max = 32767 (that is 81917.5 EU)
+     * @return the Item itself for convenience in constructing.
+     */
+    public final GT_MetaGenerated_Item setBurnValue(int aMetaValue, int aValue) {
+        if (aMetaValue < 0 || aMetaValue >= 32000 + mEnabledItems.length() || aValue < 0) return this;
+        if (aValue == 0) mBurnValues.remove((short) aMetaValue);
+        else mBurnValues.put((short) aMetaValue, aValue > Short.MAX_VALUE ? Short.MAX_VALUE : (short) aValue);
+        return this;
+    }
+
+    /**
+     * @param aMetaValue     the Meta Value of the Item you want to set it to. [0 - 32765]
+     * @param aMaxCharge     Maximum Charge. (if this is < 0 it will remove the Electric Behavior)
+     * @param aTransferLimit Transfer Limit.
+     * @param aTier          The electric Tier.
+     * @param aSpecialData   If this Item has a Fixed Charge, like a SingleUse Battery (if > 0).
+     *                       Use -1 if you want to make this Battery chargeable. (the use and canUse Functions will
+     *                       still discharge if you just use this)
+     *                       Use -2 if you want to make this Battery dischargeable.
+     *                       Use -3 if you want to make this Battery charge/discharge-able.
+     * @return the Item itself for convenience in constructing.
+     */
+    public final GT_MetaGenerated_Item setElectricStats(int aMetaValue, int aMaxCharge, int aTransferLimit, int aTier,
+        int aSpecialData) {
+        if (aMetaValue < 0 || aMetaValue >= 32000 + mEnabledItems.length()) return this;
+        if (aMaxCharge < 0) mElectricStats.remove((short) aMetaValue);
+        else {
+            mElectricStats.put(
+                (short) aMetaValue,
+                new Integer[] { aMaxCharge, Math.max(0, aTransferLimit), Math.max(0, aTier), aSpecialData });
+            if (aMetaValue >= 32000) mIconList[aMetaValue - 32000] = Arrays
+                .copyOf(mIconList[aMetaValue - 32000], Math.max(9, mIconList[aMetaValue - 32000].length));
+        }
+        return this;
+    }
+
+    /* ---------- INTERNAL OVERRIDES ---------- */
+
     @Override
     public final int getMaxItemUseDuration(ItemStack aStack) {
-        return mFoodStats.get((short)getDamage(aStack)) == null ? 0 : 32;
+        return mFoodStats.get((short) getDamage(aStack)) == null ? 0 : 32;
     }
-    
+
     @Override
-	public final EnumAction getItemUseAction(ItemStack aStack) {
-    	IFoodStat tStat = mFoodStats.get((short)getDamage(aStack));
+    public final EnumAction getItemUseAction(ItemStack aStack) {
+        IFoodStat tStat = mFoodStats.get((short) getDamage(aStack));
         return tStat == null ? EnumAction.none : tStat.getFoodAction(this, aStack);
     }
 
-	@Override
-	public final ItemStack onEaten(ItemStack aStack, World aWorld, EntityPlayer aPlayer) {
-		IFoodStat tStat = mFoodStats.get((short) getDamage(aStack));
-		if (tStat != null) {
-			if (Loader.isModLoaded("AppleCore")) {
-				aPlayer.getFoodStats()
-						.func_151686_a(getFoodProxy(this), aStack);
-			} else {
-				aPlayer.getFoodStats().addStats(tStat.getFoodLevel(this, aStack, aPlayer), tStat.getSaturation(this, aStack, aPlayer));
-			}
-			tStat.onEaten(this, aStack, aPlayer);
-		}
-		return aStack;
-	}
-
-	@Override
-	public final boolean onItemUse(ItemStack aStack, EntityPlayer aPlayer, World aWorld, int aX, int aY, int aZ, int aSide, float hitX, float hitY, float hitZ) {
-		ArrayList<IOnItemClick> tList = mClickBehaviors.get((short)getDamage(aStack));
-		if (tList != null) for (IOnItemClick tBehavior : tList) if (tBehavior.onItemUse(this, aStack, aPlayer, aWorld, aX, aY, aZ, aSide, hitX, hitY, hitZ)) return true;
-    	return false;
-	}
-	
-	@Override
-	public final boolean onItemUseFirst(ItemStack aStack, EntityPlayer aPlayer, World aWorld, int aX, int aY, int aZ, int aSide, float hitX, float hitY, float hitZ) {
-		ArrayList<IOnItemClick> tList = mClickBehaviors.get((short)getDamage(aStack));
-		if (tList != null) for (IOnItemClick tBehavior : tList) if (tBehavior.onItemUseFirst(this, aStack, aPlayer, aWorld, aX, aY, aZ, aSide, hitX, hitY, hitZ)) return true;
-		return false;
-	}
-	
     @Override
-	public final ItemStack onItemRightClick(ItemStack aStack, World aWorld, EntityPlayer aPlayer) {
-    	ArrayList<IOnItemClick> tList = mClickBehaviors.get((short)getDamage(aStack));
-		if (tList != null) for (IOnItemClick tBehavior : tList) aStack = tBehavior.onItemRightClick(this, aStack, aWorld, aPlayer);
-		IFoodStat tStat = mFoodStats.get((short)getDamage(aStack));
-    	if (tStat != null && aPlayer.canEat(tStat.alwaysEdible(this, aStack, aPlayer))) {
-    		aPlayer.setItemInUse(aStack, getMaxItemUseDuration(aStack));
-    	}
-		return aStack;
-    }
-    
-	public final IIconContainer getIconContainer(int aMetaData) {
-		if (aMetaData < 0) return null;
-		if (aMetaData < 32000) {
-			Materials tMaterial = GregTech_API.sGeneratedMaterials[aMetaData % 1000];
-			if (tMaterial == null) return null;
-			return getIconContainer(aMetaData, tMaterial);
-		}
-		return null;
+    public final ItemStack onEaten(ItemStack aStack, World aWorld, EntityPlayer aPlayer) {
+        IFoodStat tStat = mFoodStats.get((short) getDamage(aStack));
+        if (tStat != null) {
+            if (Loader.isModLoaded("AppleCore")) {
+                aPlayer.getFoodStats()
+                    .func_151686_a(getFoodProxy(this), aStack);
+            } else {
+                aPlayer.getFoodStats()
+                    .addStats(tStat.getFoodLevel(this, aStack, aPlayer), tStat.getSaturation(this, aStack, aPlayer));
+            }
+            tStat.onEaten(this, aStack, aPlayer);
+        }
+        return aStack;
     }
 
-	@Override
+    @Override
+    public final boolean onItemUse(ItemStack aStack, EntityPlayer aPlayer, World aWorld, int aX, int aY, int aZ,
+        int aSide, float hitX, float hitY, float hitZ) {
+        ArrayList<IOnItemClick> tList = mClickBehaviors.get((short) getDamage(aStack));
+        if (tList != null) for (IOnItemClick tBehavior : tList)
+            if (tBehavior.onItemUse(this, aStack, aPlayer, aWorld, aX, aY, aZ, aSide, hitX, hitY, hitZ)) return true;
+        return false;
+    }
+
+    @Override
+    public final boolean onItemUseFirst(ItemStack aStack, EntityPlayer aPlayer, World aWorld, int aX, int aY, int aZ,
+        int aSide, float hitX, float hitY, float hitZ) {
+        ArrayList<IOnItemClick> tList = mClickBehaviors.get((short) getDamage(aStack));
+        if (tList != null) for (IOnItemClick tBehavior : tList)
+            if (tBehavior.onItemUseFirst(this, aStack, aPlayer, aWorld, aX, aY, aZ, aSide, hitX, hitY, hitZ))
+                return true;
+        return false;
+    }
+
+    @Override
+    public final ItemStack onItemRightClick(ItemStack aStack, World aWorld, EntityPlayer aPlayer) {
+        ArrayList<IOnItemClick> tList = mClickBehaviors.get((short) getDamage(aStack));
+        if (tList != null)
+            for (IOnItemClick tBehavior : tList) aStack = tBehavior.onItemRightClick(this, aStack, aWorld, aPlayer);
+        IFoodStat tStat = mFoodStats.get((short) getDamage(aStack));
+        if (tStat != null && aPlayer.canEat(tStat.alwaysEdible(this, aStack, aPlayer))) {
+            aPlayer.setItemInUse(aStack, getMaxItemUseDuration(aStack));
+        }
+        return aStack;
+    }
+
+    public final IIconContainer getIconContainer(int aMetaData) {
+        if (aMetaData < 0) return null;
+        if (aMetaData < 32000) {
+            Materials tMaterial = GregTech_API.sGeneratedMaterials[aMetaData % 1000];
+            if (tMaterial == null) return null;
+            return getIconContainer(aMetaData, tMaterial);
+        }
+        return null;
+    }
+
+    @Override
     @SideOnly(Side.CLIENT)
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public final void getSubItems(Item item, CreativeTabs aCreativeTab, List aList) {
-        for (int i = 0; i < 32000; i++) if (doesMaterialAllowGeneration(mGeneratedPrefixList[i / 1000], GregTech_API.sGeneratedMaterials[i % 1000]) && doesShowInCreative(mGeneratedPrefixList[i / 1000], GregTech_API.sGeneratedMaterials[i % 1000], GregTech_API.sDoShowAllItemsInCreative)) aList.add(new ItemStack(this, 1, i));
+        for (int i = 0; i < 32000; i++)
+            if (doesMaterialAllowGeneration(mGeneratedPrefixList[i / 1000], GregTech_API.sGeneratedMaterials[i % 1000])
+                && doesShowInCreative(
+                    mGeneratedPrefixList[i / 1000],
+                    GregTech_API.sGeneratedMaterials[i % 1000],
+                    GregTech_API.sDoShowAllItemsInCreative))
+                aList.add(new ItemStack(this, 1, i));
         for (int i = 0, j = mEnabledItems.length(); i < j; i++) if (mEnabledItems.get(i)) {
-    		Integer[] tStats = mElectricStats.get((short)(32000+i));
-    		if (tStats != null && tStats[3] < 0) {
-    			ItemStack tStack = new ItemStack(this, 1, 32000+i);
-    			setCharge(tStack, tStats[0]);
-            	aList.add(tStack);
-    		}
-    		if (tStats == null || tStats[3] != -2) {
-            	aList.add(new ItemStack(this, 1, 32000+i));
-    		}
+            Integer[] tStats = mElectricStats.get((short) (32000 + i));
+            if (tStats != null && tStats[3] < 0) {
+                ItemStack tStack = new ItemStack(this, 1, 32000 + i);
+                setCharge(tStack, tStats[0]);
+                aList.add(tStack);
+            }
+            if (tStats == null || tStats[3] != -2) {
+                aList.add(new ItemStack(this, 1, 32000 + i));
+            }
         }
     }
-	@Optional.Method(modid = "AppleCore")
-	private static ItemFood getFoodProxy(Object edible) {
-		return new ItemFoodProxy((IEdible) edible);
-	}
 
-	@Override
-	@Optional.Method(modid = "AppleCore")
-	public FoodValues getFoodValues(ItemStack aStack) {
-	IFoodStat tStat = mFoodStats.get((short) getDamage(aStack));
-	return tStat == null ? null
-			: new FoodValues(tStat.getFoodLevel(this, aStack, null), tStat.getSaturation(this, aStack, null));
-	}
-
-	@Override
-    public String getUnlocalizedName(ItemStack aStack) {
-    	return getUnlocalizedName() + "." + getDamage(aStack);
+    @Optional.Method(modid = "AppleCore")
+    private static ItemFood getFoodProxy(Object edible) {
+        return new ItemFoodProxy((IEdible) edible);
     }
-	
-	@Override
+
+    @Override
+    @Optional.Method(modid = "AppleCore")
+    public FoodValues getFoodValues(ItemStack aStack) {
+        IFoodStat tStat = mFoodStats.get((short) getDamage(aStack));
+        return tStat == null ? null
+            : new FoodValues(tStat.getFoodLevel(this, aStack, null), tStat.getSaturation(this, aStack, null));
+    }
+
+    @Override
+    public String getUnlocalizedName(ItemStack aStack) {
+        return getUnlocalizedName() + "." + getDamage(aStack);
+    }
+
+    @Override
     @SideOnly(Side.CLIENT)
     public final void registerIcons(IIconRegister aIconRegister) {
-		GT_Log.log.info("Setting up Icon Register for Items");
-    	GregTech_API.sItemIcons = aIconRegister;
-    	
-    	GT_Log.log.info("Starting Item Icon Load Phase Clientside");
-    	for (Runnable tRunnable : GregTech_API.sGTItemIconload) {
-    		try {
-    			tRunnable.run();
-    		} catch(Throwable e) {
-    			GT_Log.log.catching(e);
-    		}
-    	}
-		
-		for (short i = 0, j = (short)mEnabledItems.length(); i < j; i++) if (mEnabledItems.get(i)) {
-			for (byte k = 1; k < mIconList[i].length; k++) {
-				mIconList[i][k] = aIconRegister.registerIcon(GregTech_API.TEXTURE_PATH_ITEM + getUnlocalizedName() + "/" + i + "/" + k);
-			}
-    		mIconList[i][0] = aIconRegister.registerIcon(GregTech_API.TEXTURE_PATH_ITEM + getUnlocalizedName() + "/" + i);
-    	}
-    }
-	
-	@Override
-    public final IIcon getIconFromDamage(int aMetaData) {
-		if (aMetaData < 0) return null;
-		if (aMetaData < 32000) {
-			Materials tMaterial = GregTech_API.sGeneratedMaterials[aMetaData % 1000];
-			if (tMaterial == null) return null;
-			IIconContainer tIcon = getIconContainer(aMetaData, tMaterial);
-			if (tIcon != null) return tIcon.getIcon();
-			return null;
-		}
-		return aMetaData-32000<mIconList.length?mIconList[aMetaData-32000][0]:null;
-    }
-	
-	@Override
-	@SuppressWarnings("deprecation")
-    public final boolean hasEffect(ItemStack aStack) {
-		if (super.hasEffect(aStack)) return true;
-		int aMetaData = getDamage(aStack);
-		if (aMetaData < 0) return false;
-		if (aMetaData < 32000) {
-			Materials tMaterial = GregTech_API.sGeneratedMaterials[aMetaData % 1000];
-			if (tMaterial == null) return false;
-			return tMaterial.isRadioactive() || tMaterial.contains(SubTag.ENCHANTMENT_GLOW);
-		}
-        return false;
-    }
-	
-	@Override
-    public final boolean hasEffect(ItemStack aStack, int aPass) {
-		if (super.hasEffect(aStack, aPass)) return true;
-		int aMetaData = getDamage(aStack);
-		if (aMetaData < 0) return false;
-		if (aMetaData < 32000) {
-			Materials tMaterial = GregTech_API.sGeneratedMaterials[aMetaData % 1000];
-			if (tMaterial == null) return false;
-			return tMaterial.isRadioactive() || tMaterial.contains(SubTag.ENCHANTMENT_GLOW);
-		}
-        return false;
-    }
-    
-	@Override
-	public String getItemStackDisplayName(ItemStack aStack) {
-		try {
-			int aMetaData = getDamage(aStack);
-			Materials tMaterial = GregTech_API.sGeneratedMaterials[aMetaData % 1000];
-			OrePrefixes prefix = mGeneratedPrefixList[aMetaData / 1000];
-			return getDefaultLocalization(prefix, tMaterial, aMetaData);
-		} catch (Throwable e) {
-			return super.getItemStackDisplayName(aStack);
-		}
-	}
-	
-	@Override
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-    public final void addInformation(ItemStack aStack, EntityPlayer aPlayer, List aList, boolean aF3_H) {
-		
-		String mTooltip = mMetaTooltip.get(Short.valueOf((short)aStack.getItemDamage()));
-		if (GT_Utility.isStringValid(mTooltip)) {
-			aList.add(I18n.format(mTooltip));
-		}
-		
-		Integer[] tStats = mElectricStats.get((short)aStack.getItemDamage());
-		if (tStats != null) {
-			if (tStats[3] > 0) {
-				aList.add(StatCollector.translateToLocalFormatted("util.GregTech_MetaGenerated_Item_01.Contains_tier",tStats[3], tStats[2]>0?tStats[2]:1 ));
-			} else {
-				int tCharge = (int) getCharge(aStack);
-				if (tStats[3] == -2 && tCharge <= 0) {
-					aList.add(I18n.format("item.empty"));
-				} else {
-					aList.add(StatCollector.translateToLocalFormatted("util.GregTech_MetaGenerated_Item_01.charge",
-							GT_Utility.parseNumberToString(tCharge),
-							GT_Utility.parseNumberToString(tStats[0]),
-							GT_Utility.parseNumberToString(GregTech_API.VOLTAGES[tStats[2]>0?tStats[2]<GregTech_API.VOLTAGES.length?tStats[2]:GregTech_API.VOLTAGES.length-1:1])));
-				}
-			}
-		}
-		
-		try {
-			int aMetaData = getDamage(aStack);
-			OrePrefixes pref = mGeneratedPrefixList[aMetaData / 1000];
-			Materials tMaterial = GregTech_API.sGeneratedMaterials[aMetaData % 1000];
-			if (pref.mIsMaterialBased && pref.mIsUnificatable) {
-				String toolTip = tMaterial.getToolTip(false);
-				if (GT_Utility.isStringValid(toolTip)) aList.add(toolTip);
-			}
-				
-		} catch (Throwable e) {} 
+        GT_Log.log.info("Setting up Icon Register for Items");
+        GregTech_API.sItemIcons = aIconRegister;
 
-		if (aList.size() <= 1) {
-			if (GT_Utility.isStringValid(mTooltip)) aList.add(I18n.format(mTooltip));
-		}
-	}
-	
-	@Override
-	public final double getMaxCharge(ItemStack aStack) {
-		Integer[] tStats = mElectricStats.get((short)aStack.getItemDamage());
-		if (tStats == null) return 0;
-		return tStats[0];
-	}
-	
-	@Override
-	public final double getTransferLimit(ItemStack aStack) {
-		Integer[] tStats = mElectricStats.get((short)aStack.getItemDamage());
-		if (tStats == null) return 0;
-		return Math.max(tStats[1], tStats[3]);
-	}
-	
-	@Override
-	public final boolean canProvideEnergy(ItemStack aStack) {
-		Integer[] tStats = mElectricStats.get((short)aStack.getItemDamage());
-		if (tStats == null) return false;
-		return tStats[3] > 0 || (aStack.stackSize == 1 && (tStats[3] == -2 || tStats[3] == -3));
-	}
-	
-	@Override
-	public final double charge(ItemStack aStack, double aCharge, int aTier, boolean aIgnoreTransferLimit, boolean aSimulate) {
-		Integer[] tStats = mElectricStats.get((short)aStack.getItemDamage());
-		if (tStats == null || tStats[2] > aTier || !(tStats[3] == -1 || tStats[3] == -3 || (tStats[3] < 0 && aCharge == Integer.MAX_VALUE)) || aStack.stackSize != 1) return 0;
-		double tChargeBefore = getCharge(aStack), tNewCharge = Math.min(tStats[0], tChargeBefore + (aIgnoreTransferLimit?aCharge:Math.min(tStats[1], aCharge)));
-		if (!aSimulate) setCharge(aStack, tNewCharge);
-		return tNewCharge-tChargeBefore;
-	}
-	
-	@Override
-	public final double discharge(ItemStack aStack, double aCharge, int aTier, boolean aIgnoreTransferLimit, boolean externally, boolean aSimulate) {
-		Integer[] tStats = mElectricStats.get((short)aStack.getItemDamage());
-		if (tStats == null || tStats[2] > aTier) return 0;
-		if (tStats[3] > 0) {
-			if (aCharge < tStats[3] || aStack.stackSize < 1) return 0;
-			if (!aSimulate) aStack.stackSize--;
-			return tStats[3];
-		}
-		double tChargeBefore = getCharge(aStack), tNewCharge = Math.max(0, tChargeBefore - (aIgnoreTransferLimit?aCharge:Math.min(tStats[1], aCharge)));
-		if (!aSimulate) setCharge(aStack, tNewCharge);
-		return tChargeBefore-tNewCharge;
-	}
-	
-	@Override
-	public final double getCharge(ItemStack aStack) {
-		Integer[] tStats = mElectricStats.get((short)aStack.getItemDamage());
-		if (tStats == null) return 0;
-		if (tStats[3] > 0) return tStats[3];
-		NBTTagCompound tNBT = aStack.getTagCompound();
-		return tNBT==null?0:tNBT.getInteger("GT.ItemCharge");
-	}
-	
-	@Override
-	public final boolean canUse(ItemStack aStack, double aAmount) {
-		return getCharge(aStack) >= aAmount;
-	}
-	
-	@Override
-	public final boolean use(ItemStack aStack, double aAmount, EntityLivingBase aPlayer) {
-		if (aPlayer.worldObj.isRemote) return false;
-		if (aAmount <= 0) {
-			chargeFromArmor(aStack, aPlayer);
-			return true;
-		}
-		double transfer = discharge(aStack, aAmount, Integer.MAX_VALUE, true, false, true);
-		if (transfer == aAmount) {
-			discharge(aStack, aAmount, Integer.MAX_VALUE, true, false, false);
-			chargeFromArmor(aStack, aPlayer);
-			return true;
-		}
-		return false;
-	}
-	
-	@Override
-	public final void chargeFromArmor(ItemStack aStack, EntityLivingBase aPlayer) {
-		if (aPlayer.worldObj.isRemote) return;
-		for (int i = 1; i < 5; i++) {
-			ItemStack tArmor = aPlayer.getEquipmentInSlot(i);
-			if (GT_ModHandler.isElectricItem(tArmor)) {
-				IElectricItem tArmorItem = (IElectricItem)tArmor.getItem();
-				if (tArmorItem.canProvideEnergy(tArmor) && tArmorItem.getTier(tArmor) >= getTier(aStack)) {
-					double tCharge = ElectricItem.manager.discharge(tArmor, charge(aStack, Integer.MAX_VALUE-1, Integer.MAX_VALUE, true, true), Integer.MAX_VALUE, true, false, false);
-					if (tCharge > 0) {
-						charge(aStack, tCharge, Integer.MAX_VALUE, true, false);
-						if (aPlayer instanceof EntityPlayer) {
-							Container tContainer = ((EntityPlayer)aPlayer).openContainer;
-							if (tContainer != null) tContainer.detectAndSendChanges();
-						}
-					}
-				}
-			}
-		}
-	}
-	
-	public final boolean setCharge(ItemStack aStack, double aCharge) {
-		Integer[] tStats = mElectricStats.get((short)aStack.getItemDamage());
-		if (tStats == null || tStats[3] > 0) return false;
-		NBTTagCompound tNBT = aStack.getTagCompound();
-		if (tNBT == null) tNBT = new NBTTagCompound();
-		tNBT.removeTag("GT.ItemCharge");
-		aCharge = Math.min(aCharge, tStats[0]);
-		if (aCharge > 0) tNBT.setInteger("GT.ItemCharge", (int)aCharge);
-		if (tNBT.hasNoTags()) aStack.setTagCompound(null); else aStack.setTagCompound(tNBT);
-		return true;
-	}
-	
-	@Override
-	public final int getItemStackLimit(ItemStack aStack) {
-		Integer[] tStats = mElectricStats.get((short)aStack.getItemDamage());
-		if (tStats != null && (tStats[3] == -1 || tStats[3] == -3) && getCharge(aStack) > 0) return 1;
-		return 64;
-	}
-	
-    @Override public final int getTier(ItemStack aStack) {Integer[] tStats = mElectricStats.get((short)aStack.getItemDamage()); return tStats==null?Integer.MAX_VALUE:tStats[2]>0?tStats[2]:1;}
-	@Override public final String getToolTip(ItemStack aStack) {return null;} // This has its own ToolTip Handler, no need to let the IC2 Handler screw us up at this Point
-	@Override public final Item getChargedItem(ItemStack aStack) {return this;} // Item Changes? How primitive
-	@Override public final Item getEmptyItem(ItemStack aStack) {return this;} // Item Changes? How primitive
-	@Override public final IElectricItemManager getManager(ItemStack aStack) {return this;} // We are our own Manager
-	@Override public final boolean getShareTag() {return true;} // just to be sure.
+        GT_Log.log.info("Starting Item Icon Load Phase Clientside");
+        for (Runnable tRunnable : GregTech_API.sGTItemIconload) {
+            try {
+                tRunnable.run();
+            } catch (Throwable e) {
+                GT_Log.log.catching(e);
+            }
+        }
+
+        for (short i = 0, j = (short) mEnabledItems.length(); i < j; i++) if (mEnabledItems.get(i)) {
+            for (byte k = 1; k < mIconList[i].length; k++) {
+                mIconList[i][k] = aIconRegister
+                    .registerIcon(GregTech_API.TEXTURE_PATH_ITEM + getUnlocalizedName() + "/" + i + "/" + k);
+            }
+            mIconList[i][0] = aIconRegister
+                .registerIcon(GregTech_API.TEXTURE_PATH_ITEM + getUnlocalizedName() + "/" + i);
+        }
+    }
+
+    @Override
+    public final IIcon getIconFromDamage(int aMetaData) {
+        if (aMetaData < 0) return null;
+        if (aMetaData < 32000) {
+            Materials tMaterial = GregTech_API.sGeneratedMaterials[aMetaData % 1000];
+            if (tMaterial == null) return null;
+            IIconContainer tIcon = getIconContainer(aMetaData, tMaterial);
+            if (tIcon != null) return tIcon.getIcon();
+            return null;
+        }
+        return aMetaData - 32000 < mIconList.length ? mIconList[aMetaData - 32000][0] : null;
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public final boolean hasEffect(ItemStack aStack) {
+        if (super.hasEffect(aStack)) return true;
+        int aMetaData = getDamage(aStack);
+        if (aMetaData < 0) return false;
+        if (aMetaData < 32000) {
+            Materials tMaterial = GregTech_API.sGeneratedMaterials[aMetaData % 1000];
+            if (tMaterial == null) return false;
+            return tMaterial.isRadioactive() || tMaterial.contains(SubTag.ENCHANTMENT_GLOW);
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean hasEffect(ItemStack aStack, int aPass) {
+        if (super.hasEffect(aStack, aPass)) return true;
+        int aMetaData = getDamage(aStack);
+        if (aMetaData < 0) return false;
+        if (aMetaData < 32000) {
+            Materials tMaterial = GregTech_API.sGeneratedMaterials[aMetaData % 1000];
+            if (tMaterial == null) return false;
+            return tMaterial.isRadioactive() || tMaterial.contains(SubTag.ENCHANTMENT_GLOW);
+        }
+        return false;
+    }
+
+    @Override
+    public String getItemStackDisplayName(ItemStack aStack) {
+        try {
+            int aMetaData = getDamage(aStack);
+            Materials tMaterial = GregTech_API.sGeneratedMaterials[aMetaData % 1000];
+            OrePrefixes prefix = mGeneratedPrefixList[aMetaData / 1000];
+            return getDefaultLocalization(prefix, tMaterial, aMetaData);
+        } catch (Throwable e) {
+            return super.getItemStackDisplayName(aStack);
+        }
+    }
+
+    @Override
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    public final void addInformation(ItemStack aStack, EntityPlayer aPlayer, List aList, boolean aF3_H) {
+
+        String mTooltip = mMetaTooltip.get(Short.valueOf((short) aStack.getItemDamage()));
+        if (GT_Utility.isStringValid(mTooltip)) {
+            aList.add(I18n.format(mTooltip));
+        }
+
+        Integer[] tStats = mElectricStats.get((short) aStack.getItemDamage());
+        if (tStats != null) {
+            if (tStats[3] > 0) {
+                aList.add(
+                    StatCollector.translateToLocalFormatted(
+                        "util.GregTech_MetaGenerated_Item_01.Contains_tier",
+                        tStats[3],
+                        tStats[2] > 0 ? tStats[2] : 1));
+            } else {
+                int tCharge = (int) getCharge(aStack);
+                if (tStats[3] == -2 && tCharge <= 0) {
+                    aList.add(I18n.format("item.empty"));
+                } else {
+                    aList.add(
+                        StatCollector.translateToLocalFormatted(
+                            "util.GregTech_MetaGenerated_Item_01.charge",
+                            GT_Utility.parseNumberToString(tCharge),
+                            GT_Utility.parseNumberToString(tStats[0]),
+                            GT_Utility.parseNumberToString(
+                                GregTech_API.VOLTAGES[tStats[2] > 0
+                                    ? tStats[2] < GregTech_API.VOLTAGES.length ? tStats[2]
+                                        : GregTech_API.VOLTAGES.length - 1
+                                    : 1])));
+                }
+            }
+        }
+
+        try {
+            int aMetaData = getDamage(aStack);
+            OrePrefixes pref = mGeneratedPrefixList[aMetaData / 1000];
+            Materials tMaterial = GregTech_API.sGeneratedMaterials[aMetaData % 1000];
+            if (pref.mIsMaterialBased && pref.mIsUnificatable) {
+                String toolTip = tMaterial.getToolTip(false);
+                if (GT_Utility.isStringValid(toolTip)) aList.add(toolTip);
+            }
+
+        } catch (Throwable e) {}
+
+        if (aList.size() <= 1) {
+            if (GT_Utility.isStringValid(mTooltip)) aList.add(I18n.format(mTooltip));
+        }
+    }
+
+    @Override
+    public final double getMaxCharge(ItemStack aStack) {
+        Integer[] tStats = mElectricStats.get((short) aStack.getItemDamage());
+        if (tStats == null) return 0;
+        return tStats[0];
+    }
+
+    @Override
+    public final double getTransferLimit(ItemStack aStack) {
+        Integer[] tStats = mElectricStats.get((short) aStack.getItemDamage());
+        if (tStats == null) return 0;
+        return Math.max(tStats[1], tStats[3]);
+    }
+
+    @Override
+    public final boolean canProvideEnergy(ItemStack aStack) {
+        Integer[] tStats = mElectricStats.get((short) aStack.getItemDamage());
+        if (tStats == null) return false;
+        return tStats[3] > 0 || (aStack.stackSize == 1 && (tStats[3] == -2 || tStats[3] == -3));
+    }
+
+    @Override
+    public final double charge(ItemStack aStack, double aCharge, int aTier, boolean aIgnoreTransferLimit,
+        boolean aSimulate) {
+        Integer[] tStats = mElectricStats.get((short) aStack.getItemDamage());
+        if (tStats == null || tStats[2] > aTier
+            || !(tStats[3] == -1 || tStats[3] == -3 || (tStats[3] < 0 && aCharge == Integer.MAX_VALUE))
+            || aStack.stackSize != 1) return 0;
+        double tChargeBefore = getCharge(aStack), tNewCharge = Math
+            .min(tStats[0], tChargeBefore + (aIgnoreTransferLimit ? aCharge : Math.min(tStats[1], aCharge)));
+        if (!aSimulate) setCharge(aStack, tNewCharge);
+        return tNewCharge - tChargeBefore;
+    }
+
+    @Override
+    public final double discharge(ItemStack aStack, double aCharge, int aTier, boolean aIgnoreTransferLimit,
+        boolean externally, boolean aSimulate) {
+        Integer[] tStats = mElectricStats.get((short) aStack.getItemDamage());
+        if (tStats == null || tStats[2] > aTier) return 0;
+        if (tStats[3] > 0) {
+            if (aCharge < tStats[3] || aStack.stackSize < 1) return 0;
+            if (!aSimulate) aStack.stackSize--;
+            return tStats[3];
+        }
+        double tChargeBefore = getCharge(aStack),
+            tNewCharge = Math.max(0, tChargeBefore - (aIgnoreTransferLimit ? aCharge : Math.min(tStats[1], aCharge)));
+        if (!aSimulate) setCharge(aStack, tNewCharge);
+        return tChargeBefore - tNewCharge;
+    }
+
+    @Override
+    public final double getCharge(ItemStack aStack) {
+        Integer[] tStats = mElectricStats.get((short) aStack.getItemDamage());
+        if (tStats == null) return 0;
+        if (tStats[3] > 0) return tStats[3];
+        NBTTagCompound tNBT = aStack.getTagCompound();
+        return tNBT == null ? 0 : tNBT.getInteger("GT.ItemCharge");
+    }
+
+    @Override
+    public final boolean canUse(ItemStack aStack, double aAmount) {
+        return getCharge(aStack) >= aAmount;
+    }
+
+    @Override
+    public final boolean use(ItemStack aStack, double aAmount, EntityLivingBase aPlayer) {
+        if (aPlayer.worldObj.isRemote) return false;
+        if (aAmount <= 0) {
+            chargeFromArmor(aStack, aPlayer);
+            return true;
+        }
+        double transfer = discharge(aStack, aAmount, Integer.MAX_VALUE, true, false, true);
+        if (transfer == aAmount) {
+            discharge(aStack, aAmount, Integer.MAX_VALUE, true, false, false);
+            chargeFromArmor(aStack, aPlayer);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void chargeFromArmor(ItemStack aStack, EntityLivingBase aPlayer) {
+        if (aPlayer.worldObj.isRemote) return;
+        for (int i = 1; i < 5; i++) {
+            ItemStack tArmor = aPlayer.getEquipmentInSlot(i);
+            if (GT_ModHandler.isElectricItem(tArmor)) {
+                IElectricItem tArmorItem = (IElectricItem) tArmor.getItem();
+                if (tArmorItem.canProvideEnergy(tArmor) && tArmorItem.getTier(tArmor) >= getTier(aStack)) {
+                    double tCharge = ElectricItem.manager.discharge(
+                        tArmor,
+                        charge(aStack, Integer.MAX_VALUE - 1, Integer.MAX_VALUE, true, true),
+                        Integer.MAX_VALUE,
+                        true,
+                        false,
+                        false);
+                    if (tCharge > 0) {
+                        charge(aStack, tCharge, Integer.MAX_VALUE, true, false);
+                        if (aPlayer instanceof EntityPlayer) {
+                            Container tContainer = ((EntityPlayer) aPlayer).openContainer;
+                            if (tContainer != null) tContainer.detectAndSendChanges();
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public final boolean setCharge(ItemStack aStack, double aCharge) {
+        Integer[] tStats = mElectricStats.get((short) aStack.getItemDamage());
+        if (tStats == null || tStats[3] > 0) return false;
+        NBTTagCompound tNBT = aStack.getTagCompound();
+        if (tNBT == null) tNBT = new NBTTagCompound();
+        tNBT.removeTag("GT.ItemCharge");
+        aCharge = Math.min(aCharge, tStats[0]);
+        if (aCharge > 0) tNBT.setInteger("GT.ItemCharge", (int) aCharge);
+        if (tNBT.hasNoTags()) aStack.setTagCompound(null);
+        else aStack.setTagCompound(tNBT);
+        return true;
+    }
+
+    @Override
+    public final int getItemStackLimit(ItemStack aStack) {
+        Integer[] tStats = mElectricStats.get((short) aStack.getItemDamage());
+        if (tStats != null && (tStats[3] == -1 || tStats[3] == -3) && getCharge(aStack) > 0) return 1;
+        return 64;
+    }
+
+    @Override
+    public final int getTier(ItemStack aStack) {
+        Integer[] tStats = mElectricStats.get((short) aStack.getItemDamage());
+        return tStats == null ? Integer.MAX_VALUE : tStats[2] > 0 ? tStats[2] : 1;
+    }
+
+    @Override
+    public final String getToolTip(ItemStack aStack) {
+        return null;
+    } // This has its own ToolTip Handler, no need to let the IC2 Handler screw us up at this Point
+
+    @Override
+    public final Item getChargedItem(ItemStack aStack) {
+        return this;
+    } // Item Changes? How primitive
+
+    @Override
+    public final Item getEmptyItem(ItemStack aStack) {
+        return this;
+    } // Item Changes? How primitive
+
+    @Override
+    public final IElectricItemManager getManager(ItemStack aStack) {
+        return this;
+    } // We are our own Manager
+
+    @Override
+    public final boolean getShareTag() {
+        return true;
+    } // just to be sure.
 }
