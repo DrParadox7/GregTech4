@@ -11,18 +11,18 @@ import net.minecraft.item.ItemStack;
  *
  */
 public interface ChancedOutput {
-	
-	/**
-	 * Get a chance of output in format:<br>
-	 * Integer 9575 => 95.75%
-	 */
-	public int getChance();
-	
-	/**
-	 * Returns a copy of output stack with no random applied
-	 */
-	public ItemStack getStack();
-	
-	public Optional<ItemStack> get(Random random);
-	
+
+    /**
+     * Get a chance of output in format:<br>
+     * Integer 9575 => 95.75%
+     */
+    public int getChance();
+
+    /**
+     * Returns a copy of output stack with no random applied
+     */
+    public ItemStack getStack();
+
+    public Optional<ItemStack> get(Random random);
+
 }

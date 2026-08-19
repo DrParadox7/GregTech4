@@ -1,5 +1,11 @@
 package gregtechmod.integration.crafttweaker.recipe;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import net.minecraft.item.ItemStack;
+
 import gregtechmod.api.enums.GT_Items;
 import gregtechmod.api.recipe.RecipeFactory;
 import gregtechmod.common.recipe.RecipeEntry;
@@ -7,13 +13,8 @@ import minetweaker.api.item.IIngredient;
 import minetweaker.api.item.IItemStack;
 import minetweaker.api.liquid.ILiquidStack;
 import minetweaker.api.minecraft.MineTweakerMC;
-import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @ZenClass("mods.gregtechmod.recipe.RecipeFactory")
 public class CTRecipeFactory {
@@ -62,7 +63,8 @@ public class CTRecipeFactory {
 
     @ZenMethod
     public CTRecipeFactory input(IIngredient ingredient) {
-        List<ItemStack> inputs = ingredient.getItems().stream()
+        List<ItemStack> inputs = ingredient.getItems()
+            .stream()
             .map(MineTweakerMC::getItemStack)
             .collect(Collectors.toList());
         backingFactory.input(RecipeEntry.fromStacks(ingredient.getAmount(), inputs));
@@ -71,7 +73,8 @@ public class CTRecipeFactory {
 
     @ZenMethod
     public CTRecipeFactory inputs(IIngredient... ingredients) {
-        Arrays.stream(ingredients).forEach(this::input);
+        Arrays.stream(ingredients)
+            .forEach(this::input);
         return this;
     }
 
@@ -83,7 +86,8 @@ public class CTRecipeFactory {
 
     @ZenMethod
     public CTRecipeFactory fluidInputs(ILiquidStack... fluids) {
-        Arrays.stream(fluids).forEach(this::fluidInput);
+        Arrays.stream(fluids)
+            .forEach(this::fluidInput);
         return this;
     }
 
@@ -95,7 +99,8 @@ public class CTRecipeFactory {
 
     @ZenMethod
     public CTRecipeFactory outputs(IItemStack... outputs) {
-        Arrays.stream(outputs).forEach(this::output);
+        Arrays.stream(outputs)
+            .forEach(this::output);
         return this;
     }
 
@@ -113,7 +118,8 @@ public class CTRecipeFactory {
 
     @ZenMethod
     public CTRecipeFactory fluidOutputs(ILiquidStack... fluids) {
-        Arrays.stream(fluids).forEach(this::fluidOutput);
+        Arrays.stream(fluids)
+            .forEach(this::fluidOutput);
         return this;
     }
 

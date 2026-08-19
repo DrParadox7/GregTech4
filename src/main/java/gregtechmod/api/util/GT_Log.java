@@ -15,22 +15,25 @@ import org.apache.logging.log4j.Logger;
  * Just a simple Logging Function. If on Server, then this will point to System.out and System.err
  */
 public class GT_Log {
-	public static Logger log = LogManager.getLogger("GregTech");
-	public static File mOreDictLogFile;
-	public static PrintStream ore = new LogBuffer();
-	
-	public static class LogBuffer extends PrintStream {
-		public final List<String> mBufferedOreDictLog = new ArrayList<>();
 
-		public LogBuffer() {
-			super(new OutputStream() {
-				@Override
-				public void write(int val) {}
-			});
-		}
+    public static Logger log = LogManager.getLogger("GregTech");
+    public static File mOreDictLogFile;
+    public static PrintStream ore = new LogBuffer();
 
-		public void println(String aString) {
-			this.mBufferedOreDictLog.add(aString);
-		}
-	}
+    public static class LogBuffer extends PrintStream {
+
+        public final List<String> mBufferedOreDictLog = new ArrayList<>();
+
+        public LogBuffer() {
+            super(new OutputStream() {
+
+                @Override
+                public void write(int val) {}
+            });
+        }
+
+        public void println(String aString) {
+            this.mBufferedOreDictLog.add(aString);
+        }
+    }
 }
