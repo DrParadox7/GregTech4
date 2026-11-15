@@ -7,7 +7,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
-import cpw.mods.fml.common.Loader;
+import gregtechmod.GT_Mod;
 import gregtechmod.api.enums.Dyes;
 import gregtechmod.api.recipe.Recipe;
 import gregtechmod.api.recipe.RecipeFactory;
@@ -17,7 +17,6 @@ import gregtechmod.api.util.GT_Utility;
 import gregtechmod.common.recipe.RecipeEntry;
 import gregtechmod.common.recipe.RecipeEntry.Match;
 import gregtechmod.common.recipe.factory.SimpleRecipeFactory;
-import gregtechmod.GT_Mod;
 
 /**
  * @author TheDarkDnKTv

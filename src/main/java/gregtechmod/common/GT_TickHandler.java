@@ -123,8 +123,7 @@ public class GT_TickHandler {
 
             if (GregTech_API.sServerTickCounter % 20 == 0) {
                 for (Object tItem : new ArrayList<>(event.world.loadedEntityList)) {
-                    if (tItem instanceof EntityItem &&
-                        ((EntityItem) tItem).lifespan == 6000) {
+                    if (tItem instanceof EntityItem && ((EntityItem) tItem).lifespan == 6000) {
 
                         ((EntityItem) tItem).lifespan = GT_Mod.sItemDespawnTime;
                     }
